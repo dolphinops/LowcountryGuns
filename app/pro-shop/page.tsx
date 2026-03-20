@@ -100,6 +100,25 @@ export default function ProShop() {
         </div>
       </section>
       
+      <section className="section-spacing bg-gradient-dark text-white text-center pb-12">
+        <div className="content-container">
+          <h2 className="text-3xl font-extrabold mb-8 tracking-tight">
+             Inside the <span className="text-gradient">Pro Shop</span>
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="relative aspect-video sm:aspect-square md:aspect-video rounded-xl overflow-hidden shadow-lg border border-white/10 group">
+              <img src="/images/legacy/DSC02534.webp" alt="Pro Shop Interior" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div className="relative aspect-video sm:aspect-square md:aspect-video rounded-xl overflow-hidden shadow-lg border border-white/10 group">
+              <img src="/images/legacy/DSC1396.webp" alt="Display Counter" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div className="relative aspect-video sm:aspect-square md:aspect-video rounded-xl overflow-hidden shadow-lg border border-white/10 group">
+              <img src="/images/legacy/IMG_3575-scaled.jpg" alt="Rifle Selection" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div className="gradient-divider" />
     </div>
   );

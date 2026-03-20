@@ -178,8 +178,8 @@ export default function TheRange() {
             </div>
             <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover mt-0 sm:mt-12 md:mt-8 shadow-xl">
               <Image 
-                src="/images/IMG_1361.webp" 
-                alt="Shooting Range Facility Pro Shop" 
+                src="/images/legacy/DSC02296.webp" 
+                alt="Shooting Range Facility" 
                 fill 
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
               />

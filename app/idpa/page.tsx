@@ -62,6 +62,20 @@ export default function IDPA() {
           </div>
         </BentoCard>
       </div>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-8">
+        <div className="relative aspect-square rounded-xl overflow-hidden shadow-md">
+          <img src="/images/legacy/DSC02461.jpg" alt="IDPA Match 1" className="absolute inset-0 w-full h-full object-cover" />
+        </div>
+        <div className="relative aspect-square rounded-xl overflow-hidden shadow-md">
+          <img src="/images/legacy/DSC02457.webp" alt="IDPA Match 2" className="absolute inset-0 w-full h-full object-cover" />
+        </div>
+        <div className="relative aspect-square rounded-xl overflow-hidden shadow-md">
+          <img src="/images/legacy/DSC02450.webp" alt="IDPA Match 3" className="absolute inset-0 w-full h-full object-cover" />
+        </div>
+        <div className="relative aspect-square rounded-xl overflow-hidden shadow-md">
+          <img src="/images/legacy/DSC1526.webp" alt="IDPA Shooter Action" className="absolute inset-0 w-full h-full object-cover" />
+        </div>
+      </div>
     </div>
   );
 }

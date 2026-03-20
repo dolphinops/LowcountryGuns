@@ -41,6 +41,15 @@ export default function PrivateParties() {
           </ul>
         </BentoCard>
       </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
+        <div className="relative aspect-video rounded-xl overflow-hidden shadow-xl border border-[var(--color-card-border)]">
+          <img src="/images/legacy/DSC1574.webp" alt="Private Party Range Action" className="absolute inset-0 w-full h-full object-cover" />
+        </div>
+        <div className="relative aspect-video rounded-xl overflow-hidden shadow-xl border border-[var(--color-card-border)]">
+          <img src="/images/legacy/DSC02521.webp" alt="Group Training at the Range" className="absolute inset-0 w-full h-full object-cover" />
+        </div>
+      </div>
     </div>
   );
 }

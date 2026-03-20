@@ -51,6 +51,10 @@ export default function FirearmTransfers() {
         </BentoCard>
 
       </div>
+
+      <div className="mt-8 rounded-2xl overflow-hidden shadow-xl border border-[var(--color-card-border)] relative aspect-[21/9]">
+         <img src="/images/legacy/DSC1396.webp" alt="Firearm Transfer Counter" className="absolute inset-0 w-full h-full object-cover" />
+      </div>
     </div>
   );
 }

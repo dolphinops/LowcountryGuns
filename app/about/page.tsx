@@ -29,7 +29,7 @@ export default function About() {
       <div className="gradient-divider" />
 
       {/* ─── MAIN CONTENT ─── */}
-      <section className="section-spacing bg-gradient-brand text-white">
+      <section className="section-spacing bg-gradient-brand text-white pb-10">
         <div className="content-container">
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
@@ -63,6 +63,23 @@ export default function About() {
               </ul>
             </BentoCard>
 
+          </div>
+        </div>
+      </section>
+
+      {/* ─── IMAGE GALLERY ─── */}
+      <section className="section-spacing bg-gradient-dark text-white pt-10">
+        <div className="content-container max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="relative aspect-square md:aspect-auto md:h-64 rounded-xl overflow-hidden shadow-lg border border-white/10 group">
+              <img src="/images/legacy/IMG_0504-scaled.webp" alt="Lowcountry Guns Team" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div className="relative aspect-square md:aspect-auto md:h-64 rounded-xl overflow-hidden shadow-lg border border-white/10 group">
+              <img src="/images/legacy/DSC1670.webp" alt="Shooter Close-up" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div className="relative aspect-square md:aspect-auto md:h-64 rounded-xl overflow-hidden shadow-lg border border-white/10 group">
+              <img src="/images/legacy/DSC02433.webp" alt="Range Facility" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </div>
           </div>
         </div>
       </section>
