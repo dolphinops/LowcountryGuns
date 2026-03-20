@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+:root {
+  --color-background: #fafafa;
+  --color-foreground: #0a0a0b;
+  --color-primary-base: #679BA8;
+  --color-primary-hover: #56BCD7;
+  --color-primary-dark: #4a7f8a;
+  --color-secondary: #78B1AA;
+  --color-card-bg: #ffffff;
+  --color-card-border: #e4e4e7;
+  --color-surface: #f4f4f5;
+  --color-muted-fg: #52525b;
+  --color-muted-fg-light: #71717a;
+
+  --font-sans: var(--font-inter);
+
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Reusable animation keyframes ─── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-slow {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@layer utilities {
+  /* ─── Gradient text utility ─── */
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-primary-base) 0%, var(--color-primary-hover) 50%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-light {
+    background: linear-gradient(135deg, #b8d8e0 0%, var(--color-primary-hover) 50%, #a0dbe8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ─── Gradient divider ─── */
+  .gradient-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--color-primary-base) 30%, var(--color-primary-hover) 50%, var(--color-primary-base) 70%, transparent 100%);
+    border: none;
+  }
+
+  /* ─── Gradient border card ─── */
+  .gradient-border-card {
+    position: relative;
+    border-radius: 1rem;
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .gradient-border-card:hover {
+    border-color: transparent;
+    box-shadow:
+      0 8px 32px rgba(103, 155, 168, 0.12),
+      0 0 0 1px var(--color-primary-base);
+  }
+
+  /* ─── Glow effect ─── */
+  .glow-hover {
+    transition: box-shadow 0.4s ease;
+  }
+
+  .glow-hover:hover {
+    box-shadow:
+      0 0 20px rgba(103, 155, 168, 0.15),
+      0 8px 40px rgba(103, 155, 168, 0.1);
+  }
+
+  /* ─── Gradient section backgrounds ─── */
+  .bg-gradient-section {
+    background: linear-gradient(180deg, var(--color-background) 0%, rgba(103, 155, 168, 0.05) 100%);
+  }
+
+  .bg-gradient-section-reverse {
+    background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-background) 100%);
+  }
+
+  .bg-gradient-brand {
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-base) 100%);
+  }
+
+  .bg-gradient-dark {
+    background: linear-gradient(180deg, #18181b 0%, #0a0a0b 100%);
+  }
+
+  .bento-card {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-card-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .bento-card:hover {
+    border-color: var(--color-primary-base);
+    box-shadow: 0 4px 24px rgba(103, 155, 168, 0.08);
+  }
+
+  .content-container {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.7s ease-out both;
+  }
+
+  .animate-fade-in {
+    animation: fade-in-slow 1s ease-out both;
+  }
+
+  .animate-count {
+    animation: count-up 0.5s ease-out both;
+  }
+
+  /* Stagger delays */
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+  .delay-5 { animation-delay: 0.5s; }
+  .delay-6 { animation-delay: 0.6s; }
+
+  /* Section spacing system */
+  .section-spacing {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-spacing {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+}

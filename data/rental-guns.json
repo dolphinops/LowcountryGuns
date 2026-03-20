@@ -1,0 +1,1248 @@
+[
+  {
+    "category": "Pistols",
+    "manufacturer": "Beretta",
+    "model": "96",
+    "caliber": ".40 S&W",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Beretta",
+    "model": "92",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Beretta",
+    "model": "92",
+    "caliber": "9mm",
+    "notes": "Hogue Grip"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Beretta",
+    "model": "APX",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Beretta",
+    "model": "Pico",
+    "caliber": "380",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Beretta",
+    "model": "PX4 Inx",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Beretta",
+    "model": "PX4 BLK",
+    "caliber": "40",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Beretta",
+    "model": "PX4 Comp",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Beretta",
+    "model": "PX4 Comp",
+    "caliber": ".40 S & W",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Bersa",
+    "model": "Firestorm",
+    "caliber": "0.38",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Bersa",
+    "model": "Firestorm",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Browning",
+    "model": "Buckmark",
+    "caliber": ".22LR",
+    "notes": "Removable Suppressor"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Browning",
+    "model": "Buckmark",
+    "caliber": ".22LR",
+    "notes": "Night Sight"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Browning",
+    "model": "Buckmark",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Canik",
+    "model": "TP9SFX",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Canik",
+    "model": "TP9SA",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Canik",
+    "model": "TP9 Elite SC",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Canik",
+    "model": "TP9DA",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Colt",
+    "model": "Rail Gun",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Dan Wesson",
+    "model": "1911 PTM-S",
+    "caliber": ".45 acp",
+    "notes": "Removable Suppressor"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Dan Wesson",
+    "model": "1911 PMA-B",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "FN Herstal",
+    "model": "Five – Seven",
+    "caliber": "5.7 x 28mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "26",
+    "caliber": ".22LR*",
+    "notes": "*22 Conversion Kit"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "35",
+    "caliber": ".40 S&W",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "27",
+    "caliber": ".40 S&W",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "22",
+    "caliber": ".40 S&W",
+    "notes": "Generation 4"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "23",
+    "caliber": ".40 S&W",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "22",
+    "caliber": ".40 S&W",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "22C",
+    "caliber": ".40 S&W",
+    "notes": "Compensated"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "30",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "36",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "21",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "26",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "17",
+    "caliber": "9mm",
+    "notes": "RTF"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "19C",
+    "caliber": "9mm",
+    "notes": "Compensated"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "34",
+    "caliber": "9mm",
+    "notes": "Compensated"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "19",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "19",
+    "caliber": "9mm",
+    "notes": "RTF"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "19 Gen 5",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "17",
+    "caliber": "9mm",
+    "notes": "Removable Suppressor"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "43",
+    "caliber": "9mm",
+    "notes": "Generation 4"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "42",
+    "caliber": "380",
+    "notes": "Generation 4"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "43x",
+    "caliber": "9mm",
+    "notes": "Generation 4"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "48",
+    "caliber": "9mm",
+    "notes": "Generation 4"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "45",
+    "caliber": "9mm",
+    "notes": "Generation 4"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "17",
+    "caliber": "9mm",
+    "notes": "Generation 4"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "G19X",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Glock",
+    "model": "G44",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "GSG",
+    "model": "Rail Gun",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "H & K",
+    "model": "VP40",
+    "caliber": "40 S & W",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "H & K",
+    "model": "VP9",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "H & K",
+    "model": "VP-9 Tactical",
+    "caliber": "9mm",
+    "notes": "Suppressed"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "H & K",
+    "model": "P2000 Sub",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "H & K",
+    "model": "P30sk Sub",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Keltec",
+    "model": "P32",
+    "caliber": ".32 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Keltec",
+    "model": "P3AT",
+    "caliber": ".380 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Kimber",
+    "model": "Custom TLE II",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Kimber",
+    "model": "Tactical Custom II",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Kimber",
+    "model": "Tactical Custom II",
+    "caliber": ".45 acp",
+    "notes": "Hogue Grips"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "North American",
+    "model": "Guardian",
+    "caliber": ".32 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "North American",
+    "model": "Guardian",
+    "caliber": ".32 NAA",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Para Ordinance",
+    "model": "CCO LDA",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Para Ordinance",
+    "model": "CCW LDA",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Para Ordinance",
+    "model": "Carry LDA",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Remington",
+    "model": "R51",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Remington",
+    "model": "RM380",
+    "caliber": "380",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Rock Island Armory",
+    "model": "M1911 A1 CS",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Rock Island Armory",
+    "model": "M1911 A1 FS",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Rock Island Armory",
+    "model": "M1911 FS Tactical",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Rock Island Armory",
+    "model": "M1911 A1 FS",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Rock Island Armory",
+    "model": "Tactical 1911",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Ruger",
+    "model": "LCP2",
+    "caliber": "0.38",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Ruger",
+    "model": "Mark III",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Ruger",
+    "model": "SR9C",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Ruger",
+    "model": "SR22",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Ruger",
+    "model": "LC9",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Ruger",
+    "model": "22/45 lite",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Ruger",
+    "model": "Mark IV",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Ruger",
+    "model": "LCP",
+    "caliber": ".380 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Ruger",
+    "model": "Mark IV Lite",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "Mosquito",
+    "caliber": ".22LR",
+    "notes": "Removable Suppressor"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P238",
+    "caliber": ".380 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P229",
+    "caliber": ".40 S&W",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P220",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P226",
+    "caliber": "9mm",
+    "notes": "Removable Suppressor"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P226 Navy",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P239",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P250",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P225",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P938",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P229SAS",
+    "caliber": "40 S & W",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P290",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P320",
+    "caliber": "9mm",
+    "notes": "XSERIES"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P320/M17",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P320 Sub Compact",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P365",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P320/M16",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P365",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Sig Sauer",
+    "model": "P365XL",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Skyy",
+    "model": "CPX-1",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "22-A1",
+    "caliber": ".22LR",
+    "notes": "Red Dot Tactical Sight"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "Model 29",
+    "caliber": "44 Magnum",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "Shield EZ",
+    "caliber": "0.380",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "Shield EZ",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "Victory",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "M&P 40",
+    "caliber": ".40 S&W",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "M&P 40C",
+    "caliber": ".40 S&W",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "M&P 45",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "M&P 9",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "M & P 22c",
+    "caliber": "9mm",
+    "notes": "Suppressed"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "M & P 22 Compact",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "M & P 22 Full Size",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "Bodyguard",
+    "caliber": "0.38",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "Shield",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "Shield",
+    "caliber": ".40 S & W",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "Shield",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Smith & Wesson",
+    "model": "M&P 9C",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Springfield Armory",
+    "model": "Hellcat",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Springfield Armory",
+    "model": "XDM-40",
+    "caliber": ".40 S&W",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Springfield Armory",
+    "model": "XD-40",
+    "caliber": ".40 S&W",
+    "notes": "Service Model"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Springfield Armory",
+    "model": "XD-40",
+    "caliber": ".40 S&W",
+    "notes": "Sub Compact 3″"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Springfield Armory",
+    "model": "XD-45",
+    "caliber": ".45 acp",
+    "notes": "Compact 4″ Barrel"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Springfield Armory",
+    "model": "XDM-9",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Springfield Armory",
+    "model": "XD-9",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Springfield Armory",
+    "model": "MOD2",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Springfield Armory",
+    "model": "MOD2",
+    "caliber": "40 S & W",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Springfield Armory",
+    "model": "MOD2",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Springfield Armory",
+    "model": "XDS",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Springfield Armory",
+    "model": "XDS",
+    "caliber": ".45 acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Springfield Armory",
+    "model": "XD-9",
+    "caliber": "9mm",
+    "notes": "Sub Compact 3″"
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Walther",
+    "model": "Creed",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Walther",
+    "model": "PPQ M2",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Walther",
+    "model": "PPS M2",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Walther",
+    "model": "P99C as",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Walther",
+    "model": "CCP",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Walther",
+    "model": "PK 380",
+    "caliber": "380acp",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Walther",
+    "model": "PK 380 Aqua",
+    "caliber": "380",
+    "notes": ""
+  },
+  {
+    "category": "Pistols",
+    "manufacturer": "Walther",
+    "model": "P22",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Charter Arms",
+    "model": "Pink Lady",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Ruger",
+    "model": "LCR",
+    "caliber": ".22 Mag",
+    "notes": ""
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Ruger",
+    "model": "LCR W / Laser",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Ruger",
+    "model": "LCR",
+    "caliber": ".38 Special",
+    "notes": ""
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Smith & Wesson",
+    "model": "Model 617",
+    "caliber": ".22LR",
+    "notes": "6″ Barrel"
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Smith & Wesson",
+    "model": "Model 617",
+    "caliber": ".22LR",
+    "notes": "4″ Barrel"
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Smith & Wesson",
+    "model": "Model 317",
+    "caliber": ".22LR",
+    "notes": "3″ Barrel"
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Smith & Wesson",
+    "model": "Model 18 -4",
+    "caliber": ".22LR",
+    "notes": "4″ Barrel"
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Smith & Wesson",
+    "model": "Model 1",
+    "caliber": ".22LR",
+    "notes": "6″ Barrel"
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Smith & Wesson",
+    "model": "Model 63",
+    "caliber": ".22LR",
+    "notes": "4″ Barrel"
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Smith & Wesson",
+    "model": "Model 65",
+    "caliber": ".357 Mag",
+    "notes": ""
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Smith & Wesson",
+    "model": "Model 686",
+    "caliber": ".357 Mag",
+    "notes": "4″ Barrel"
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Smith & Wesson",
+    "model": "386SC",
+    "caliber": ".357 Mag",
+    "notes": "4″ Barrel"
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Smith & Wesson",
+    "model": "Model 686",
+    "caliber": ".357 Mag",
+    "notes": "6″ Barrel"
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Smith & Wesson",
+    "model": "442",
+    "caliber": ".38 Special",
+    "notes": "has Crimson Trace Grip"
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Smith & Wesson",
+    "model": "Model 10",
+    "caliber": ".38 Special",
+    "notes": ""
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Smith & Wesson",
+    "model": "638",
+    "caliber": ".38 Special",
+    "notes": ""
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Smith & Wesson",
+    "model": "Bodyguard",
+    "caliber": ".38 Special",
+    "notes": "Built in Laser"
+  },
+  {
+    "category": "Revolvers",
+    "manufacturer": "Taurus",
+    "model": "Judge",
+    "caliber": "45LC/410",
+    "notes": ""
+  },
+  {
+    "category": "Long Guns",
+    "manufacturer": "CMMG",
+    "model": "MK9",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Long Guns",
+    "manufacturer": "Cricket",
+    "model": "Bolt Action",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Long Guns",
+    "manufacturer": "DPMS",
+    "model": "AR15",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Long Guns",
+    "manufacturer": "Henry",
+    "model": "Lever Action",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Long Guns",
+    "manufacturer": "Keltec",
+    "model": "CMR-30",
+    "caliber": ".22 Magnum",
+    "notes": ""
+  },
+  {
+    "category": "Long Guns",
+    "manufacturer": "Marlin",
+    "model": "XT-22 Bolt Action",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Long Guns",
+    "manufacturer": "Marlin",
+    "model": "M60",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Long Guns",
+    "manufacturer": "Ruger",
+    "model": "10/22",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Long Guns",
+    "manufacturer": "Ruger",
+    "model": "10/22",
+    "caliber": ".22LR",
+    "notes": "Collapsable"
+  },
+  {
+    "category": "Long Guns",
+    "manufacturer": "Savage",
+    "model": "Rascal Bolt Action",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Long Guns",
+    "manufacturer": "Savage",
+    "model": "MK I",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Long Guns",
+    "manufacturer": "Sig Sauer",
+    "model": "MPX",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Long Guns",
+    "manufacturer": "Smith & Wesson",
+    "model": "M & P 15/22",
+    "caliber": ".22LR",
+    "notes": ""
+  },
+  {
+    "category": "Machine Guns",
+    "manufacturer": "Beretta",
+    "model": "PM 12S",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Machine Guns",
+    "manufacturer": "Colt",
+    "model": "M16 A2",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Machine Guns",
+    "manufacturer": "H & K",
+    "model": "MP5",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Machine Guns",
+    "manufacturer": "H & K",
+    "model": "MP5 A2",
+    "caliber": "9mm",
+    "notes": ""
+  },
+  {
+    "category": "Machine Guns",
+    "manufacturer": "H & K",
+    "model": "UMP",
+    "caliber": ".40 S&W",
+    "notes": ""
+  },
+  {
+    "category": "Machine Guns",
+    "manufacturer": "Kriss",
+    "model": "Vector SMG",
+    "caliber": ".45ACP",
+    "notes": "5″ Barrel"
+  },
+  {
+    "category": "Machine Guns",
+    "manufacturer": "Kriss",
+    "model": "Vector SMG",
+    "caliber": ".45ACP",
+    "notes": "6″ Barrel"
+  },
+  {
+    "category": "Machine Guns",
+    "manufacturer": "UZI",
+    "model": "IMI",
+    "caliber": "9mm",
+    "notes": ""
+  }
+]
