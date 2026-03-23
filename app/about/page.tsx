@@ -156,50 +156,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* ─── OUR FACILITY & IMAGE GALLERY ─── */}
-      <section className="section-spacing bg-gradient-dark text-white pt-16 pb-16 border-t border-white/5">
-        <div className="content-container mb-16">
-          <div className="max-w-4xl mx-auto">
-            <BentoCard className="flex flex-col md:flex-row items-start md:items-center justify-between border-white/10 pt-8 pb-8 px-8 bg-white/5 backdrop-blur-sm shadow-xl relative overflow-hidden gap-8">
-              <div className="flex-1">
-                <div className="flex items-center gap-4 mb-6 relative">
-                  <div className="p-3 rounded-full bg-white/10 text-white shadow-inner">
-                    <Target className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-3xl font-bold text-white">Our Facility</h3>
-                </div>
-                <p className="text-zinc-300 mb-6 leading-relaxed">
-                  Lowcountry Guns & Range continues the legacy of Palmetto Indoor Range, elevating the standard for indoor shooting in the region.
-                </p>
-              </div>
-              <div className="flex-1 w-full">
-                <ul className="space-y-4 text-zinc-200 font-medium">
-                  <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-[var(--color-primary-base)] flex-shrink-0" /> 10 State-of-the-art shooting bays</li>
-                  <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-[var(--color-primary-base)] flex-shrink-0" /> Fully integrated Pro Shop</li>
-                  <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-[var(--color-primary-base)] flex-shrink-0" /> Dedicated, certified safety officers</li>
-                  <li className="flex items-center gap-3"><CheckCircle className="w-5 h-5 text-[var(--color-primary-base)] flex-shrink-0" /> Open 7 days a week</li>
-                </ul>
-              </div>
-            </BentoCard>
-          </div>
-        </div>
 
-        <div className="content-container max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="relative aspect-[3/2] md:col-span-2 rounded-xl overflow-hidden shadow-2xl border border-white/10 group">
-              <Image src="/images/legacy/DSC02433.webp" alt="Inside Lowcountry Guns and Range facility" fill sizes="(max-width: 768px) 100vw, 66vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-            </div>
-            <div className="flex flex-col gap-6">
-              <div className="relative aspect-[3/2] rounded-xl overflow-hidden shadow-2xl border border-white/10 group flex-1">
-                <Image src="/images/legacy/DSC1670.webp" alt="Shooter at Lowcountry Guns" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-              </div>
-              <div className="relative aspect-[3/2] rounded-xl overflow-hidden shadow-2xl border border-white/10 group flex-1">
-                <Image src="/images/legacy/DSC02296.webp" alt="Indoor shooting range bay" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <div className="gradient-divider" />
     </div>
