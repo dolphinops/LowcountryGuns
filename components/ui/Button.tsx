@@ -20,9 +20,9 @@ export function Button({
   }
 
   const variants = {
-    primary: "bg-gradient-to-r from-zinc-900 to-zinc-700 text-white hover:from-zinc-800 hover:to-zinc-600 shadow-md",
-    secondary: "bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-base)] text-white hover:from-[var(--color-primary-base)] hover:to-[var(--color-primary-hover)] shadow-md",
-    outline: "border-2 border-[var(--color-foreground)] text-[var(--color-foreground)] hover:bg-gradient-to-r hover:from-zinc-900 hover:to-zinc-700 hover:text-white hover:border-transparent",
+    primary: "bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-base)] text-white hover:from-[var(--color-primary-base)] hover:to-[var(--color-primary-hover)] shadow-md",
+    secondary: "bg-gradient-to-r from-zinc-900 to-zinc-700 text-white hover:from-zinc-800 hover:to-zinc-600 shadow-md",
+    outline: "border-2 border-[var(--color-foreground)] text-[var(--color-foreground)] hover:bg-gradient-to-r hover:from-[var(--color-primary-dark)] hover:to-[var(--color-primary-base)] hover:text-white hover:border-transparent",
     ghost: "text-[var(--color-muted-fg)] hover:text-[var(--color-foreground)] hover:bg-[var(--color-surface)]"
   }
 

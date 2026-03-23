@@ -65,13 +65,13 @@ export default function Memberships() {
                 <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-[var(--color-primary-base)] shrink-0" /> $20 Gun Transfers</li>
               </ul>
               <Link href="https://app.hubspot.com/payments/mRKDNfFrsXmfP?referrer=PAYMENT_LINK" target="_blank" className="mt-auto block">
-                <Button variant="outline" className="w-full h-12 hover:bg-[var(--color-primary-base)] hover:text-[#0a0a0b] hover:border-[var(--color-primary-base)] transition-colors">Select Premium</Button>
+                <Button variant="outline" className="w-full h-12 hover:bg-gradient-to-r hover:from-[var(--color-primary-dark)] hover:to-[var(--color-primary-base)] hover:text-white hover:border-transparent transition-all">Select Premium</Button>
               </Link>
             </BentoCard>
 
             {/* Premium+ */}
             <BentoCard className="flex flex-col border-[var(--color-primary-base)] shadow-[0_0_20px_rgba(103,155,168,0.2)] relative transform md:-translate-y-4 bg-gradient-to-b from-[var(--color-card-bg)] to-[var(--color-primary-base)]/5 pt-8 pb-6 px-6">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[var(--color-primary-base)] text-[#0a0a0b] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-base)] text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-lg">
                 Most Popular
               </div>
               <div className="text-center mb-4">
@@ -121,7 +121,7 @@ export default function Memberships() {
                 <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-[var(--color-primary-base)] shrink-0" /> $20 Gun Transfers</li>
               </ul>
               <Link href="https://app.hubspot.com/payments/F4wS7bxpw9H7dM?referrer=PAYMENT_LINK" target="_blank" className="mt-auto block">
-                <Button variant="outline" className="w-full h-12 hover:bg-[var(--color-primary-base)] hover:text-[#0a0a0b] hover:border-[var(--color-primary-base)] transition-colors">Select Family</Button>
+                <Button variant="outline" className="w-full h-12 hover:bg-gradient-to-r hover:from-[var(--color-primary-dark)] hover:to-[var(--color-primary-base)] hover:text-white hover:border-transparent transition-all">Select Family</Button>
               </Link>
             </BentoCard>
 

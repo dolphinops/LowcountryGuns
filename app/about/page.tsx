@@ -148,7 +148,7 @@ export default function About() {
               href="https://www.google.com/search?q=lowcountry+guns+and+range"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[var(--color-primary-base)] text-zinc-900 font-bold text-lg rounded-xl hover:bg-[var(--color-primary-hover)] transition-colors shadow-lg hover:shadow-xl"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-base)] text-white font-bold text-lg rounded-xl hover:from-[var(--color-primary-base)] hover:to-[var(--color-primary-hover)] transition-all shadow-lg hover:shadow-xl"
             >
               Read More Google Reviews <ExternalLink className="w-5 h-5" />
             </a>

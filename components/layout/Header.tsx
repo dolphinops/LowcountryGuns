@@ -113,7 +113,8 @@ export function Header() {
             <Link href="/memberships" className="hidden sm:inline-flex">
               <Button
                 size="md"
-                variant={isTransparent ? 'secondary' : 'primary'}
+                variant="primary"
+                className="shadow-lg hover:shadow-xl"
               >
                 Membership
               </Button>
