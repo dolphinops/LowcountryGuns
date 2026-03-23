@@ -1,4 +1,5 @@
 import { BentoCard } from '@/components/ui/BentoCard';
+import Image from 'next/image';
 import { ShoppingBag, CheckCircle, ShieldAlert } from 'lucide-react';
 import type { Metadata } from 'next';
 
@@ -106,14 +107,14 @@ export default function ProShop() {
              Inside the <span className="text-gradient">Pro Shop</span>
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <div className="relative aspect-video sm:aspect-square md:aspect-video rounded-xl overflow-hidden shadow-lg border border-white/10 group">
-              <img src="/images/legacy/DSC02534.webp" alt="Pro Shop Interior" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg border border-white/10 group">
+              <Image src="/images/legacy/DSC02534.webp" alt="Pro Shop interior with firearms on display" fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
-            <div className="relative aspect-video sm:aspect-square md:aspect-video rounded-xl overflow-hidden shadow-lg border border-white/10 group">
-              <img src="/images/legacy/DSC1396.webp" alt="Display Counter" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg border border-white/10 group">
+              <Image src="/images/legacy/DSC1396.webp" alt="Pro Shop display counter" fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
-            <div className="relative aspect-video sm:aspect-square md:aspect-video rounded-xl overflow-hidden shadow-lg border border-white/10 group">
-              <img src="/images/legacy/IMG_3575-scaled.jpg" alt="Rifle Selection" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg border border-white/10 group">
+              <Image src="/images/legacy/IMG_3575-scaled.jpg" alt="Rifle selection wall" fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
           </div>
         </div>

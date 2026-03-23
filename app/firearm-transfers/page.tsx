@@ -1,4 +1,5 @@
 import { BentoCard } from '@/components/ui/BentoCard';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -52,8 +53,8 @@ export default function FirearmTransfers() {
 
       </div>
 
-      <div className="mt-8 rounded-2xl overflow-hidden shadow-xl border border-[var(--color-card-border)] relative aspect-[21/9]">
-         <img src="/images/legacy/DSC1396.webp" alt="Firearm Transfer Counter" className="absolute inset-0 w-full h-full object-cover" />
+      <div className="mt-8 rounded-2xl overflow-hidden shadow-xl border border-[var(--color-card-border)] relative aspect-[16/9]">
+         <Image src="/images/legacy/DSC1396.webp" alt="Firearm transfer counter at Lowcountry Guns" fill sizes="100vw" className="object-cover" />
       </div>
     </div>
   );

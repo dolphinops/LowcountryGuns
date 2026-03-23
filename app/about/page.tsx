@@ -1,4 +1,5 @@
 import { BentoCard } from '@/components/ui/BentoCard';
+import Image from 'next/image';
 import { Landmark, Target, CheckCircle } from 'lucide-react';
 import type { Metadata } from 'next';
 
@@ -71,14 +72,16 @@ export default function About() {
       <section className="section-spacing bg-gradient-dark text-white pt-10">
         <div className="content-container max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="relative aspect-square md:aspect-auto md:h-64 rounded-xl overflow-hidden shadow-lg border border-white/10 group">
-              <img src="/images/legacy/IMG_0504-scaled.webp" alt="Lowcountry Guns Team" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="relative aspect-[3/2] md:col-span-2 rounded-xl overflow-hidden shadow-lg border border-white/10 group">
+              <Image src="/images/legacy/DSC02433.webp" alt="Inside Lowcountry Guns and Range facility" fill sizes="(max-width: 768px) 100vw, 66vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
-            <div className="relative aspect-square md:aspect-auto md:h-64 rounded-xl overflow-hidden shadow-lg border border-white/10 group">
-              <img src="/images/legacy/DSC1670.webp" alt="Shooter Close-up" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            </div>
-            <div className="relative aspect-square md:aspect-auto md:h-64 rounded-xl overflow-hidden shadow-lg border border-white/10 group">
-              <img src="/images/legacy/DSC02433.webp" alt="Range Facility" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="flex flex-col gap-6">
+              <div className="relative aspect-[3/2] rounded-xl overflow-hidden shadow-lg border border-white/10 group">
+                <Image src="/images/legacy/DSC1670.webp" alt="Shooter at Lowcountry Guns" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <div className="relative aspect-[3/2] rounded-xl overflow-hidden shadow-lg border border-white/10 group">
+                <Image src="/images/legacy/DSC02296.webp" alt="Indoor shooting range bay" fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+              </div>
             </div>
           </div>
         </div>

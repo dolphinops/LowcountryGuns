@@ -1,5 +1,6 @@
 import { BentoCard } from '@/components/ui/BentoCard';
 import { Button } from '@/components/ui/Button';
+import Image from 'next/image';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -43,11 +44,11 @@ export default function PrivateParties() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
-        <div className="relative aspect-video rounded-xl overflow-hidden shadow-xl border border-[var(--color-card-border)]">
-          <img src="/images/legacy/DSC1574.webp" alt="Private Party Range Action" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="relative aspect-video rounded-xl overflow-hidden shadow-xl border border-[var(--color-card-border)] group">
+          <Image src="/images/legacy/DSC02459.webp" alt="Private party event at the range" fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
         </div>
-        <div className="relative aspect-video rounded-xl overflow-hidden shadow-xl border border-[var(--color-card-border)]">
-          <img src="/images/legacy/DSC02521.webp" alt="Group Training at the Range" className="absolute inset-0 w-full h-full object-cover" />
+        <div className="relative aspect-video rounded-xl overflow-hidden shadow-xl border border-[var(--color-card-border)] group">
+          <Image src="/images/legacy/DSC1664.webp" alt="Group shooting experience" fill sizes="(max-width: 640px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
         </div>
       </div>
     </div>

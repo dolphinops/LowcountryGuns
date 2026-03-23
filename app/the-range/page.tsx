@@ -172,6 +172,7 @@ export default function TheRange() {
                 src="/images/IMG_9122.webp" 
                 alt="Shooters practicing in the indoor shooting bays" 
                 fill 
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -179,8 +180,9 @@ export default function TheRange() {
             <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover mt-0 sm:mt-12 md:mt-8 shadow-xl">
               <Image 
                 src="/images/legacy/DSC02296.webp" 
-                alt="Shooting Range Facility" 
+                alt="Indoor range bay with modern lane system" 
                 fill 
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -190,6 +192,37 @@ export default function TheRange() {
                 src="/images/IMG_2502.webp" 
                 alt="Two people coaching in an indoor range bay" 
                 fill 
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover shadow-xl">
+              <Image 
+                src="/images/legacy/DSC1390.webp" 
+                alt="Range interior showing shooting lanes" 
+                fill 
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover mt-0 sm:mt-12 md:mt-8 shadow-xl">
+              <Image 
+                src="/images/legacy/DSC02326.webp" 
+                alt="Facility common area and seating" 
+                fill 
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover shadow-xl">
+              <Image 
+                src="/images/legacy/DSC1668.webp" 
+                alt="Lowcountry Guns exterior and entrance" 
+                fill 
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
