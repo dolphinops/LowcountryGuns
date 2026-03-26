@@ -14,15 +14,15 @@ export default function Memberships() {
     <div className="flex flex-col">
       {/* ─── HERO SECTION ─── */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-dark">
-        <div className="absolute inset-0 bg-[url('/images/IMG_2502.webp')] bg-cover bg-center bg-no-repeat opacity-25 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-[url('/images/IMG_2502.webp')] bg-cover bg-center bg-no-repeat opacity-45 mix-blend-overlay rotate-90 scale-[1.75]" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/80 to-transparent z-[1]" />
         
         <div className="relative z-10 content-container animate-fade-up text-center max-w-4xl mx-auto">
           <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary-base)] mb-3 delay-1 animate-fade-up">Join The Community</p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 delay-2 animate-fade-up">
-            <span className="text-gradient-light">Memberships</span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 delay-2 animate-fade-up drop-shadow-2xl">
+            <span className="text-gradient-light brightness-125">Memberships</span>
           </h1>
-          <p className="text-lg md:text-xl text-zinc-300 leading-relaxed mx-auto max-w-2xl delay-3 animate-fade-up">
+          <p className="text-lg md:text-xl text-zinc-200 leading-relaxed mx-auto max-w-2xl delay-3 animate-fade-up">
             Train. Improve. Belong. Our membership tiers are designed for frequent shooters and families who demand the best facility in the Lowcountry.
           </p>
         </div>

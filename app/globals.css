@@ -115,8 +115,8 @@ body {
   }
 
   .bento-card {
-    background-color: var(--color-card-bg);
-    border: 1px solid var(--color-card-border);
+    background-color: var(--bento-bg, var(--color-card-bg));
+    border: 1px solid var(--bento-border, var(--color-card-border));
     border-radius: 1rem;
     padding: 1.5rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;

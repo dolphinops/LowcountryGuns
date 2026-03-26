@@ -24,7 +24,7 @@ export default function WomansBasicClass() {
       </div>
 
       <div className="relative w-full aspect-[21/9] md:aspect-[3/1] rounded-2xl overflow-hidden shadow-xl mb-4">
-        <Image src="/images/course-womans-basic.png" alt="Woman's Basic Beginner Class" fill className="object-cover" />
+        <Image src="/images/legacy/DSC1526.webp" alt="Woman's Basic Beginner Class" fill className="object-cover" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

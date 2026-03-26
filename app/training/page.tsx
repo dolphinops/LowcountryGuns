@@ -47,17 +47,17 @@ export default function Training() {
     <div className="flex flex-col">
       {/* ─── HERO SECTION ─── */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-dark">
-        <div className="absolute inset-0 bg-[url('/images/legacy/DSC1395.webp')] bg-cover bg-center bg-no-repeat opacity-20 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-[url('/images/legacy/DSC1395.webp')] bg-cover bg-center bg-no-repeat opacity-45 mix-blend-overlay" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/80 to-transparent z-[1]" />
         
         <div className="relative z-10 content-container animate-fade-up text-center max-w-4xl mx-auto">
           <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary-base)] mb-3 delay-1 animate-fade-up">Education Center</p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 delay-2 animate-fade-up">
-            <span className="text-gradient-light">Training &</span>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 delay-2 animate-fade-up drop-shadow-2xl">
+            <span className="text-gradient-light brightness-125">Training &</span>
             <br />
             Instruction
           </h1>
-          <p className="text-lg md:text-xl text-zinc-300 leading-relaxed mx-auto max-w-2xl delay-3 animate-fade-up">
+          <p className="text-lg md:text-xl text-zinc-200 leading-relaxed mx-auto max-w-2xl delay-3 animate-fade-up">
             No egos, just results. We&apos;ve got your back. Certified, friendly instruction—doing it the right way, the first time.
           </p>
         </div>

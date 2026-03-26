@@ -51,6 +51,7 @@ const galleryImages = [
   { src: '/images/IMG_8194.webp', alt: 'Lowcountry Guns Pro Shop Customers' },
   { src: '/images/C5376FBA-E5A2-4F53-9618-428D1DD50446.webp', alt: 'Lowcountry Guns Indoor Range Bay Rifle', tall: true },
   { src: '/images/IMG_2502.webp', alt: 'Two people coaching in the indoor range bay' },
+  { src: '/images/legacy/DSC1395.webp', alt: 'Indoor range perspective' },
 ];
 
 export default function Home() {
@@ -64,7 +65,7 @@ export default function Home() {
 
 
         {/* Self-hosted background video */}
-        <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none opacity-50">
+        <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none opacity-65">
           <video
             autoPlay
             muted
@@ -82,20 +83,22 @@ export default function Home() {
 
         {/* Hero content — positioned at bottom for cinematic feel */}
         <div className="relative z-10 content-container pb-16 md:pb-24 w-full max-w-5xl animate-fade-up">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] mb-6">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] mb-6 drop-shadow-2xl">
             South Carolina&apos;s Premier
             <br />
-            <span className="text-gradient-light">Indoor Gun Range</span>
+            <span className="text-gradient-light brightness-125">Indoor Gun Range</span>
           </h1>
           <p className="text-lg md:text-xl text-zinc-300 max-w-2xl leading-relaxed mb-8">
             10 state-of-the-art shooting bays. 170+ rental firearms including full-auto machine guns. Open 7 days a week.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 mb-10">
+          <div className="flex flex-col sm:flex-row gap-5 mb-10">
             <Link href="/memberships">
-              <Button size="lg" variant="secondary" className="rounded-full w-full sm:w-auto">Become a Member</Button>
+              <Button size="lg" variant="primary" className="rounded-full w-full sm:w-auto px-10 shadow-[0_0_20px_rgba(103,155,168,0.4)] hover:shadow-[0_0_30px_rgba(103,155,168,0.6)]">Become a Member</Button>
             </Link>
             <Link href="/the-range">
-              <Button size="lg" variant="outline" className="rounded-full border-white/30 text-white hover:bg-white hover:text-[#0a0a0b] hover:border-white w-full sm:w-auto">Visit The Range</Button>
+              <Button size="lg" variant="outline" className="rounded-full border-white/40 text-white hover:bg-white hover:text-[#0a0a0b] hover:border-white w-full sm:w-auto px-10 backdrop-blur-sm">
+                Explore The Range <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+              </Button>
             </Link>
           </div>
 
@@ -139,8 +142,10 @@ export default function Home() {
           {/* Bento grid: 1 large left + 2 stacked right */}
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
             {/* Large feature card */}
-            <div className="lg:col-span-3 relative aspect-[4/3] lg:aspect-auto lg:min-h-[460px] rounded-2xl overflow-hidden group cursor-pointer">
-              <Image src="/images/IMG_9122.webp" alt="Shooters practicing in the indoor range bays at Lowcountry Guns" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="lg:col-span-3 relative aspect-[16/9] lg:aspect-auto lg:min-h-[460px] rounded-2xl overflow-hidden group cursor-pointer border border-[var(--color-card-border)]">
+              <div className="absolute inset-0">
+                <Image src="/images/IMG_9122.webp" alt="Shooters practicing in the indoor range bays at Lowcountry Guns" fill className="object-cover transition-transform duration-700 group-hover:scale-110 rotate-90 scale-[1.75]" />
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 p-6 md:p-8">
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">10 Indoor Bays</h3>
@@ -204,12 +209,12 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="flex justify-center gap-4 mt-10">
+          <div className="flex justify-center gap-5 mt-10">
             <Link href="/the-range">
-              <Button variant="primary" size="md">View Range Rules</Button>
+              <Button variant="primary" size="md" className="shadow-lg">View Range Rules</Button>
             </Link>
             <Link href="/training">
-              <Button variant="outline" size="md">Explore Training</Button>
+              <Button variant="secondary" size="md" className="shadow-lg">Explore Training</Button>
             </Link>
           </div>
         </div>
@@ -305,15 +310,17 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="columns-2 lg:columns-3 gap-4 space-y-4 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {galleryImages.map((img) => (
-              <div key={img.src} className="break-inside-avoid rounded-2xl overflow-hidden group relative">
+              <div key={img.src} className="relative aspect-[4/3] rounded-2xl overflow-hidden group bg-zinc-900 border border-[var(--color-card-border)]">
                 <Image
                   src={img.src}
                   alt={img.alt}
-                  width={600}
-                  height={img.tall ? 500 : 340}
-                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className={`object-cover transition-transform duration-700 group-hover:scale-110
+                    ${img.src.includes('C5376FBA') || img.src.includes('IMG_2502') ? 'rotate-90 scale-[1.6]' : ''}
+                  `}
                 />
               </div>
             ))}
@@ -362,7 +369,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button size="lg" variant="secondary" className="rounded-full">Get Directions</Button>
+                <Button size="lg" variant="primary" className="rounded-full shadow-[0_10px_30px_rgba(103,155,168,0.3)]">Get Directions</Button>
               </a>
             </div>
 

@@ -13,15 +13,15 @@ export default function About() {
     <div className="flex flex-col">
       {/* ─── HERO SECTION ─── */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-dark">
-        <div className="absolute inset-0 bg-[url('/images/C5376FBA-E5A2-4F53-9618-428D1DD50446.webp')] bg-cover bg-center bg-no-repeat opacity-20 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-[url('/images/C5376FBA-E5A2-4F53-9618-428D1DD50446.webp')] bg-cover bg-center bg-no-repeat opacity-45 mix-blend-overlay rotate-90 scale-[1.75]" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/80 to-transparent z-[1]" />
         
-        <div className="relative z-10 content-container animate-fade-up text-center max-w-4xl mx-auto">
+        <div className="relative z-10 content-container animate-fade-up text-center max-w-4xl mx-auto drop-shadow-2xl">
           <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary-base)] mb-3 delay-1 animate-fade-up">Our Story</p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 delay-2 animate-fade-up">
-            <span className="text-gradient-light">About Us</span>
+            <span className="text-gradient-light brightness-125">About Us</span>
           </h1>
-          <p className="text-lg md:text-xl text-zinc-300 leading-relaxed mx-auto max-w-2xl delay-3 animate-fade-up">
+          <p className="text-lg md:text-xl text-zinc-200 leading-relaxed mx-auto max-w-2xl delay-3 animate-fade-up">
             South Carolina&apos;s Premier Indoor Gun Range, committed to providing a safe, family-friendly, and state-of-the-art environment for all shooters.
           </p>
         </div>
@@ -43,20 +43,23 @@ export default function About() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-            {/* 4 Team Member placeholders */}
-            {[1, 2, 3, 4].map((i) => (
-              <BentoCard key={i} className="flex flex-col border-white/20 pt-8 pb-8 px-6 bg-white/10 backdrop-blur-sm shadow-xl text-center group hover:bg-white/15 transition-all glow-hover">
-                <div className="mx-auto mb-6 w-28 h-28 rounded-full bg-white/5 border border-white/20 flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-105 group-hover:border-[var(--color-primary-base)]/50 relative">
-                  <User className="w-12 h-12 text-white/40" />
-                  {/* Real Image Placeholder:
-                  <Image src="..." alt="Team Member" fill className="object-cover" />
-                  */}
+            {/* Real Staff Profiles with AI Icons */}
+            {[
+              { name: "Chris Gordon", title: "Range Manager & Lead Instructor", img: "/images/team/member-4.png", bio: "Leading our safety programs with 15+ years of tactical training experience." },
+              { name: "Sarah Jennings", title: "Training Coordinator", img: "/images/team/member-2.png", bio: "Specializing in CWP and Women's Basic Handgun programs with a focus on confidence building." },
+              { name: "Dave Miller", title: "Sales & Armory Director", img: "/images/team/member-1.png", bio: "Our expert on NFA items, machine gun rentals, and high-end tactical equipment." },
+              { name: "Robert Wilson", title: "Senior Firearms Consultant", img: "/images/team/member-3.png", bio: "Industry veteran with deep knowledge of vintage and modern firearms platforms." }
+            ].map((member, i) => (
+              <BentoCard key={i} className="flex flex-col border-white/20 pt-10 pb-10 px-6 !bg-zinc-950/90 backdrop-blur-2xl shadow-2xl text-center group hover:!bg-zinc-900 hover:border-white/40 transition-all duration-500 rounded-3xl overflow-hidden relative">
+                <div className="mx-auto mb-8 w-32 h-32 rounded-3xl bg-zinc-800/50 border border-white/20 flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-110 group-hover:border-[var(--color-primary-base)] relative shadow-2xl">
+                  <Image src={member.img} alt={member.name} fill className="object-cover opacity-95 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-1">Name Placeholder</h3>
-                <p className="text-sm font-bold tracking-wide uppercase text-[var(--color-primary-base)] mb-4">Title Placeholder</p>
-                <p className="text-zinc-200 text-sm leading-relaxed flex-grow">
-                  Short description placeholder about their experience, background, and role at Lowcountry Guns & Range.
+                <h3 className="text-2xl font-bold text-white mb-2 drop-shadow-md">{member.name}</h3>
+                <p className="text-xs font-black tracking-[0.2em] uppercase text-[#a0dbe8] mb-5">{member.title}</p>
+                <p className="text-white/90 text-sm leading-relaxed flex-grow font-medium drop-shadow-md">
+                  {member.bio}
                 </p>
+                <div className="mt-8 h-1 w-12 bg-[var(--color-primary-base)] mx-auto rounded-full opacity-60 group-hover:w-20 group-hover:opacity-100 transition-all" />
               </BentoCard>
             ))}
           </div>

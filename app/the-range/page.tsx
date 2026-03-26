@@ -14,17 +14,17 @@ export default function TheRange() {
       {/* ─── HERO SECTION ─── */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-dark">
         {/* Subtle background image overlay */}
-        <div className="absolute inset-0 bg-[url('/images/IMG_9122.webp')] bg-cover bg-center bg-no-repeat opacity-25 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-[url('/images/IMG_9122.webp')] bg-cover bg-center bg-no-repeat opacity-45 mix-blend-overlay rotate-90 scale-[1.75]" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent z-[1]" />
         
-        <div className="relative z-10 content-container animate-fade-up text-center max-w-4xl mx-auto">
+        <div className="relative z-10 content-container animate-fade-up text-center max-w-4xl mx-auto drop-shadow-2xl">
           <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary-base)] mb-3 delay-1 animate-fade-up">Facility Info</p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 delay-2 animate-fade-up">
-            <span className="text-gradient-light">10-Bay Indoor</span>
+            <span className="text-gradient-light brightness-125">10-Bay Indoor</span>
             <br />
             Shooting Range
           </h1>
-          <p className="text-lg md:text-xl text-zinc-300 leading-relaxed mx-auto max-w-2xl delay-3 animate-fade-up">
+          <p className="text-lg md:text-xl text-zinc-200 leading-relaxed mx-auto max-w-2xl delay-3 animate-fade-up">
             Experience the Lowcountry&apos;s premier indoor shooting facility. Open to the public 7 days a week with no reservations required.
           </p>
         </div>
@@ -173,7 +173,7 @@ export default function TheRange() {
                 alt="Shooters practicing in the indoor shooting bays" 
                 fill 
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 rotate-90 scale-[1.75]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
@@ -193,7 +193,7 @@ export default function TheRange() {
                 alt="Two people coaching in an indoor range bay" 
                 fill 
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 rotate-90 scale-[1.6]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
@@ -221,6 +221,46 @@ export default function TheRange() {
               <Image 
                 src="/images/legacy/DSC1668.webp" 
                 alt="Lowcountry Guns exterior and entrance" 
+                fill 
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover mt-0 sm:mt-12 md:mt-8 shadow-xl">
+              <Image 
+                src="/images/legacy/DSC02433.webp" 
+                alt="Range target retrieval system" 
+                fill 
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700 hover:brightness-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover shadow-xl">
+              <Image 
+                src="/images/legacy/DSC02450.webp" 
+                alt="Shooting lane perspective" 
+                fill 
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover mt-0 sm:mt-12 md:mt-8 shadow-xl">
+              <Image 
+                src="/images/legacy/DSC02457.webp" 
+                alt="Tactical practice in the bay" 
+                fill 
+                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover shadow-xl">
+              <Image 
+                src="/images/legacy/DSC1670.webp" 
+                alt="Indoor range bay environment" 
                 fill 
                 sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                 className="object-cover group-hover:scale-105 transition-transform duration-700"

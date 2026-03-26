@@ -24,7 +24,7 @@ export default function TacticalLighting() {
       </div>
 
       <div className="relative w-full aspect-[21/9] md:aspect-[3/1] rounded-2xl overflow-hidden shadow-xl mb-4">
-        <Image src="/images/course-tactical-lighting.png" alt="Tactical Lighting Training" fill className="object-cover" />
+        <Image src="/images/legacy/DSC1395.webp" alt="Tactical Lighting Training" fill className="object-cover" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
