@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-export default function EventbriteWidget({ eventId }: { eventId: string }) {
+export default function EventbriteWidget({ eventId, height = 500 }: { eventId: string; height?: number }) {
   useEffect(() => {
     const scriptId = 'eventbrite-script';
     let script = document.getElementById(scriptId) as HTMLScriptElement;
@@ -29,7 +29,7 @@ export default function EventbriteWidget({ eventId }: { eventId: string }) {
           widgetType: 'checkout',
           eventId: eventId,
           iframeContainerId: `eventbrite-widget-container-${eventId}`,
-          iframeContainerHeight: 500,
+          iframeContainerHeight: height,
         });
       }
     };
@@ -51,5 +51,5 @@ export default function EventbriteWidget({ eventId }: { eventId: string }) {
     };
   }, [eventId]);
 
-  return <div id={`eventbrite-widget-container-${eventId}`} className="w-full bg-white rounded-xl overflow-visible shadow-sm border border-zinc-100 min-h-[500px] min-w-[320px]"></div>;
+  return <div id={`eventbrite-widget-container-${eventId}`} className="w-full bg-white rounded-xl overflow-visible shadow-sm border border-zinc-100 min-w-[320px]" style={{ minHeight: height }}></div>;
 }

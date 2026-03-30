@@ -65,7 +65,7 @@ export default function Home() {
 
 
         {/* Self-hosted background video */}
-        <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none opacity-65">
+        <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none opacity-80">
           <video
             autoPlay
             muted
@@ -79,7 +79,7 @@ export default function Home() {
         </div>
 
         {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-[#0a0a0b]/30 z-[2]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/40 to-[#0a0a0b]/10 z-[2]" />
 
         {/* Hero content — positioned at bottom for cinematic feel */}
         <div className="relative z-10 content-container pb-16 md:pb-24 w-full max-w-5xl animate-fade-up">
@@ -201,10 +201,13 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {quickFacts.map((fact) => (
-              <div key={fact.title} className="bg-gradient-brand shadow-lg rounded-2xl p-8 text-center flex flex-col items-center justify-center transform transition-transform hover:-translate-y-1">
-                <div className="mb-4 bg-white/10 p-4 rounded-full inline-flex">{fact.icon}</div>
-                <h3 className="text-xl font-bold text-white mb-3">{fact.title}</h3>
-                <p className="text-sm text-white/90 leading-relaxed font-medium">{fact.body}</p>
+              <div key={fact.title} className="bg-white border border-[var(--color-card-border)] shadow-sm rounded-2xl p-8 text-center flex flex-col items-center justify-center transform transition-transform hover:-translate-y-1 hover:border-[var(--color-primary-base)]/50">
+                <div className="mb-4 bg-[var(--color-primary-base)]/10 p-4 rounded-full inline-flex">
+                  {/* Clone icon to change color to primary */}
+                  {require('react').cloneElement(fact.icon as React.ReactElement, { className: 'w-10 h-10 mx-auto text-[var(--color-primary-base)]' })}
+                </div>
+                <h3 className="text-xl font-bold text-[var(--color-foreground)] mb-3">{fact.title}</h3>
+                <p className="text-sm text-[var(--color-muted-fg)] leading-relaxed font-medium">{fact.body}</p>
               </div>
             ))}
           </div>
@@ -252,41 +255,44 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════
           SECTION 6 — GOOGLE REVIEWS (Custom Card Layout)
           ═══════════════════════════════════════════════════ */}
-      <section className="section-spacing bg-gradient-brand text-white">
-        <div className="content-container">
+      <section className="section-spacing bg-white text-[var(--color-foreground)] border-y border-[var(--color-card-border)] relative overflow-hidden">
+        {/* Decorative background glow */}
+        <div className="absolute top-0 right-1/4 w-96 h-96 bg-[var(--color-primary-base)]/5 rounded-full blur-[120px] pointer-events-none" />
+        
+        <div className="content-container relative z-10">
           <div className="text-center mb-12">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#a0dbe8] mb-2">Social Proof</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary-base)] mb-2">Social Proof</p>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-              <span className="text-white">What Our </span><span className="text-gradient-light">Customers Say</span>
+              <span className="text-[var(--color-foreground)]">What Our </span><span className="text-gradient">Customers Say</span>
             </h2>
-            <p className="text-zinc-200 mt-3 max-w-lg mx-auto">
+            <p className="text-[var(--color-muted-fg)] mt-3 max-w-lg mx-auto font-medium">
               Rated 4.9★ across 480+ reviews. Real feedback from real shooters.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {reviews.map((review) => (
-              <div key={review.name} className="bg-white/10 border border-white/20 backdrop-blur-sm shadow-xl rounded-2xl p-6 flex flex-col transform transition-transform hover:-translate-y-1">
-                <div className="flex items-center gap-1 text-amber-400 mb-4">
+              <div key={review.name} className="bg-gray-50/50 border border-[var(--color-card-border)] backdrop-blur-sm shadow-sm rounded-2xl p-6 flex flex-col transform transition-transform hover:-translate-y-1 hover:border-[var(--color-primary-base)]/50">
+                <div className="flex items-center gap-1 text-yellow-500 mb-4">
                   {Array.from({ length: review.stars }).map((_, i) => (
                     <span key={i} className="text-lg">★</span>
                   ))}
                 </div>
-                <p className="text-white text-sm leading-relaxed flex-1">&ldquo;{review.text}&rdquo;</p>
-                <div className="mt-4 pt-4 border-t border-white/20">
-                  <p className="text-sm font-semibold text-white">{review.name}</p>
-                  <p className="text-xs text-zinc-300">Google Review</p>
+                <p className="text-[var(--color-muted-fg)] text-sm leading-relaxed flex-1 italic">&ldquo;{review.text}&rdquo;</p>
+                <div className="mt-4 pt-4 border-t border-[var(--color-card-border)]">
+                  <p className="text-sm font-bold text-[var(--color-foreground)]">{review.name}</p>
+                  <p className="text-xs text-[var(--color-muted-fg-light)]">Google Review</p>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-8">
+          <div className="text-center mt-10">
             <a
               href="https://admin.trustindex.io/api/googleWriteReview?place-id=ChIJ7zhrQgCa-4gRuZpctP8J2pY"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-semibold text-white hover:text-zinc-200 transition-colors inline-flex items-center gap-1 group"
+              className="text-sm font-bold text-[var(--color-foreground)] hover:text-[var(--color-primary-base)] transition-colors inline-flex items-center gap-2 group"
             >
               See all reviews on Google
               <span className="transition-transform group-hover:translate-x-1">→</span>
@@ -331,36 +337,44 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════
           SECTION 8 — LOCATION CTA
           ═══════════════════════════════════════════════════ */}
-      <section className="section-spacing bg-gradient-dark text-white">
+      <section className="section-spacing bg-gradient-section text-[var(--color-foreground)]">
         <div className="content-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary-base)] mb-2">Visit Us</p>
-              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-6">
-                <span className="text-white">Come See Us </span><span className="text-gradient-light">Today</span>
+            <div className="animate-fade-up">
+              <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary-base)] mb-3">Visit Us</p>
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-8">
+                <span className="text-[var(--color-foreground)]">Come See Us </span><span className="text-gradient">Today</span>
               </h2>
-              <div className="space-y-5 text-zinc-300 text-base leading-relaxed mb-8">
-                <div className="flex items-start gap-4">
-                  <MapPin className="w-6 h-6 text-[var(--color-primary-base)] shrink-0 mt-0.5" />
+              <div className="space-y-6 text-[var(--color-muted-fg)] text-lg leading-relaxed mb-10">
+                <div className="flex items-start gap-5">
+                  <div className="bg-[var(--color-primary-base)]/10 p-3 rounded-xl transform transition-transform hover:scale-110">
+                    <MapPin className="w-6 h-6 text-[var(--color-primary-base)] shrink-0" />
+                  </div>
                   <div>
-                    <p className="font-semibold text-white">98 Purrysburg Rd</p>
+                    <p className="font-bold text-[var(--color-foreground)] text-xl">98 Purrysburg Rd</p>
                     <p>Hardeeville, SC 29927</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <Phone className="w-6 h-6 text-[var(--color-primary-base)] shrink-0 mt-0.5" />
+                <div className="flex items-start gap-5">
+                  <div className="bg-[var(--color-primary-base)]/10 p-3 rounded-xl transform transition-transform hover:scale-110">
+                    <Phone className="w-6 h-6 text-[var(--color-primary-base)] shrink-0" />
+                  </div>
                   <div>
-                    <p className="font-semibold text-white">843-784-5474</p>
+                    <p className="font-bold text-[var(--color-foreground)] text-xl">843-784-5474</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <Clock className="w-6 h-6 text-[var(--color-primary-base)] shrink-0 mt-0.5" />
+                <div className="flex items-start gap-5">
+                  <div className="bg-[var(--color-primary-base)]/10 p-3 rounded-xl transform transition-transform hover:scale-110">
+                    <Clock className="w-6 h-6 text-[var(--color-primary-base)] shrink-0" />
+                  </div>
                   <div>
-                    <p className="font-semibold text-white">Hours</p>
-                    <p className="text-sm mt-1">Mon–Thu: 10am – 6pm</p>
-                    <p className="text-sm">Fri: 10am – 7pm</p>
-                    <p className="text-sm">Sat: 10am – 6pm</p>
-                    <p className="text-sm">Sun: 12pm – 6pm</p>
+                    <p className="font-bold text-[var(--color-foreground)] text-xl mb-2">Hours</p>
+                    <div className="grid grid-cols-2 gap-x-8 gap-y-1 text-sm font-medium">
+                      <span>Mon–Thu</span> <span className="text-[var(--color-foreground)]">10am – 6pm</span>
+                      <span>Fri</span> <span className="text-[var(--color-foreground)] text-primary-glow font-bold">10am – 7pm</span>
+                      <span>Sat</span> <span className="text-[var(--color-foreground)]">10am – 6pm</span>
+                      <span>Sun</span> <span className="text-[var(--color-foreground)]">12pm – 6pm</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -369,11 +383,11 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Button size="lg" variant="primary" className="rounded-full shadow-[0_10px_30px_rgba(103,155,168,0.3)]">Get Directions</Button>
+                <Button size="lg" variant="primary" className="rounded-full px-10 shadow-[0_10px_30px_rgba(103,155,168,0.3)] hover:shadow-[0_15px_40px_rgba(103,155,168,0.5)] transform hover:-translate-y-1 transition-all">Get Directions</Button>
               </a>
             </div>
 
-            <div className="relative aspect-video lg:aspect-square rounded-2xl overflow-hidden border border-zinc-700">
+            <div className="relative aspect-video lg:aspect-square rounded-2xl overflow-hidden border border-[var(--color-card-border)] shadow-xl transform transition-all hover:scale-[1.01] hover:shadow-2xl">
               <iframe
                 src="https://maps.google.com/maps?q=98%20Purrysburg%20Rd%2C%20Hardeeville%2C%20SC%2029927&t=m&z=12&output=embed&iwloc=near"
                 title="98 Purrysburg Rd, Hardeeville, SC 29927"
