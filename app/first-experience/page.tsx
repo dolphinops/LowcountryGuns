@@ -85,6 +85,24 @@ export default function FirstExperience() {
   return (
     <div className="flex flex-col bg-[#0a0a0b] text-white selection:bg-[var(--color-primary-base)] selection:text-white">
 
+      {/* ─── LOGO BAR ─── */}
+      <div className="absolute top-0 left-0 right-0 z-20 py-5 md:py-6">
+        <div className="content-container flex flex-col items-center gap-2">
+          <Image 
+            src="/images/legacy/Logo-2.webp" 
+            alt="Lowcountry Guns & Range" 
+            width={280} 
+            height={94} 
+            className="w-auto h-14 md:h-20 opacity-95"
+            priority
+          />
+          <div className="flex items-center gap-2 text-zinc-400">
+            <MapPin className="w-3.5 h-3.5 text-[var(--color-primary-base)]" />
+            <span className="text-[11px] md:text-sm font-semibold tracking-widest uppercase">Hardeeville, South Carolina</span>
+          </div>
+        </div>
+      </div>
+
       {/* ─── HERO SECTION ─── */}
       <section className="relative pt-32 pb-24 md:pt-48 md:pb-36 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -170,6 +188,50 @@ export default function FirstExperience() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="gradient-divider" />
+
+      {/* ─── MEET YOUR INSTRUCTOR ─── */}
+      <section className="py-20 md:py-28 bg-[#050506] relative overflow-hidden">
+        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[var(--color-primary-base)]/5 to-transparent pointer-events-none" />
+        
+        <div className="content-container relative z-10">
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8 md:gap-12 items-center">
+              {/* Photo */}
+              <div className="mx-auto md:mx-0">
+                <div className="relative w-56 h-56 md:w-64 md:h-72 rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl">
+                  <Image 
+                    src="/images/team/jeremy-mangione.webp" 
+                    alt="Jeremy Mangione — Lead Training Instructor" 
+                    fill 
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                </div>
+              </div>
+
+              {/* Bio */}
+              <div className="text-center md:text-left">
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-primary-base)] mb-2">Meet Your Lead Instructor</p>
+                <h2 className="text-3xl md:text-4xl font-black tracking-tight text-white mb-4">
+                  Jeremy <span className="text-gradient">Mangione</span>
+                </h2>
+                <p className="text-zinc-400 leading-relaxed mb-6">
+                  Jeremy is a 20-year Army veteran with service in elite units including the 75th Ranger Regiment and the U.S. Army Marksmanship Unit. A former Senior Instructor at the U.S. Army&apos;s advanced training programs, Jeremy has coached U.S. and NATO forces as well as the U.S. Secret Service. He brings world-class expertise to help students of all levels build confidence, precision, and safe habits from day one.
+                </p>
+                <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                  {["20-Year Army Veteran", "75th Ranger Regiment", "U.S. Army Marksmanship Unit", "NATO & Secret Service Trainer"].map((badge) => (
+                    <span key={badge} className="px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/5 border border-white/10 text-zinc-400">
+                      {badge}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -363,6 +425,25 @@ export default function FirstExperience() {
           </p>
         </div>
       </section>
+
+      {/* ─── MINIMAL BRANDED FOOTER ─── */}
+      <footer className="py-10 bg-[#050506] border-t border-white/5">
+        <div className="content-container flex flex-col items-center gap-4">
+          <Image 
+            src="/images/legacy/Logo-2.webp" 
+            alt="Lowcountry Guns & Range" 
+            width={200} 
+            height={67} 
+            className="w-auto h-12 md:h-16 opacity-70"
+          />
+          <p className="text-zinc-600 text-xs text-center">
+            98 Purrysburg Rd, Hardeeville, SC 29927 · 843-784-5474
+          </p>
+          <p className="text-zinc-700 text-[10px]">
+            © {new Date().getFullYear()} Lowcountry Guns & Range. All rights reserved.
+          </p>
+        </div>
+      </footer>
 
       {/* ─── Structured Data for Local Business (compliance-safe) ─── */}
       <script
