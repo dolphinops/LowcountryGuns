@@ -6,6 +6,7 @@ export interface BlogPost {
   date: string;
   category: string;
   image: string;
+  imageClass?: string;
   metaTitle: string;
   metaDescription: string;
 }
@@ -18,6 +19,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "March 30, 2026",
     category: "Safety & Education",
     image: "/images/IMG_9122.webp",
+    imageClass: "rotate-90 scale-[1.5]",
     metaTitle: "Indoor Gun Range Hardeeville SC | Top 5 Reasons to Visit LCGUNS",
     metaDescription: "Looking for an indoor gun range in Hardeeville, SC? Explore our climate-controlled bays, 170+ rentals, and expert coaching. Open 7 days a week.",
     content: `
@@ -73,6 +75,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "March 28, 2026",
     category: "Safety & Education",
     image: "/images/IMG_2502.webp",
+    imageClass: "rotate-90 scale-[1.5]",
     metaTitle: "First Time Shooting Guide | What to Expect at LCGUNS Hardeeville",
     metaDescription: "New to firearms? Our beginner's guide to the shooting range covers everything from ID requirements to safety briefings. Visit the friendliest range in SC today.",
     content: `
@@ -129,6 +132,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "March 26, 2026",
     category: "Safety & Education",
     image: "/images/team/aj-rossi.webp",
+    imageClass: "rotate-90 scale-[1.5]",
     metaTitle: "CWP Class Hardeeville SC | SC Concealed Carry Permit Training",
     metaDescription: "Enroll in a SC CWP class in Hardeeville. Our instructors provide thorough legal and tactical training to help you obtain your concealed carry permit with confidence.",
     content: `

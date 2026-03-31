@@ -1,92 +1,140 @@
-import { BentoCard } from '@/components/ui/BentoCard';
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { Shield, CheckCircle, Clock, MapPin, Users, ChevronLeft, ArrowRight, BookOpen } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: "Church Safety Team Training | Lowcountry Guns & Range",
-  description: "Equip your house of worship security team with threat assessment, de-escalation, emergency response, and active-threat protocols."
+  title: "Church Safety Team Training | Savannah & Beaufort Security",
+  description: "Professional security training for houses of worship in Savannah, GA and Beaufort, SC. Threat assessment, de-escalation, and emergency protocols."
 };
 
 export default function ChurchSafetyTeam() {
   return (
-    <div className="content-container py-12 md:py-24 flex flex-col gap-12">
-      <Link href="/training" className="text-sm text-[var(--color-primary-base)] hover:underline">&larr; Back to all Training</Link>
-
-      <div className="flex flex-col gap-4 max-w-3xl">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-foreground)]">
-          Church Safety Team Training
-        </h1>
-        <p className="text-lg text-[var(--color-muted-fg)]">
-          Protect your congregation. Practical, scenario-driven training for houses of worship security teams.
-        </p>
-      </div>
-
-      <div className="relative w-full aspect-[21/9] md:aspect-[3/1] rounded-2xl overflow-hidden shadow-xl mb-4">
-        <Image src="/images/legacy/DSC02534.webp" alt="Church Safety Team Training" fill className="object-cover" />
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 flex flex-col gap-8">
-          <BentoCard title="Course Overview">
-            <p className="text-[var(--color-muted-fg)] leading-relaxed mt-4">
-              Our Church Safety Team (CST) program is designed specifically for volunteer security teams serving houses of worship. The course addresses the unique challenges of protecting a congregation in an open, welcoming environment.
-            </p>
-            <p className="text-[var(--color-muted-fg)] leading-relaxed mt-4">
-              You&apos;ll learn how to identify and assess potential threats, implement a coordinated security plan, de-escalate volatile situations, and respond decisively in emergencies — all while maintaining the warm, welcoming atmosphere your congregation expects.
-            </p>
-          </BentoCard>
-
-          <BentoCard title="Course Curriculum" className="bg-[var(--color-card-border)]/20">
-            <ul className="space-y-6 mt-4">
-              <li className="flex flex-col gap-2">
-                <span className="font-bold text-[var(--color-foreground)]">Threat Assessment</span>
-                <span className="text-[var(--color-muted-fg)]">Identifying behavioral indicators, conducting facility vulnerability assessments, and establishing security zones within your place of worship.</span>
-              </li>
-              <li className="flex flex-col gap-2">
-                <span className="font-bold text-[var(--color-foreground)]">De-Escalation & Communication</span>
-                <span className="text-[var(--color-muted-fg)]">Verbal de-escalation tactics, team communication protocols, and managing disruptive individuals without force escalation.</span>
-              </li>
-              <li className="flex flex-col gap-2">
-                <span className="font-bold text-[var(--color-foreground)]">Emergency Response</span>
-                <span className="text-[var(--color-muted-fg)]">Active-threat response plans, evacuation procedures, medical emergency basics, and coordinating with local law enforcement.</span>
-              </li>
-              <li className="flex flex-col gap-2">
-                <span className="font-bold text-[var(--color-foreground)]">Practical Exercises</span>
-                <span className="text-[var(--color-muted-fg)]">Tabletop and live scenario-based drills tailored to your facility&apos;s specific layout and security needs.</span>
-              </li>
-            </ul>
-          </BentoCard>
+    <div className="flex flex-col bg-white text-[var(--color-foreground)] selection:bg-[var(--color-primary-base)] selection:text-white">
+      {/* ─── HERO SECTION ─── */}
+      <section className="relative pt-32 pb-24 md:pt-48 md:pb-36 overflow-hidden bg-black">
+        {/* Full container image background */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-full z-0 overflow-hidden">
+          <Image 
+            src="/images/legacy/DSC02534.webp" 
+            alt="Church Safety Team Training and Security Protocols" 
+            fill 
+            priority
+            className="object-cover opacity-60 brightness-[0.5] scale-[1.1] hover:scale-105 transition-transform duration-[10s] ease-out" 
+          />
         </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/80 to-black z-[1]" />
+        
+        <div className="relative z-10 content-container animate-fade-up max-w-5xl mx-auto">
+          <Link href="/training" className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-[var(--color-primary-light)] transition-colors mb-12 group drop-shadow-sm font-bold">
+            <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to all Training
+          </Link>
+          
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8">
+            <Shield className="w-3 h-3 text-emerald-400" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-200">Community Protection</span>
+          </div>
+          
+          <h1 className="text-5xl md:text-8xl font-black tracking-tight mb-8">
+            <span className="text-white">Church</span> <span className="text-gradient-light brightness-125">Safety Team</span>
+          </h1>
+          <p className="text-lg md:text-2xl text-zinc-300 leading-relaxed max-w-2xl font-medium">
+            Equip your house of worship with professional-grade security protocols. Scenario-driven training for faith-based communities.
+          </p>
+        </div>
+      </section>
 
-        <div className="lg:col-span-1 flex flex-col gap-6">
-          <BentoCard title="Course Details" className="border-[var(--color-primary-base)]/50">
-            <div className="flex flex-col gap-4 mt-4">
-              <div className="flex justify-between border-b border-[var(--color-card-border)] pb-2 text-sm">
-                <span className="text-[var(--color-muted-fg)]">Duration</span>
-                <span className="font-medium text-[var(--color-foreground)]">6 Hours</span>
-              </div>
-              <div className="flex justify-between border-b border-[var(--color-card-border)] pb-2 text-sm">
-                <span className="text-[var(--color-muted-fg)]">Team Size</span>
-                <span className="font-medium text-[var(--color-foreground)] text-right">4–12 members<br/>per session</span>
-              </div>
-              <div className="flex justify-between border-b border-[var(--color-card-border)] pb-2 text-sm">
-                <span className="text-[var(--color-muted-fg)]">Format</span>
-                <span className="font-medium text-[var(--color-foreground)] text-right">Classroom +<br/>Practical Scenarios</span>
-              </div>
-              <div className="flex justify-between border-b border-[var(--color-card-border)] pb-2 text-sm">
-                <span className="text-[var(--color-muted-fg)]">Customization</span>
-                <span className="font-medium text-[var(--color-foreground)] text-right">Tailored to your<br/>facility&apos;s layout</span>
+      <div className="gradient-divider" />
+
+      {/* ─── MAIN CONTENT ─── */}
+      <section className="py-24 bg-gradient-section relative overflow-hidden">
+        {/* Subtle decorative glow */}
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[var(--color-primary-base)]/5 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="content-container relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            <div className="lg:col-span-8 flex flex-col gap-16">
+              <div className="max-w-3xl text-balance">
+                <h2 className="text-4xl font-black text-[var(--color-foreground)] mb-8 tracking-tight">Security Training for Houses of Worship</h2>
+                <div className="space-y-6 text-[var(--color-muted-fg)] text-lg leading-relaxed font-medium">
+                  <p>
+                    Our Church Safety Team (CST) program is designed specifically for volunteer security teams in **Savannah**, **Beaufort**, and the surrounding Lowcountry. The course addresses the unique challenges of protecting a congregation in an open, welcoming environment.
+                  </p>
+                  <p>
+                    We specialize in establishing safety protocols that are effective but invisible, ensuring that your place of worship remains a sanctuary. Our instructors bring years of experience in threat assessment and emergency response to help your team prepare for the unthinkable.
+                  </p>
+                  <p>
+                    Whether your team is just starting or looking to refine their skills, our training covers everything from behavioral indicators and de-escalation to active-threat response.
+                  </p>
+                </div>
               </div>
 
-              <Link href="tel:8437845474" className="mt-4">
-                <Button className="w-full">Call to Schedule</Button>
-              </Link>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                  { icon: Users, title: "Threat Assessment", desc: "Identifying behavioral indicators and conducting facility vulnerability assessments specific to your layout." },
+                  { icon: Shield, title: "De-Escalation", desc: "Verbal tactics and team communication protocols for managing disruptive individuals without escalation." },
+                  { icon: BookOpen, title: "Response Plans", desc: "Coordinated evacuation procedures, medical emergency basics, and active-threat protocols." },
+                  { icon: CheckCircle, title: "Practical Drills", desc: "Live scenario-based exercises tailored to your facility's specific entry points and sanctuary design." }
+                ].map((item, i) => (
+                  <div key={i} className="p-8 rounded-3xl bg-white border border-[var(--color-card-border)] shadow-sm hover:shadow-xl hover:shadow-[var(--color-primary-base)]/5 hover:border-[var(--color-primary-base)]/30 transition-all duration-500 group">
+                    <div className="p-3 w-fit rounded-2xl bg-[var(--color-surface)] border border-[var(--color-card-border)] mb-6 group-hover:scale-110 transition-transform">
+                      <item.icon className="w-6 h-6 text-[var(--color-primary-base)]" />
+                    </div>
+                    <h3 className="text-xl font-bold text-[var(--color-foreground)] mb-3">{item.title}</h3>
+                    <p className="text-[var(--color-muted-fg)] text-sm leading-relaxed font-medium">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </BentoCard>
+
+            <aside className="lg:col-span-4 flex flex-col gap-8">
+              <div className="sticky top-32 p-8 md:p-10 rounded-3xl bg-white border border-[var(--color-card-border)] shadow-2xl shadow-zinc-200/50">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-surface)] border border-[var(--color-card-border)] text-[10px] font-bold uppercase tracking-widest text-[var(--color-primary-dark)] mb-6">
+                  Team Program
+                </div>
+                <div className="space-y-8">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-[var(--color-surface)] border border-[var(--color-card-border)] flex items-center justify-center shrink-0">
+                      <Clock className="w-5 h-5 text-[var(--color-primary-base)]" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-muted-fg-light)] mb-1">Duration</p>
+                      <p className="text-[var(--color-foreground)] font-black text-lg">6 Hours Intensive</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-[var(--color-surface)] border border-[var(--color-card-border)] flex items-center justify-center shrink-0">
+                      <MapPin className="w-5 h-5 text-[var(--color-primary-base)]" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-muted-fg-light)] mb-1">Location</p>
+                      <p className="text-[var(--color-foreground)] font-black text-lg text-balance">On-Site or Hardeeville Center</p>
+                    </div>
+                  </div>
+                  <div className="h-px bg-gradient-to-r from-transparent via-[var(--color-card-border)] to-transparent w-full" />
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--color-muted-fg-light)] mb-4">Program Features</p>
+                    <ul className="text-sm text-[var(--color-muted-fg)] space-y-4 font-medium">
+                      <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-emerald-500" /> Facility Vulnerability Audit</li>
+                      <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-emerald-500" /> Communications Integration</li>
+                      <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-emerald-500" /> Case Study Review</li>
+                      <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-emerald-500" /> Live Scenario Training</li>
+                    </ul>
+                  </div>
+                  <Link href="tel:8437845474" className="block pt-4">
+                    <Button className="w-full h-14 rounded-2xl text-lg font-black group shadow-lg shadow-[var(--color-primary-base)]/20">
+                      Schedule Consultation <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </aside>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <div className="gradient-divider" />
     </div>
   );
 }

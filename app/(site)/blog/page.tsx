@@ -49,12 +49,12 @@ export default function BlogPage() {
               >
                 {/* Thumbnail */}
                 <div className="relative h-56 w-full overflow-hidden">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className={`object-cover transition-transform duration-500 group-hover:scale-110 ${post.imageClass || ""}`}
+                    />
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 text-[10px] font-bold tracking-widest uppercase bg-white/90 text-[var(--color-foreground)] rounded-full border border-[var(--color-card-border)]">
                       {post.category}

@@ -99,18 +99,8 @@ export default function Training() {
     <div className="flex flex-col bg-white text-[var(--color-foreground)] selection:bg-[var(--color-primary-base)] selection:text-white">
       {/* ─── HERO SECTION ─── */}
       <section className="relative pt-32 pb-24 md:pt-48 md:pb-36 overflow-hidden bg-black">
-        {/* Full container image background */}
-        <div className="absolute inset-0 z-0 scale-[1.1] hover:scale-100 transition-transform duration-[10s] ease-out">
-          <Image 
-            src="/images/IMG_2502.webp" 
-            alt="Training Session" 
-            fill 
-            priority
-            className="object-cover opacity-60 brightness-[0.6] rotate-90 scale-[3]" 
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/80 to-black z-[1]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] opacity-60 z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black to-black z-[1]" />
+
         
         <div className="relative z-10 content-container animate-fade-up text-center max-w-5xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-6 animate-fade-up">
@@ -130,18 +120,19 @@ export default function Training() {
       </section>
 
       {/* ─── BENTO GRID: OUR COURSES ─── */}
-      <section className="py-24 relative overflow-hidden bg-zinc-50/50">
+      <section className="py-24 relative overflow-hidden bg-gradient-section">
         <div className="content-container relative z-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 text-center md:text-left">
             <div className="max-w-2xl mx-auto md:mx-0">
               <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
-                Explore Our <span className="text-gradient">Courses</span>
+                Explore Our <span className="text-gradient">Training Curriculum</span>
               </h2>
               <p className="text-[var(--color-muted-fg)] text-lg font-medium">
-                From absolute beginners to advanced tactical training, find the right path for your journey.
+                Premier firearms instruction serving **Savannah**, **Beaufort**, **Hilton Head**, and **Hardeeville**. From absolute beginners to advanced tactical training.
               </p>
             </div>
             <div className="hidden md:block">
+
               <div className="h-px w-32 bg-gradient-to-r from-[var(--color-primary-base)] to-transparent" />
             </div>
           </div>
@@ -235,7 +226,7 @@ export default function Training() {
       <div className="gradient-divider" />
 
       {/* ─── SUBSCRIPTION TRAINING — COMING SOON ─── */}
-      <section className="py-24 bg-zinc-50/50 relative overflow-hidden">
+      <section className="py-24 bg-gradient-section-reverse relative overflow-hidden">
         {/* Subtle radial glow background */}
         <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 30%, var(--color-primary-base) 0%, transparent 70%)' }} />
 

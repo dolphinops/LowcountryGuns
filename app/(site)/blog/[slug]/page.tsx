@@ -5,13 +5,14 @@ import { notFound } from "next/navigation";
 import { BLOG_POSTS } from "@/data/blog-posts";
 
 interface PostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
-  const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
   
   if (!post) {
     return {
@@ -36,8 +37,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function BlogPostPage({ params }: PostPageProps) {
-  const post = BLOG_POSTS.find((p) => p.slug === params.slug);
+export default async function BlogPostPage({ params }: PostPageProps) {
+  const { slug } = await params;
+  const post = BLOG_POSTS.find((p) => p.slug === slug);
 
   if (!post) {
     notFound();
@@ -70,7 +72,7 @@ export default function BlogPostPage({ params }: PostPageProps) {
           src={post.image}
           alt={post.title}
           fill
-          className="object-cover"
+          className={`object-cover ${post.imageClass || ""}`}
           priority
         />
         <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
@@ -151,12 +153,12 @@ export default function BlogPostPage({ params }: PostPageProps) {
             <h2 className="text-2xl font-bold mb-10 text-center uppercase tracking-widest text-[var(--color-muted-fg-light)]">More from the Lowcountry</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                {BLOG_POSTS
-                 .filter(p => p.slug !== params.slug)
+                 .filter(p => p.slug !== slug)
                  .slice(0, 2)
                  .map((relatedPost) => (
                    <Link key={relatedPost.slug} href={`/blog/${relatedPost.slug}`} className="group block">
                       <div className="relative h-48 rounded-xl overflow-hidden mb-4 shadow-sm border border-[var(--color-card-border)]">
-                        <Image src={relatedPost.image} alt={relatedPost.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <Image src={relatedPost.image} alt={relatedPost.title} fill className={`object-cover group-hover:scale-105 transition-transform duration-500 ${relatedPost.imageClass || ""}`} />
                       </div>
                       <h3 className="text-lg font-bold group-hover:text-[var(--color-primary-base)] transition-colors">
                         {relatedPost.title}
