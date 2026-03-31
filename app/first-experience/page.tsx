@@ -293,23 +293,25 @@ export default function FirstExperience() {
       <div className="gradient-divider" />
 
       {/* ─── BOOK YOUR SESSION (EVENTBRITE) ─── */}
-      <section id="book" className="py-20 md:py-28 bg-[#0a0a0b] relative overflow-hidden scroll-mt-24">
-        <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 30%, var(--color-primary-base) 0%, transparent 70%)' }} />
+      <section id="book" className="py-20 md:py-28 bg-white relative overflow-hidden scroll-mt-24">
+        {/* Subtle decorative glow for light mode */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 30%, var(--color-primary-base) 0%, transparent 70%)' }} />
         
         <div className="content-container relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white mb-4">
+            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-zinc-900 mb-4">
               Book Your <span className="text-gradient">1-on-1 Session</span>
             </h2>
-            <p className="text-zinc-500 text-lg max-w-2xl mx-auto">
+            <p className="text-zinc-600 text-lg max-w-2xl mx-auto font-medium">
               Select a date and time below. Your certified instructor will be ready for you.
             </p>
           </div>
 
           <div className="max-w-xl mx-auto">
-            <div className="flex flex-col gap-6 p-8 rounded-3xl bg-white/[0.02] border border-white/5 backdrop-blur-sm shadow-2xl">
+            <div className="flex flex-col gap-6 p-8 rounded-3xl bg-zinc-50 border border-zinc-200 shadow-xl relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-base)]" />
               <div className="text-center">
-                <h3 className="text-xl font-bold text-[var(--color-primary-base)] mb-2">Private 1-on-1 Instruction</h3>
+                <h3 className="text-xl font-bold text-zinc-900 mb-2">Private 1-on-1 Instruction</h3>
                 <p className="text-zinc-500 text-sm">Personalized coaching tailored to your skill level</p>
               </div>
               <EventbriteWidget eventId="1680552550919" />
@@ -318,11 +320,11 @@ export default function FirstExperience() {
 
           <div className="mt-12 text-center max-w-2xl mx-auto">
             <p className="text-zinc-500 text-sm mb-6">
-              Having trouble with booking? Call us directly and we'll get you set up.
+              Having trouble with booking? Call us directly and we&apos;ll get you set up.
             </p>
             <Link href="tel:8437845474">
-              <Button variant="outline" className="rounded-full px-8 py-6 text-lg border-white/10 hover:bg-white/5 hover:border-[var(--color-primary-base)] transition-all">
-                <Phone className="mr-2 w-5 h-5" /> Call — 843-784-5474
+              <Button variant="outline" className="rounded-full px-8 py-6 text-lg border-zinc-200 text-zinc-900 hover:bg-zinc-50 hover:border-[var(--color-primary-base)] transition-all">
+                <Phone className="mr-2 w-5 h-5 text-[var(--color-primary-base)]" /> Call — 843-784-5474
               </Button>
             </Link>
           </div>

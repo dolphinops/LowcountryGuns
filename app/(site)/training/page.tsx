@@ -4,11 +4,11 @@ import EventbriteWidget from '@/components/EventbriteWidget';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { Shield, Scale, Users, Church, Target, ChevronRight, Lock } from 'lucide-react';
+import { Shield, Users, Church, Target, ChevronRight, Lock } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: "Training | Lowcountry Guns & Range",
-  description: "From beginner to advanced — certified instruction, CWP classes, use-of-force training, and a subscription training program coming soon."
+  description: "From beginner to advanced — certified instruction, CWP classes, and a subscription training program coming soon."
 };
 
 /* ─── DATA ─── */
@@ -35,16 +35,6 @@ const allCourses = [
     bullets: ["Legal", "Practical", "Official"]
   },
   {
-    title: "Use of Force",
-    subtitle: "Decision Making Under Pressure",
-    description: "Understand the legalities, maintain situational awareness, and train through realistic scenarios.",
-    icon: Scale,
-    href: "/use-of-force",
-    span: "md:col-span-4",
-    color: "from-amber-500/20 to-orange-500/20",
-    bullets: ["Judgment", "Legal", "Tactical"]
-  },
-  {
     title: "Church Safety Team",
     subtitle: "Protecting Your Community",
     description: "Equip your house of worship security team with threat assessment and emergency response skills.",
@@ -53,16 +43,6 @@ const allCourses = [
     span: "md:col-span-4",
     color: "from-indigo-500/20 to-purple-500/20",
     bullets: ["Security", "Response", "Teamwork"]
-  },
-  {
-    title: "Tactical Lighting",
-    subtitle: "Master the Dark",
-    description: "Low-light and no-light shooting techniques using handheld and weapon-mounted lights.",
-    icon: Target,
-    href: "/tactical-lighting-training",
-    span: "md:col-span-4",
-    color: "from-slate-500/20 to-zinc-500/20",
-    bullets: ["Low Light", "Equipment", "Precision"]
   },
   {
     title: "Defensive Pistol",
