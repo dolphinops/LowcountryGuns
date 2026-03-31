@@ -1,11 +1,12 @@
 import { BentoCard } from '@/components/ui/BentoCard';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Route, Clock, CheckCircle, ChevronRight } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "The Range | Lowcountry Guns & Range",
-  description: "Information about our 10 state-of-the-art indoor shooting bays, rules, and gun rentals."
+  title: "The Range | Serving Savannah, GA & Beaufort, SC",
+  description: "Information about our 10-bay indoor shooting range, accessible from Savannah, GA and Beaufort, SC. Rules, gun rentals, and lane information."
 };
 
 export default function TheRange() {
@@ -33,7 +34,7 @@ export default function TheRange() {
             Shooting Range
           </h1>
           <p className="text-lg md:text-2xl text-zinc-100 leading-relaxed mx-auto max-w-2xl animate-fade-up font-medium">
-            Experience the Lowcountry&apos;s premier indoor shooting facility. Open to the public 7 days a week with no reservations required.
+            The Lowcountry&apos;s premier indoor shooting facility, centrally located for shooters from Hardeeville, Savannah, GA and Beaufort, SC.
           </p>
         </div>
       </section>
@@ -87,6 +88,22 @@ export default function TheRange() {
                   <span>Brass case and lead core ammo only. No steel core or armor piercing rounds.</span>
                 </li>
               </ul>
+              <div className="mt-8 flex flex-col gap-3 px-1">
+                 <a 
+                   href="https://maps.google.com/maps?daddr=98+Purrysburg+Rd,+Hardeeville,+SC+29927" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   className="w-full py-3 px-6 bg-[var(--color-primary-base)] text-white text-center font-bold rounded-xl hover:bg-[var(--color-primary-hover)] transition-all transition-colors shadow-md flex items-center justify-center gap-2"
+                 >
+                   Get Directions <ChevronRight className="w-4 h-4" />
+                 </a>
+                 <Link 
+                   href="/memberships"
+                   className="w-full py-3 px-6 border border-[var(--color-card-border)] text-[var(--color-foreground)] text-center font-bold rounded-xl hover:bg-[var(--color-surface)] transition-all transition-colors"
+                 >
+                   View Memberships
+                 </Link>
+              </div>
             </BentoCard>
 
             <BentoCard title="Who Can Use The Range" className="lg:col-span-2 border-[var(--color-card-border)] bg-white shadow-sm hover:border-[var(--color-primary-base)] transition-all duration-500 rounded-3xl">

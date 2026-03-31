@@ -84,22 +84,31 @@ export default function Home() {
         {/* Hero content — positioned at bottom for cinematic feel */}
         <div className="relative z-10 content-container pb-16 md:pb-24 w-full max-w-5xl animate-fade-up">
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-[1.08] mb-6 drop-shadow-2xl">
-            South Carolina&apos;s Premier
+            Lowcountry&apos;s Premier
             <br />
             <span className="text-gradient-light brightness-125">Indoor Gun Range</span>
           </h1>
-          <p className="text-lg md:text-xl text-zinc-300 max-w-2xl leading-relaxed mb-8">
-            10 state-of-the-art shooting bays. 170+ rental firearms including full-auto machine guns. Open 7 days a week.
+          <p className="text-lg md:text-xl text-zinc-300 max-w-2xl leading-relaxed mb-4">
+            Serving Hardeeville, Savannah, Hilton Head & Beaufort. 10 state-of-the-art shooting bays. Open 7 days a week.
           </p>
-          <div className="flex flex-col sm:flex-row gap-5 mb-10">
-            <Link href="/memberships">
-              <Button size="lg" variant="primary" className="rounded-full w-full sm:w-auto px-10 shadow-[0_0_20px_rgba(103,155,168,0.4)] hover:shadow-[0_0_30px_rgba(103,155,168,0.6)]">Become a Member</Button>
-            </Link>
+          <div className="flex items-center gap-2 text-zinc-400 font-medium mb-10 animate-fade-up delay-1">
+             <MapPin className="w-5 h-5 text-[var(--color-primary-base)]" />
+             <span>98 Purrysburg Rd, Hardeeville, SC 29927</span>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 mb-10">
             <Link href="/the-range">
-              <Button size="lg" variant="outline" className="rounded-full border-white/40 text-white hover:bg-white hover:text-[#0a0a0b] hover:border-white w-full sm:w-auto px-10 backdrop-blur-sm">
-                Explore The Range <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-              </Button>
+              <Button size="lg" variant="primary" className="rounded-full w-full sm:w-auto px-10 shadow-[0_0_20px_rgba(103,155,168,0.4)] hover:shadow-[0_0_30px_rgba(103,155,168,0.6)]">Visit The Range</Button>
             </Link>
+            <a 
+              href="https://maps.google.com/maps?daddr=98+Purrysburg+Rd,+Hardeeville,+SC+29927"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto"
+            >
+              <Button size="lg" variant="outline" className="rounded-full border-white/40 text-white hover:bg-white hover:text-[#0a0a0b] hover:border-white w-full px-10 backdrop-blur-sm">
+                Get Directions <span className="ml-2 group-hover:translate-x-1 transition-transform">📍</span>
+              </Button>
+            </a>
           </div>
 
           {/* Trust bar */}
@@ -115,6 +124,27 @@ export default function Home() {
             <span className="hidden sm:inline text-zinc-600">|</span>
             <a href="/waiver" className="text-[var(--color-primary-base)] hover:text-white font-medium transition-colors">Sign Waiver Prior to Visit →</a>
           </div>
+        </div>
+      </section>
+
+      {/* ─── NEW SHOPPER BANNER — High visibility for older customers ─── */}
+      <section className="bg-[var(--color-primary-base)] text-white py-6 md:py-8 shadow-inner overflow-hidden relative group">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer pointer-events-none" />
+        <div className="content-container flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+          <div className="flex items-center gap-4 text-center md:text-left">
+            <div className="hidden sm:flex w-14 h-14 bg-white/20 rounded-full items-center justify-center shrink-0 border border-white/30 backdrop-blur-sm">
+               <ShieldCheck className="w-8 h-8 text-white" />
+            </div>
+            <div>
+               <h2 className="text-xl md:text-2xl font-black uppercase tracking-tight leading-tight">First Time Visiting?</h2>
+               <p className="text-white/80 font-medium md:text-lg">Save 10 minutes at the counter by signing your waiver online.</p>
+            </div>
+          </div>
+          <Link href="/waiver" className="w-full md:w-auto">
+             <Button size="lg" className="bg-white text-[var(--color-primary-base)] hover:bg-zinc-100 hover:scale-105 transition-all font-black uppercase tracking-widest px-10 h-16 rounded-2xl w-full md:w-auto shadow-xl border-none">
+                Sign Digital Waiver Now
+             </Button>
+          </Link>
         </div>
       </section>
 

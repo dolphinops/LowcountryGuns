@@ -10,9 +10,11 @@ const navLinks = [
   { href: '/the-range', label: 'The Range' },
   { href: '/gun-rentals', label: 'Gun Rentals' },
   { href: '/pro-shop', label: 'Pro Shop' },
+  { href: '/shop', label: 'Shop' },
   { href: '/training', label: 'Training' },
   { href: '/memberships', label: 'Memberships' },
-  { href: '/about', label: 'About' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact' },
 ];
 
 export function Header() {
@@ -75,18 +77,33 @@ export function Header() {
 
           {/* Right side actions */}
           <div className="flex items-center gap-3 sm:gap-4">
-            {/* Waiver icon — pen signature */}
+            {/* Waiver button — High visibility for older customers */}
+            <Link href="/waiver" className="hidden lg:inline-flex">
+              <Button
+                size="md"
+                variant="outline"
+                className={`font-bold border-2 ${
+                  isTransparent
+                    ? 'text-white border-white/40 hover:bg-white/10 hover:border-white'
+                    : 'text-[var(--color-foreground)] border-[var(--color-primary-base)]/30 hover:border-[var(--color-primary-base)] hover:bg-[var(--color-primary-base)]/5 shadow-sm'
+                }`}
+              >
+                Sign Waiver
+              </Button>
+            </Link>
+
+            {/* Mobile/Compact Waiver icon — visible below lg */}
             <Link
               href="/waiver"
-              className={`hidden md:inline-flex items-center justify-center w-9 h-9 rounded-full border transition-all duration-200 ${
+              className={`inline-flex lg:hidden items-center justify-center w-10 h-10 rounded-full border transition-all duration-200 ${
                 isTransparent
                   ? 'text-white border-white/30 hover:bg-white/15 hover:border-white/50'
-                  : 'text-[var(--color-foreground)] border-[var(--color-card-border)] hover:bg-[var(--color-surface)] hover:border-[var(--color-foreground)]/20'
+                  : 'text-[var(--color-foreground)] border-[var(--color-card-border)] hover:bg-[var(--color-surface)] hover:border-[var(--color-foreground)]/20 shadow-sm'
               }`}
               title="Sign Waiver"
               aria-label="Sign Waiver"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 20h9" />
                 <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
               </svg>
@@ -97,15 +114,15 @@ export function Header() {
               href="https://maps.google.com/maps?daddr=98+Purrysburg+Rd,+Hardeeville,+SC+29927"
               target="_blank"
               rel="noopener noreferrer"
-              className={`hidden md:inline-flex items-center justify-center w-9 h-9 rounded-full border transition-all duration-200 ${
+              className={`inline-flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-200 ${
                 isTransparent
                   ? 'text-white border-white/30 hover:bg-white/15 hover:border-white/50'
-                  : 'text-[var(--color-foreground)] border-[var(--color-card-border)] hover:bg-[var(--color-surface)] hover:border-[var(--color-foreground)]/20'
+                  : 'text-[var(--color-foreground)] border-[var(--color-card-border)] hover:bg-[var(--color-surface)] hover:border-[var(--color-foreground)]/20 shadow-sm'
               }`}
               title="Get Directions"
               aria-label="Get Directions"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <polygon points="3 11 22 2 13 21 11 13 3 11" />
               </svg>
             </a>

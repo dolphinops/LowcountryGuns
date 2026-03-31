@@ -19,7 +19,7 @@ export default function About() {
             <span className="text-gradient-light brightness-125">About Us</span>
           </h1>
           <p className="text-lg md:text-2xl text-zinc-100 leading-relaxed mx-auto max-w-2xl animate-fade-up font-medium">
-            South Carolina&apos;s Premier Indoor Gun Range, committed to providing a safe, family-friendly, and state-of-the-art environment for all shooters.
+            The South Carolina Lowcountry&apos;s Premier Indoor Gun Range, serving Hardeeville, Savannah, Hilton Head, and Beaufort with a safe, state-of-the-art environment for all.
           </p>
         </div>
       </section>

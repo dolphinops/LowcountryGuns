@@ -4,8 +4,8 @@ import { ShoppingBag, CheckCircle, ShieldAlert } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Pro Shop | Lowcountry Guns & Range",
-  description: "Everything you need right where you shoot. Firearms, ammunition, and accessories."
+  title: "Pro Shop & Sporting Goods Store | Hardeeville Shooting Range",
+  description: "Lowcountry Guns is your premier Hardeeville sporting goods store, offering a massive selection of firearms, ammunition, and range gear. Shop where you shoot."
 };
 
 export default function ProShop() {
@@ -35,7 +35,7 @@ export default function ProShop() {
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">Retail Excellence</span>
           </div>
           <h1 className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tight mb-8">
-            <span className="text-white">The</span> <span className="text-gradient-light brightness-125 drop-shadow-[0_0_30px_rgba(103,155,168,0.3)]">Pro Shop</span>
+            <span className="text-white">Pro Shop</span> <br className="md:hidden" /> <span className="text-gradient-light brightness-125 drop-shadow-[0_0_30px_rgba(103,155,168,0.3)]">& Gear</span>
           </h1>
           <p className="text-lg md:text-2xl text-zinc-400 leading-relaxed mx-auto max-w-2xl font-medium">
             Everything you need, right where you shoot. Premier selection, expert advice.
@@ -62,7 +62,7 @@ export default function ProShop() {
               </div>
               <div className="flex flex-col gap-6 text-[var(--color-muted-fg)] leading-relaxed text-lg">
                 <p>
-                  Our Pro Shop is designed to support every shooter — from first-time visitors to competitive and defensive experts. Whether you need reliable ammunition, top-tier safety gear, or your next everyday carry, our retail counter is built into our range. Get what you need, and test it immediately.
+                  As Hardeeville&apos;s premier sporting goods store, our Pro Shop is designed to support every shooter — from first-time visitors to competitive and defensive experts. Whether you need reliable ammunition, top-tier safety gear, or your next everyday carry, our retail experience is built right into our range.
                 </p>
                 <div className="h-px w-full bg-gradient-to-r from-transparent via-[var(--color-primary-base)] to-transparent opacity-20" />
                 <p>

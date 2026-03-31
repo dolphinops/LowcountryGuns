@@ -26,6 +26,7 @@ export function Footer() {
           <Link href="/the-range" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">The Range</Link>
           <Link href="/training" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Training Courses</Link>
           <Link href="/memberships" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Memberships</Link>
+          <Link href="/shop" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Online Shop (Soon)</Link>
           <Link href="/idpa" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">IDPA Matches</Link>
           <Link href="/private-partys" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Private Parties</Link>
         </div>
@@ -41,8 +42,9 @@ export function Footer() {
         
         <div className="flex flex-col gap-3">
           <h3 className="font-semibold text-sm text-[var(--color-foreground)] uppercase tracking-wider">Contact</h3>
-          <p className="text-sm text-[var(--color-muted-fg)]">843-784-5474</p>
+          <a href="tel:8437845474" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">843-784-5474</a>
           <p className="text-sm text-[var(--color-muted-fg)]">98 Purrysburg Rd<br/>Hardeeville, SC 29927</p>
+          <Link href="/contact" className="text-sm text-[var(--color-primary-base)] font-bold hover:underline mt-2">Send Message</Link>
         </div>
         
         <div className="flex flex-col gap-3">
