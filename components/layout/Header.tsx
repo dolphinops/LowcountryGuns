@@ -5,14 +5,38 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { ChevronDown, Menu, X, Navigation as NavIcon } from 'lucide-react';
 
-const navLinks = [
-  { href: '/the-range', label: 'The Range' },
-  { href: '/gun-rentals', label: 'Gun Rentals' },
-  { href: '/pro-shop', label: 'Pro Shop' },
-  { href: '/shop', label: 'Shop' },
-  { href: '/training', label: 'Training' },
-  { href: '/memberships', label: 'Memberships' },
+interface SubLink {
+  href: string;
+  label: string;
+}
+
+interface NavLink {
+  label: string;
+  href?: string;
+  subLinks?: SubLink[];
+}
+
+const navLinks: NavLink[] = [
+  { 
+    label: 'The Range', 
+    subLinks: [
+      { href: '/the-range', label: 'Range Overview' },
+      { href: '/training', label: 'Training & Courses' },
+      { href: '/first-experience', label: 'Your First Experience' },
+      { href: '/memberships', label: 'Memberships' },
+    ]
+  },
+  { 
+    label: 'Pro Shop', 
+    subLinks: [
+      { href: '/pro-shop', label: 'Shop Overview' },
+      { href: '/gun-rentals', label: 'Gun Rentals' },
+      { href: '/firearm-transfers', label: 'Firearm Transfers' },
+    ]
+  },
+  { href: '/shop', label: 'Online Shop' },
   { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -20,6 +44,7 @@ const navLinks = [
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
   const isHome = pathname === '/';
 
@@ -30,7 +55,12 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // On homepage before scroll: transparent overlay. Otherwise: solid.
+  // Close mobile nav on path change
+  useEffect(() => {
+    setMobileOpen(false);
+    setActiveDropdown(null);
+  }, [pathname]);
+
   const isTransparent = isHome && !scrolled && !mobileOpen;
 
   return (
@@ -58,26 +88,61 @@ export function Header() {
             />
           </Link>
 
-          {/* Desktop nav — centered */}
-          <nav className="hidden lg:flex items-center gap-8 text-sm font-semibold" aria-label="Main navigation">
+          {/* Desktop nav */}
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-4 text-sm font-semibold" aria-label="Main navigation">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`transition-colors whitespace-nowrap ${
-                  isTransparent
-                    ? 'text-white/80 hover:text-white'
-                    : 'text-[var(--color-muted-fg)] hover:text-[var(--color-foreground)]'
-                }`}
+              <div 
+                key={link.label} 
+                className="relative group py-2"
+                onMouseEnter={() => link.subLinks && setActiveDropdown(link.label)}
+                onMouseLeave={() => setActiveDropdown(null)}
               >
-                {link.label}
-              </Link>
+                {link.subLinks ? (
+                  <button 
+                    className={`flex items-center gap-1.5 px-4 py-2 rounded-xl transition-all ${
+                      isTransparent
+                        ? 'text-white/80 hover:text-white hover:bg-white/10'
+                        : 'text-[var(--color-muted-fg)] hover:text-[var(--color-foreground)] hover:bg-[var(--color-surface)]'
+                    }`}
+                  >
+                    {link.label}
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeDropdown === link.label ? 'rotate-180' : ''}`} />
+                  </button>
+                ) : (
+                  <Link
+                    href={link.href!}
+                    className={`px-4 py-2 rounded-xl transition-all whitespace-nowrap ${
+                      isTransparent
+                        ? 'text-white/80 hover:text-white hover:bg-white/10'
+                        : 'text-[var(--color-muted-fg)] hover:text-[var(--color-foreground)] hover:bg-[var(--color-surface)]'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                )}
+
+                {/* Dropdown Menu */}
+                {link.subLinks && (
+                  <div className={`absolute top-full left-0 pt-2 transition-all duration-300 ${activeDropdown === link.label ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
+                    <div className="bg-white border border-[var(--color-card-border)] rounded-2xl shadow-xl overflow-hidden min-w-[220px]">
+                      {link.subLinks.map((sub) => (
+                        <Link 
+                          key={sub.href}
+                          href={sub.href}
+                          className="block px-6 py-3.5 text-sm font-medium text-[var(--color-muted-fg)] hover:text-[var(--color-foreground)] hover:bg-[var(--color-surface)] transition-colors border-b border-[var(--color-card-border)] last:border-0"
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
 
           {/* Right side actions */}
           <div className="flex items-center gap-3 sm:gap-4">
-            {/* Waiver button — High visibility for older customers */}
             <Link href="/waiver" className="hidden lg:inline-flex">
               <Button
                 size="md"
@@ -92,7 +157,6 @@ export function Header() {
               </Button>
             </Link>
 
-            {/* Mobile/Compact Waiver icon — visible below lg */}
             <Link
               href="/waiver"
               className={`inline-flex lg:hidden items-center justify-center w-10 h-10 rounded-full border transition-all duration-200 ${
@@ -101,15 +165,10 @@ export function Header() {
                   : 'text-[var(--color-foreground)] border-[var(--color-card-border)] hover:bg-[var(--color-surface)] hover:border-[var(--color-foreground)]/20 shadow-sm'
               }`}
               title="Sign Waiver"
-              aria-label="Sign Waiver"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 20h9" />
-                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
-              </svg>
+              <NavIcon className="w-5 h-5" />
             </Link>
 
-            {/* Directions icon — navigation arrow */}
             <a
               href="https://maps.google.com/maps?daddr=98+Purrysburg+Rd,+Hardeeville,+SC+29927"
               target="_blank"
@@ -119,73 +178,64 @@ export function Header() {
                   ? 'text-white border-white/30 hover:bg-white/15 hover:border-white/50'
                   : 'text-[var(--color-foreground)] border-[var(--color-card-border)] hover:bg-[var(--color-surface)] hover:border-[var(--color-foreground)]/20 shadow-sm'
               }`}
-              title="Get Directions"
-              aria-label="Get Directions"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="3 11 22 2 13 21 11 13 3 11" />
-              </svg>
+              <NavIcon className="w-5 h-5 rotate-45" />
             </a>
 
             <Link href="/memberships" className="hidden sm:inline-flex">
-              <Button
-                size="md"
-                variant="primary"
-                className="shadow-lg hover:shadow-xl"
-              >
-                Membership
-              </Button>
+              <Button size="md" variant="primary">Membership</Button>
             </Link>
 
-            {/* Mobile hamburger */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
-              aria-expanded={mobileOpen}
-              className={`lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg transition-colors ${
+              className={`lg:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg ${
                 isTransparent ? 'hover:bg-white/10' : 'hover:bg-[var(--color-surface)]'
               }`}
             >
-              <span className={`block w-5 h-0.5 transition-all duration-200 ${isTransparent ? 'bg-white' : 'bg-[var(--color-foreground)]'} ${mobileOpen ? 'rotate-45 translate-y-[3px]' : ''}`} />
-              <span className={`block w-5 h-0.5 mt-1 transition-all duration-200 ${isTransparent ? 'bg-white' : 'bg-[var(--color-foreground)]'} ${mobileOpen ? '-rotate-45 -translate-y-[2px]' : ''}`} />
-              {!mobileOpen && <span className={`block w-5 h-0.5 mt-1 ${isTransparent ? 'bg-white' : 'bg-[var(--color-foreground)]'}`} />}
+              {mobileOpen ? <X className={isTransparent ? 'text-white' : ''} /> : <Menu className={isTransparent ? 'text-white' : ''} />}
             </button>
           </div>
         </div>
 
         {/* Mobile nav panel */}
         {mobileOpen && (
-          <div className="lg:hidden border-t border-[var(--color-card-border)] bg-[var(--color-background)]">
-            <nav className="max-w-[80rem] mx-auto px-6 py-4 flex flex-col gap-1" aria-label="Mobile navigation">
+          <div className="lg:hidden fixed inset-0 top-24 bg-white z-[60] overflow-y-auto pb-20">
+            <nav className="px-6 py-6 flex flex-col gap-2">
               {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="py-3 px-4 rounded-lg text-[var(--color-foreground)] font-medium hover:bg-[var(--color-surface)] transition-colors"
-                >
-                  {link.label}
-                </Link>
+                <div key={link.label} className="flex flex-col">
+                  {link.subLinks ? (
+                    <>
+                      <div className="flex items-center justify-between py-4 px-2 border-b border-[var(--color-card-border)]">
+                        <span className="text-lg font-bold text-[var(--color-foreground)]">{link.label}</span>
+                      </div>
+                      <div className="flex flex-col bg-[var(--color-surface)]/50 rounded-2xl mt-2 overflow-hidden">
+                        {link.subLinks.map((sub) => (
+                          <Link 
+                            key={sub.href} 
+                            href={sub.href}
+                            className="py-4 px-6 text-base font-medium text-[var(--color-muted-fg)] hover:text-[var(--color-foreground)] active:bg-[var(--color-surface)] border-b border-[var(--color-card-border)] last:border-0"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </>
+                  ) : (
+                    <Link
+                      href={link.href!}
+                      className="py-5 px-2 border-b border-[var(--color-card-border)] text-lg font-bold text-[var(--color-foreground)]"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
+                </div>
               ))}
-              <Link
-                href="/waiver"
-                onClick={() => setMobileOpen(false)}
-                className="py-3 px-4 rounded-lg text-[var(--color-foreground)] font-medium hover:bg-[var(--color-surface)] transition-colors"
-              >
-                Sign Waiver
-              </Link>
-              <a
-                href="https://maps.google.com/maps?daddr=98+Purrysburg+Rd,+Hardeeville,+SC+29927"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMobileOpen(false)}
-                className="py-3 px-4 rounded-lg text-[var(--color-foreground)] font-medium hover:bg-[var(--color-surface)] transition-colors"
-              >
-                Get Directions
-              </a>
-              <div className="pt-3 mt-2 border-t border-[var(--color-card-border)]">
-                <Link href="/memberships" onClick={() => setMobileOpen(false)}>
-                  <Button className="w-full" size="md">Membership</Button>
+              <div className="mt-8 flex flex-col gap-4">
+                <Link href="/waiver">
+                  <Button className="w-full py-4 text-lg" variant="outline">Sign Waiver</Button>
+                </Link>
+                <Link href="/memberships">
+                  <Button className="w-full py-4 text-lg">Join Membership</Button>
                 </Link>
               </div>
             </nav>
@@ -193,7 +243,6 @@ export function Header() {
         )}
       </header>
 
-      {/* Spacer — prevents content from hiding behind fixed header on non-home pages */}
       {!isHome && <div className="h-24" />}
     </>
   );

@@ -62,7 +62,7 @@ export function Footer() {
           © {new Date().getFullYear()} Lowcountry Guns & Range. All rights reserved.
         </p>
         <div className="flex gap-4">
-          <Link href="/privacy-policy-2" className="text-xs text-[var(--color-muted-fg)] hover:text-[var(--color-foreground)]">Privacy Policy</Link>
+          <Link href="/privacy-policy" className="text-xs text-[var(--color-muted-fg)] hover:text-[var(--color-foreground)]">Privacy Policy</Link>
           <Link href="/waiver" className="text-xs text-[var(--color-muted-fg)] hover:text-[var(--color-foreground)]">Waiver</Link>
         </div>
       </div>

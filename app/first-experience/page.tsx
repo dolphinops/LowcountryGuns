@@ -102,14 +102,16 @@ export default function FirstExperience() {
         <div className="relative z-10 content-container animate-fade-up text-center max-w-5xl mx-auto flex flex-col items-center">
           {/* Logo integrated into hero */}
           <div className="mb-12 md:mb-16">
-            <Image 
-              src="/images/legacy/Logo-2.webp" 
-              alt="Lowcountry Guns & Range" 
-              width={280} 
-              height={94} 
-              className="w-auto h-16 md:h-24 opacity-95 drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]"
-              priority
-            />
+            <Link href="/" className="block group transition-transform duration-300 hover:scale-[1.02]">
+              <Image 
+                src="/images/legacy/Logo-2.webp" 
+                alt="Lowcountry Guns & Range" 
+                width={280} 
+                height={94} 
+                className="w-auto h-16 md:h-24 opacity-95 drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                priority
+              />
+            </Link>
           </div>
 
           <div className="flex flex-col items-center gap-3 mb-8">
