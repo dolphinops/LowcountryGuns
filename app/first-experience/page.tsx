@@ -207,53 +207,6 @@ export default function FirstExperience() {
 
       <div className="gradient-divider" />
 
-      {/* ─── PRO SHOP PREVIEW ─── */}
-      <section className="py-20 md:py-28 bg-[#0a0a0b] relative overflow-hidden">
-        <div className="content-container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
-              <Image 
-                src="/images/IMG_8222.webp" 
-                alt="Full-service pro shop with extensive firearms selection" 
-                fill 
-                className="object-cover transition-transform duration-[10s] group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-            </div>
-            
-            <div className="animate-fade-up">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-primary-base)] mb-3">Equip Yourself</p>
-              <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white mb-6">
-                Full-Service <span className="text-gradient">Pro Shop</span>
-              </h2>
-              <p className="text-zinc-400 text-lg leading-relaxed mb-8">
-                Beyond training, we host one of the most comprehensive inventories in the Lowcountry. From your very first purchase to advanced range gear and safety equipment, our expert staff is here to provide honest advice and professional fitting.
-              </p>
-              <ul className="space-y-4 mb-10">
-                {[
-                  "Massive selection of Handguns & Rifles",
-                  "Certified FFL Transfers & Sales",
-                  "Range-ready Ammunition & Safety Gear",
-                  "Expert advice from real shooters"
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-zinc-300">
-                    <CheckCircle className="w-5 h-5 text-[var(--color-primary-base)]" />
-                    <span className="font-medium">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link href="/the-range">
-                <Button variant="outline" className="rounded-2xl px-8 h-14 border-white/10 text-white hover:bg-white/5 hover:border-[var(--color-primary-base)] transition-all">
-                  Browse Shop Inventory
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div className="gradient-divider" />
-
       {/* ─── MEET YOUR INSTRUCTOR ─── */}
       <section className="py-20 md:py-28 bg-[#050506] relative overflow-hidden">
         <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[var(--color-primary-base)]/5 to-transparent pointer-events-none" />
