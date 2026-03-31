@@ -396,6 +396,34 @@ export default function FirstExperience() {
           })
         }}
       />
+
+      {/* ─── STICKY MOBILE CTA BAR ─── */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
+        <div className="bg-[#0a0a0b]/95 backdrop-blur-xl border-t border-white/10 px-4 py-3 safe-area-bottom">
+          <div className="flex gap-3">
+            <a href="#book" className="flex-1">
+              <button className="w-full h-12 rounded-xl bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-base)] text-white text-sm font-bold shadow-lg shadow-[var(--color-primary-base)]/20 active:scale-[0.97] transition-transform">
+                Book Session
+              </button>
+            </a>
+            <a 
+              href="https://www.google.com/maps/dir/?api=1&destination=98+Purrysburg+Rd,+Hardeeville,+SC+29927" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1"
+              id="mobile-get-directions"
+            >
+              <button className="w-full h-12 rounded-xl border-2 border-white/20 text-white text-sm font-bold bg-white/5 active:scale-[0.97] transition-transform flex items-center justify-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                Directions
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom spacer for sticky mobile CTA */}
+      <div className="h-20 md:hidden" />
     </div>
   );
 }

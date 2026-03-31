@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Target, Info, Crosshair, ShieldAlert } from 'lucide-react';
 import type { Metadata } from 'next';
-import rentalGuns from '../../data/rental-guns.json';
+import rentalGuns from '../../../data/rental-guns.json';
 
 export const metadata: Metadata = {
   title: "Gun Rentals | Lowcountry Guns & Range",

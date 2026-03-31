@@ -25,6 +25,7 @@ export function Footer() {
           <h3 className="font-semibold text-sm text-[var(--color-foreground)] uppercase tracking-wider">Explore</h3>
           <Link href="/the-range" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">The Range</Link>
           <Link href="/training" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Training Courses</Link>
+          <Link href="/first-experience" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Your First Experience</Link>
           <Link href="/memberships" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Memberships</Link>
           <Link href="/shop" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Online Shop (Soon)</Link>
           <Link href="/idpa" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">IDPA Matches</Link>
