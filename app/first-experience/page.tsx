@@ -85,22 +85,8 @@ export default function FirstExperience() {
   return (
     <div className="flex flex-col bg-[#0a0a0b] text-white selection:bg-[var(--color-primary-base)] selection:text-white">
 
-      {/* ─── LOGO BAR ─── */}
-      <div className="absolute top-0 left-0 right-0 z-20 py-5 md:py-6">
-        <div className="content-container flex justify-center">
-          <Image 
-            src="/images/legacy/Logo-2.webp" 
-            alt="Lowcountry Guns & Range" 
-            width={280} 
-            height={94} 
-            className="w-auto h-14 md:h-20 opacity-95"
-            priority
-          />
-        </div>
-      </div>
-
       {/* ─── HERO SECTION ─── */}
-      <section className="relative pt-32 pb-24 md:pt-48 md:pb-36 overflow-hidden">
+      <section className="relative pt-12 pb-24 md:pt-16 md:pb-36 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image 
             src="/images/IMG_8198.webp" 
@@ -110,11 +96,23 @@ export default function FirstExperience() {
             className="object-cover opacity-30 brightness-[0.4]" 
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0a0b]/80 to-[#0a0a0b] z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b] via-transparent to-[#0a0a0b] z-[1]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0a0a0b_100%)] opacity-60 z-[1]" />
         
-        <div className="relative z-10 content-container animate-fade-up text-center max-w-5xl mx-auto">
-          <div className="flex flex-col items-center gap-3 mb-6">
+        <div className="relative z-10 content-container animate-fade-up text-center max-w-5xl mx-auto flex flex-col items-center">
+          {/* Logo integrated into hero */}
+          <div className="mb-12 md:mb-16">
+            <Image 
+              src="/images/legacy/Logo-2.webp" 
+              alt="Lowcountry Guns & Range" 
+              width={280} 
+              height={94} 
+              className="w-auto h-16 md:h-24 opacity-95 drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+              priority
+            />
+          </div>
+
+          <div className="flex flex-col items-center gap-3 mb-8">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -203,6 +201,53 @@ export default function FirstExperience() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="gradient-divider" />
+
+      {/* ─── PRO SHOP PREVIEW ─── */}
+      <section className="py-20 md:py-28 bg-[#0a0a0b] relative overflow-hidden">
+        <div className="content-container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-2xl group">
+              <Image 
+                src="/images/IMG_8222.webp" 
+                alt="Full-service pro shop with extensive firearms selection" 
+                fill 
+                className="object-cover transition-transform duration-[10s] group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            </div>
+            
+            <div className="animate-fade-up">
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--color-primary-base)] mb-3">Equip Yourself</p>
+              <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white mb-6">
+                Full-Service <span className="text-gradient">Pro Shop</span>
+              </h2>
+              <p className="text-zinc-400 text-lg leading-relaxed mb-8">
+                Beyond training, we host one of the most comprehensive inventories in the Lowcountry. From your very first purchase to advanced range gear and safety equipment, our expert staff is here to provide honest advice and professional fitting.
+              </p>
+              <ul className="space-y-4 mb-10">
+                {[
+                  "Massive selection of Handguns & Rifles",
+                  "Certified FFL Transfers & Sales",
+                  "Range-ready Ammunition & Safety Gear",
+                  "Expert advice from real shooters"
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-zinc-300">
+                    <CheckCircle className="w-5 h-5 text-[var(--color-primary-base)]" />
+                    <span className="font-medium">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link href="/the-range">
+                <Button variant="outline" className="rounded-2xl px-8 h-14 border-white/10 text-white hover:bg-white/5 hover:border-[var(--color-primary-base)] transition-all">
+                  Browse Shop Inventory
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

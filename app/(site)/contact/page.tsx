@@ -76,15 +76,17 @@ export default function ContactPage() {
                 target={info.link.startsWith('http') ? '_blank' : undefined}
                 rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
               >
-                <BentoCard className="p-8 h-full border-[var(--color-card-border)] hover:border-[var(--color-primary-base)] transition-all flex items-center gap-6 group-hover:shadow-[0_10px_40px_rgba(103,155,168,0.1)]">
-                  <div className="p-4 rounded-xl bg-[var(--color-surface)] group-hover:bg-[var(--color-primary-base)]/10 transition-colors shrink-0">
-                    {info.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold uppercase tracking-widest text-[var(--color-muted-fg)] mb-1">{info.title}</h3>
-                    <p className="text-lg font-bold text-[var(--color-foreground)] whitespace-pre-line leading-snug group-hover:text-[var(--color-primary-base)] transition-colors">
-                      {info.content}
-                    </p>
+                <BentoCard className="p-8 h-full border-[var(--color-card-border)] hover:border-[var(--color-primary-base)] transition-all group-hover:shadow-[0_10px_40px_rgba(103,155,168,0.1)]">
+                  <div className="flex items-center gap-6">
+                    <div className="p-4 rounded-xl bg-[var(--color-surface)] group-hover:bg-[var(--color-primary-base)]/10 transition-colors shrink-0 w-fit">
+                      {info.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold uppercase tracking-widest text-[var(--color-muted-fg)] mb-1">{info.title}</h3>
+                      <p className="text-lg font-bold text-[var(--color-foreground)] whitespace-pre-line leading-snug group-hover:text-[var(--color-primary-base)] transition-colors">
+                        {info.content}
+                      </p>
+                    </div>
                   </div>
                 </BentoCard>
               </a>

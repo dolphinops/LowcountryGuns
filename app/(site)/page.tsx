@@ -186,7 +186,7 @@ export default function Home() {
             {/* Two stacked cards */}
             <div className="lg:col-span-2 grid grid-cols-1 gap-4">
               <div className="relative aspect-[16/9] lg:aspect-auto lg:min-h-0 rounded-2xl overflow-hidden group cursor-pointer">
-                <Image src="/images/IMG_1361.webp" alt="Pro Shop interior with firearms on display" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                <Image src="/images/IMG_8232.webp" alt="Pro Shop interior with extensive firearms selection" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6">
                   <h3 className="text-xl font-bold text-white mb-1">Full-Service Pro Shop</h3>
