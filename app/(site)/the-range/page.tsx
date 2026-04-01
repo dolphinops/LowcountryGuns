@@ -12,19 +12,9 @@ export const metadata: Metadata = {
 export default function TheRange() {
   return (
     <div className="flex flex-col">
-      {/* ─── HERO SECTION ─── */}
-      <section className="relative pt-32 pb-24 md:pt-48 md:pb-36 overflow-hidden bg-black">
-        {/* Force bg container to be 100vw to break out of any parent constraints */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-full z-0 overflow-hidden">
-          <Image 
-            src="/images/IMG_9122.webp" 
-            alt="10-Bay Indoor Range" 
-            fill 
-            priority
-            className="object-cover opacity-70 brightness-90 rotate-90 scale-[3]" 
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40 z-[1]" />
+      <section className="relative pt-32 pb-24 md:pt-48 md:pb-36 overflow-hidden bg-black border-b border-white/5">
+        
+
         
         <div className="relative z-10 content-container animate-fade-up text-center max-w-4xl mx-auto drop-shadow-2xl">
           <p className="text-sm font-bold uppercase tracking-widest text-[var(--color-primary-base)] mb-4 animate-fade-up">Facility Info</p>

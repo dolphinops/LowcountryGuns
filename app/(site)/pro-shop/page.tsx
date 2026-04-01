@@ -11,20 +11,9 @@ export const metadata: Metadata = {
 export default function ProShop() {
   return (
     <div className="flex flex-col bg-white text-[var(--color-foreground)] selection:bg-[var(--color-primary-base)] selection:text-white">
-      {/* ─── HERO SECTION ─── */}
-      <section className="relative pt-32 pb-24 md:pt-48 md:pb-36 overflow-hidden">
-        {/* Full container image background - break out of any constraints */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-full z-0 overflow-hidden">
-          <Image 
-            src="/images/IMG_8222.webp" 
-            alt="Lowcountry Guns Pro Shop Showroom" 
-            fill 
-            priority
-            className="object-cover object-[center_35%] opacity-90 brightness-[0.7] scale-[1.1] hover:scale-105 transition-transform duration-[10s] ease-out" 
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60 z-[1]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] opacity-30 z-[1]" />
+      <section className="relative pt-32 pb-24 md:pt-48 md:pb-36 overflow-hidden bg-black border-b border-white/5">
+        
+
         
         <div className="relative z-10 content-container animate-fade-up text-center max-w-5xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-6 animate-fade-up">
