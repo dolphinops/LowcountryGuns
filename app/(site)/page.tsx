@@ -13,46 +13,11 @@ import {
   ChevronRight,
   HelpCircle,
   DollarSign, 
-  ShieldCheck,
-  Play
+  ShieldCheck
 } from 'lucide-react';
 import { Accordion } from '@/components/ui/Accordion';
-import { useState } from 'react';
+import { YouTubeFacade } from '@/components/ui/YouTubeFacade';
 
-/* ─── YouTube Facade Component ─── */
-function YouTubeFacade({ videoId, title }: { videoId: string, title: string }) {
-  const [load, setLoad] = useState(false);
-
-  if (load) {
-    return (
-      <iframe
-        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&controls=1`}
-        title={title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        className="w-full h-full absolute inset-0 border-0"
-      />
-    );
-  }
-
-  return (
-    <div 
-      className="group relative w-full h-full cursor-pointer flex items-center justify-center bg-zinc-900 overflow-hidden" 
-      onClick={() => setLoad(true)}
-    >
-      <Image
-        src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
-        alt={title}
-        fill
-        className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-500"
-      />
-      <div className="relative z-10 w-20 h-20 bg-[var(--color-primary-base)] rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
-        <Play className="w-8 h-8 text-black fill-current ml-1" />
-      </div>
-      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
-    </div>
-  );
-}
 
 /* ─── Quick-fact data ─── */
 const quickFacts = [
