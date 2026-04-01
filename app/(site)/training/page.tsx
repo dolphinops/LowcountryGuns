@@ -195,7 +195,7 @@ export default function Training() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+          <div className="flex flex-col gap-10 max-w-6xl mx-auto">
             <div className="flex flex-col gap-6 p-8 rounded-3xl bg-zinc-50 border border-[var(--color-card-border)] shadow-sm">
               <h3 className="text-xl font-bold text-center text-[var(--color-primary-dark)]">1 on 1 Instruction</h3>
               <EventbriteWidget eventId="1680552550919" />

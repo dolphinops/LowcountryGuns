@@ -36,7 +36,7 @@ const navLinks: NavLink[] = [
       { href: '/firearm-transfers', label: 'Firearm Transfers' },
     ]
   },
-  { href: '/shop', label: 'Online Shop' },
+  { href: '/shop', label: 'Shop (Coming Soon)' },
   { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];

@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { MobileActions } from "@/components/layout/MobileActions";
 
 export default function SiteLayout({
   children,
@@ -41,6 +42,8 @@ export default function SiteLayout({
               "latitude": 32.2280209,
               "longitude": -81.1278143
             },
+            "description": "Lowcountry Guns & Range is the premier climate-controlled 25-yard indoor shooting range in Hardeeville, SC. Located just 1 minute off I-95 at Exit 5, we serve Savannah, GA, Hilton Head, and Beaufort. Features EPA-standard ventilation and 170+ rental firearms.",
+            "priceRange": "$$",
             "openingHoursSpecification": [
               { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"], "opens": "10:00", "closes": "18:00" },
               { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "10:00", "closes": "19:00" },
@@ -52,6 +55,7 @@ export default function SiteLayout({
       <Header />
       {children}
       <Footer />
+      <MobileActions />
     </>
   );
 }

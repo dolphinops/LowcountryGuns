@@ -51,3 +51,4 @@ public/media/*
 # Ignore unused public videos
 public/videos/*
 !public/videos/hero-bg.mp4
+.unlighthouse/

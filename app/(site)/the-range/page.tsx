@@ -24,7 +24,7 @@ export default function TheRange() {
             Shooting Range
           </h1>
           <p className="text-lg md:text-2xl text-zinc-100 leading-relaxed mx-auto max-w-2xl animate-fade-up font-medium">
-            The Lowcountry&apos;s premier indoor shooting facility, centrally located for shooters from Hardeeville, Savannah, GA and Beaufort, SC.
+            The Lowcountry&apos;s premier climate-controlled indoor shooting facility, centrally located at I-95 Exit 5 for shooters from Hardeeville, Savannah, GA and Beaufort, SC.
           </p>
         </div>
       </section>
@@ -96,17 +96,18 @@ export default function TheRange() {
               </div>
             </BentoCard>
 
-            <BentoCard title="Who Can Use The Range" className="lg:col-span-2 border-[var(--color-card-border)] bg-white shadow-sm hover:border-[var(--color-primary-base)] transition-all duration-500 rounded-3xl">
+            <BentoCard title="Amenities & Comfort" className="lg:col-span-2 border-[var(--color-card-border)] bg-white shadow-sm hover:border-[var(--color-primary-base)] transition-all duration-500 rounded-3xl">
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-sm text-[var(--color-muted-fg)] mt-4 list-disc pl-4 font-medium">
-                <li>Open to the public</li>
-                <li>Walk-ins welcome — no reservation required</li>
-                <li>Out-of-state shooters are welcome</li>
-                <li>Valid photo ID required</li>
-                <li>No special permit needed</li>
+                <li>100% Climate Controlled (70° Year-Round)</li>
+                <li>Advanced EPA-Standard Ventilation</li>
+                <li>Lead-Free Air Filtration System</li>
+                <li>Bright, Modern LED Lighting</li>
+                <li>Electronic Target Retrievers (Up to 25 Yards)</li>
+                <li>Spacious 5,000+ sq ft Facility</li>
               </ul>
               <div className="mt-8 border-l-4 border-[var(--color-primary-base)] pl-4 py-3 bg-[var(--color-primary-base)]/5 rounded-r-xl">
                 <p className="text-sm text-[var(--color-primary-dark)] font-bold">
-                  First-time shooters are highly encouraged and will receive a mandatory safety briefing from a Range Safety Officer before shooting.
+                  Just 1 minute off I-95 at Exit 5. Easy access for Savannah and Hilton Head residents.
                 </p>
               </div>
             </BentoCard>

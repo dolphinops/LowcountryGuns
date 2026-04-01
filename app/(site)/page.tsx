@@ -2,9 +2,57 @@ import { Button } from '@/components/ui/Button';
 import Image from 'next/image';
 import Link from 'next/link';
 import Script from 'next/script';
-import { Target, DollarSign, ShieldCheck, MapPin, Phone, Clock } from 'lucide-react';
+import { 
+  Shield, 
+  MapPin, 
+  Clock, 
+  Phone, 
+  Target, 
+  Award, 
+  Users, 
+  ChevronRight,
+  HelpCircle,
+  DollarSign, 
+  ShieldCheck,
+  Play
+} from 'lucide-react';
+import { Accordion } from '@/components/ui/Accordion';
+import { useState } from 'react';
 
+/* ─── YouTube Facade Component ─── */
+function YouTubeFacade({ videoId, title }: { videoId: string, title: string }) {
+  const [load, setLoad] = useState(false);
 
+  if (load) {
+    return (
+      <iframe
+        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&controls=1`}
+        title={title}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        className="w-full h-full absolute inset-0 border-0"
+      />
+    );
+  }
+
+  return (
+    <div 
+      className="group relative w-full h-full cursor-pointer flex items-center justify-center bg-zinc-900 overflow-hidden" 
+      onClick={() => setLoad(true)}
+    >
+      <Image
+        src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+        alt={title}
+        fill
+        className="object-cover opacity-60 group-hover:scale-105 transition-transform duration-500"
+      />
+      <div className="relative z-10 w-20 h-20 bg-[var(--color-primary-base)] rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
+        <Play className="w-8 h-8 text-black fill-current ml-1" />
+      </div>
+      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
+    </div>
+  );
+}
 
 /* ─── Quick-fact data ─── */
 const quickFacts = [
@@ -53,10 +101,70 @@ const galleryImages = [
   { src: '/images/IMG_2502.webp', alt: 'Two people coaching in the indoor range bay' },
   { src: '/images/legacy/DSC1395.webp', alt: 'Indoor range perspective' },
 ];
-
 export default function Home() {
   return (
-    <div className="flex flex-col">
+    <>
+      {/* Structured Data for Local SEO */}
+      <Script
+        id="local-business-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "GunStore",
+            "name": "Lowcountry Guns & Range",
+            "image": "https://lcguns.com/images/IMG_8205.webp",
+            "url": "https://lcguns.com",
+            "telephone": "843-784-5474",
+            "priceRange": "$$",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "98 Purrysburg Rd",
+              "addressLocality": "Hardeeville",
+              "addressRegion": "SC",
+              "postalCode": "29927",
+              "addressCountry": "US"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 32.2858,
+              "longitude": -81.0825
+            },
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+                "opens": "10:00",
+                "closes": "18:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Friday",
+                "opens": "10:00",
+                "closes": "19:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Saturday",
+                "opens": "10:00",
+                "closes": "18:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Sunday",
+                "opens": "12:00",
+                "closes": "18:00"
+              }
+            ],
+            "sameAs": [
+              "https://www.facebook.com/lowcountrygunsandrange/",
+              "https://www.instagram.com/lowcountrygunsandrange/"
+            ]
+          })
+        }}
+      />
+
+      <div className="flex flex-col">
 
       {/* ═══════════════════════════════════════════════════
           SECTION 1 — HERO (Video Background)
@@ -64,14 +172,15 @@ export default function Home() {
       <section className="relative h-[90vh] min-h-[600px] max-h-[900px] flex items-end justify-center overflow-hidden bg-[#0a0a0b]">
 
 
-        {/* Self-hosted background video */}
+        {/* Self-hosted background video with optimized poster and preload settings */}
         <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none opacity-80">
           <video
             autoPlay
             muted
             loop
             playsInline
-            preload="auto"
+            preload="none"
+            poster="/images/hero-poster.jpg"
             className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
           >
             <source src="/videos/hero-bg.mp4" type="video/mp4" />
@@ -89,7 +198,7 @@ export default function Home() {
             <span className="text-gradient-light brightness-125">Indoor Gun Range</span>
           </h1>
           <p className="text-lg md:text-xl text-zinc-300 max-w-2xl leading-relaxed mb-4">
-            Serving Hardeeville, Savannah, Hilton Head & Beaufort. 10 state-of-the-art shooting bays. Open 7 days a week.
+            Serving Hardeeville, Savannah, Hilton Head & Beaufort. 10 state-of-the-art climate-controlled shooting bays. Open 7 days a week — Just 1 minute off I-95 at Exit 5.
           </p>
           <div className="flex items-center gap-2 text-zinc-400 font-medium mb-10 animate-fade-up delay-1">
              <MapPin className="w-5 h-5 text-[var(--color-primary-base)]" />
@@ -268,13 +377,7 @@ export default function Home() {
             </h2>
           </div>
           <div className="relative aspect-video rounded-2xl overflow-hidden shadow-xl border border-[var(--color-card-border)] glow-hover">
-            <iframe
-              src="https://www.youtube.com/embed/v13PTnNymuo?rel=0&controls=1"
-              title="Lowcountry Guns and Range Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full absolute inset-0 border-0"
-            />
+            <YouTubeFacade videoId="v13PTnNymuo" title="Lowcountry Guns and Range Video" />
           </div>
         </div>
       </section>
@@ -365,6 +468,62 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════
+          SECTION 7.5 — ROBUST FAQ
+          ═══════════════════════════════════════════════════ */}
+      <section className="section-spacing bg-white border-y border-[var(--color-card-border)]/50">
+        <div className="content-container">
+          <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-up">
+             <HelpCircle className="w-12 h-12 text-[var(--color-primary-base)] mx-auto mb-6 opacity-80" />
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
+              Got <span className="text-gradient">Questions?</span> We Have Answers.
+            </h2>
+            <p className="text-lg text-[var(--color-muted-fg)] leading-relaxed">
+              Everything you need to know about visiting the Lowcountry's premier indoor shooting destination.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <Accordion items={[
+              {
+                question: "Do I need to make a reservation?",
+                answer: "No! We are open 7 days a week for walk-ins. Just bring your photo ID and we'll get you on a lane as quickly as possible. Members enjoy priority lane access."
+              },
+              {
+                question: "Is the range climate controlled?",
+                answer: "Yes. Our facility is kept at a perfect 70° year-round. More importantly, we use an advanced EPA-standard ventilation system that circulates massive amounts of fresh, filtered air for your health and safety."
+              },
+              {
+                question: "What is the longest lane distance?",
+                answer: "Our range features 10 fully-equipped lanes with a maximum distance of 25 yards. All lanes are rifle-rated."
+              },
+              {
+                question: "What is the dress code for the range?",
+                answer: "For your safety, close-toed shoes and crew neck shirts are required. We do not allow flip-flops, tank tops, or low-cut shirts as they do not provide adequate protection from hot brass."
+              },
+              {
+                question: "Can I rent firearms if I don't own one?",
+                answer: "Absolutely. We have over 170 rental firearms available, including the latest models from major manufacturers. It's a great way to 'try before you buy'."
+              },
+              {
+                question: "Can my children shoot at your range?",
+                answer: "Yes. Shooters under 18 must be accompanied by a parent or legal guardian aged 21 or older. Our RSOs will ensure a safe and educational experience for the whole family."
+              },
+              {
+                question: "What does it cost to use the range?",
+                answer: "Range fees are $22.00 per person, per visit. Best of all, there is NO time limit on your session! We want you to take your time and practice safely."
+              }
+            ]} />
+            
+            <div className="mt-12 text-center">
+              <Link href="/faq">
+                <Button variant="outline" className="rounded-full">View All Frequently Asked Questions</Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════
           SECTION 8 — LOCATION CTA
           ═══════════════════════════════════════════════════ */}
       <section className="section-spacing bg-gradient-section text-[var(--color-foreground)]">
@@ -430,5 +589,6 @@ export default function Home() {
         </div>
       </section>
     </div>
+    </>
   );
 }

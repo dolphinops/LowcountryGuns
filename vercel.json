@@ -1,3 +1,16 @@
 {
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "redirects": [
+    { "source": "/privacy-policy-2", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/machine-gun-rentals-available", "destination": "/gun-rentals", "permanent": true },
+    { "source": "/newsletter-sign-up", "destination": "/contact", "permanent": true },
+    { "source": "/cart", "destination": "/shop", "permanent": true },
+    { "source": "/checkout", "destination": "/shop", "permanent": true },
+    { "source": "/my-account", "destination": "/shop", "permanent": true },
+    { "source": "/firearms-training-sc", "destination": "/training", "permanent": true },
+    { "source": "/concealed-weapon-permit-cwp-sc", "destination": "/conceal-weapon-permit", "permanent": true },
+    { "source": "/indoor-gun-range-savannah-ga", "destination": "/shooting-range-savannah-ga", "permanent": true },
+    { "source": "/indoor-gun-range-beaufort-sc", "destination": "/shooting-range-beaufort-sc", "permanent": true },
+    { "source": "/indoor-gun-range-hilton-head-sc", "destination": "/gun-range-hilton-head-sc", "permanent": true }
+  ]
 }

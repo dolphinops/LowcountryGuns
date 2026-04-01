@@ -27,7 +27,7 @@ export function Footer() {
           <Link href="/training" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Training Courses</Link>
           <Link href="/first-experience" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Your First Experience</Link>
           <Link href="/memberships" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Memberships</Link>
-          <Link href="/shop" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Online Shop (Soon)</Link>
+          <Link href="/shop" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Shop (Coming Soon)</Link>
           <Link href="/idpa" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">IDPA Matches</Link>
           <Link href="/private-partys" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Private Parties</Link>
         </div>
@@ -44,10 +44,20 @@ export function Footer() {
         <div className="flex flex-col gap-3">
           <h3 className="font-semibold text-sm text-[var(--color-foreground)] uppercase tracking-wider">Contact</h3>
           <a href="tel:8437845474" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">843-784-5474</a>
-          <p className="text-sm text-[var(--color-muted-fg)]">98 Purrysburg Rd<br/>Hardeeville, SC 29927</p>
+          <p className="text-sm text-[var(--color-muted-fg)]">98 Purrysburg Rd (I-95 Exit 5)<br/>Hardeeville, SC 29927</p>
           <Link href="/contact" className="text-sm text-[var(--color-primary-base)] font-bold hover:underline mt-2">Send Message</Link>
         </div>
         
+        <div className="flex flex-col gap-3">
+          <h3 className="font-semibold text-sm text-[var(--color-foreground)] uppercase tracking-wider">Service Areas</h3>
+          <Link href="/shooting-range-savannah-ga" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Savannah, GA</Link>
+          <Link href="/gun-range-hilton-head-sc" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Hilton Head, SC</Link>
+          <Link href="/shooting-range-beaufort-sc" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Beaufort, SC</Link>
+          <p className="text-sm text-[var(--color-muted-fg)] mt-2">Hardeeville, SC</p>
+          <p className="text-sm text-[var(--color-muted-fg)]">Bluffton, SC</p>
+          <p className="text-sm text-[var(--color-muted-fg)]">Pooler, GA</p>
+        </div>
+
         <div className="flex flex-col gap-3">
           <h3 className="font-semibold text-sm text-[var(--color-foreground)] uppercase tracking-wider">Hours</h3>
           <p className="text-sm text-[var(--color-muted-fg)]">Mon-Thu: 10am - 6pm</p>

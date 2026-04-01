@@ -5,7 +5,7 @@ import { ShoppingBag, Target, Shield, Package, Clock } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Online Shop | Lowcountry Guns & Range",
+  title: "Shop | Lowcountry Guns & Range",
   description: "Browse our premium firearms, ammunition, and shooting accessories. Our full online shop powered by Solidus One is coming soon."
 };
 
@@ -41,7 +41,7 @@ export default function ShopPlaceholder() {
             <span className="text-xs font-bold uppercase tracking-wider text-[var(--color-primary-base)]">Coming Soon — Solidus One Integration</span>
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 drop-shadow-2xl">
-            Lowcountry <span className="text-gradient-light brightness-125">Online Shop</span>
+            Lowcountry <span className="text-gradient-light brightness-125">Shop</span>
           </h1>
           <p className="text-lg md:text-xl text-zinc-200 leading-relaxed mx-auto max-w-2xl">
             We are building a state-of-the-art e-commerce experience. Soon you&apos;ll be able to browse our full inventory of firearms, ammunition, and accessories from the comfort of your home.
