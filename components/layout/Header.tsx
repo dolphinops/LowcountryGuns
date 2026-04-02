@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { ChevronDown, Menu, X, Navigation as NavIcon } from 'lucide-react';
+import { ChevronDown, Menu, X, MapPin, FileText } from 'lucide-react';
+import { MobileActions } from './MobileActions';
 
 interface SubLink {
   href: string;
@@ -83,7 +84,7 @@ export function Header() {
               alt="Lowcountry Guns & Range"
               width={250}
               height={84}
-              className="w-auto h-[4.5rem] rounded transition-all duration-300"
+              className="w-auto h-12 sm:h-[4.5rem] rounded transition-all duration-300"
               priority
             />
           </Link>
@@ -166,7 +167,7 @@ export function Header() {
               }`}
               title="Sign Waiver"
             >
-              <NavIcon className="w-5 h-5" />
+              <FileText className="w-5 h-5" />
             </Link>
 
             <a
@@ -178,8 +179,9 @@ export function Header() {
                   ? 'text-white border-white/30 hover:bg-white/15 hover:border-white/50'
                   : 'text-[var(--color-foreground)] border-[var(--color-card-border)] hover:bg-[var(--color-surface)] hover:border-[var(--color-foreground)]/20 shadow-sm'
               }`}
+              title="Directions"
             >
-              <NavIcon className="w-5 h-5 rotate-45" />
+              <MapPin className="w-5 h-5" />
             </a>
 
             <Link href="/memberships" className="hidden sm:inline-flex">
@@ -199,31 +201,37 @@ export function Header() {
 
         {/* Mobile nav panel */}
         {mobileOpen && (
-          <div className="lg:hidden fixed inset-0 top-24 bg-white z-[60] overflow-y-auto pb-20">
-            <nav className="px-6 py-6 flex flex-col gap-2">
+          <div className="lg:hidden fixed inset-0 top-24 bg-white z-[60] overflow-y-auto pb-20 border-t border-[var(--color-card-border)]">
+            <nav className="px-6 py-8 flex flex-col gap-3">
               {navLinks.map((link) => (
-                <div key={link.label} className="flex flex-col">
+                <div key={link.label} className="flex flex-col border-b border-[var(--color-card-border)] last:border-0 pb-3">
                   {link.subLinks ? (
                     <>
-                      <div className="flex items-center justify-between py-4 px-2 border-b border-[var(--color-card-border)]">
-                        <span className="text-lg font-bold text-[var(--color-foreground)]">{link.label}</span>
-                      </div>
-                      <div className="flex flex-col bg-[var(--color-surface)]/50 rounded-2xl mt-2 overflow-hidden">
-                        {link.subLinks.map((sub) => (
-                          <Link 
-                            key={sub.href} 
-                            href={sub.href}
-                            className="py-4 px-6 text-base font-medium text-[var(--color-muted-fg)] hover:text-[var(--color-foreground)] active:bg-[var(--color-surface)] border-b border-[var(--color-card-border)] last:border-0"
-                          >
-                            {sub.label}
-                          </Link>
-                        ))}
+                      <button 
+                        onClick={() => setActiveDropdown(activeDropdown === link.label ? null : link.label)}
+                        className="flex items-center justify-between py-4 px-2 w-full text-left"
+                      >
+                        <span className="text-xl font-black tracking-tight text-[var(--color-foreground)] uppercase">{link.label}</span>
+                        <ChevronDown className={`w-5 h-5 text-[var(--color-primary-base)] transition-transform duration-300 ${activeDropdown === link.label ? 'rotate-180' : ''}`} />
+                      </button>
+                      <div className={`grid transition-all duration-300 ease-in-out ${activeDropdown === link.label ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0 pointer-events-none'}`}>
+                        <div className="overflow-hidden flex flex-col bg-[var(--color-surface)] rounded-2xl">
+                          {link.subLinks.map((sub) => (
+                            <Link 
+                              key={sub.href} 
+                              href={sub.href}
+                              className="py-4 px-6 text-base font-semibold text-[var(--color-muted-fg)] active:text-[var(--color-primary-base)] active:bg-[var(--color-primary-base)]/5 border-b border-[var(--color-card-border)]/50 last:border-0"
+                            >
+                              {sub.label}
+                            </Link>
+                          ))}
+                        </div>
                       </div>
                     </>
                   ) : (
                     <Link
                       href={link.href!}
-                      className="py-5 px-2 border-b border-[var(--color-card-border)] text-lg font-bold text-[var(--color-foreground)]"
+                      className="py-5 px-2 text-xl font-black tracking-tight text-[var(--color-foreground)] uppercase"
                     >
                       {link.label}
                     </Link>
@@ -231,16 +239,22 @@ export function Header() {
                 </div>
               ))}
               <div className="mt-8 flex flex-col gap-4">
-                <Link href="/waiver">
-                  <Button className="w-full py-4 text-lg" variant="outline">Sign Waiver</Button>
-                </Link>
                 <Link href="/memberships">
-                  <Button className="w-full py-4 text-lg">Join Membership</Button>
+                  <Button className="w-full py-6 text-lg font-black uppercase tracking-widest" size="lg">Join Membership</Button>
                 </Link>
+                <div className="flex gap-4">
+                  <Link href="/waiver" className="flex-1">
+                    <Button className="w-full py-4 font-bold" variant="outline">Waiver</Button>
+                  </Link>
+                  <Link href="/contact" className="flex-1">
+                    <Button className="w-full py-4 font-bold" variant="outline">Contact</Button>
+                  </Link>
+                </div>
               </div>
             </nav>
           </div>
         )}
+        {!mobileOpen && <MobileActions />}
       </header>
 
       {!isHome && <div className="h-24" />}

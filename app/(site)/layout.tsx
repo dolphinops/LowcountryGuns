@@ -55,7 +55,6 @@ export default function SiteLayout({
       <Header />
       {children}
       <Footer />
-      <MobileActions />
     </>
   );
 }
