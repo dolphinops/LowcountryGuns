@@ -22,15 +22,18 @@ interface NavLink {
 const navLinks: NavLink[] = [
   { 
     label: 'The Range', 
+    href: '/the-range',
     subLinks: [
       { href: '/the-range', label: 'Range Overview' },
       { href: '/training', label: 'Training & Courses' },
+      { href: '/shooting-range-hardeeville-sc-defensive-carbine', label: 'Defensive Carbine' },
       { href: '/first-experience', label: 'Your First Experience' },
       { href: '/memberships', label: 'Memberships' },
     ]
   },
   { 
     label: 'Pro Shop', 
+    href: '/pro-shop',
     subLinks: [
       { href: '/pro-shop', label: 'Shop Overview' },
       { href: '/gun-rentals', label: 'Gun Rentals' },
@@ -99,16 +102,27 @@ export function Header() {
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 {link.subLinks ? (
-                  <button 
-                    className={`flex items-center gap-1.5 px-4 py-2 rounded-xl transition-all ${
-                      isTransparent
-                        ? 'text-white/80 hover:text-white hover:bg-white/10'
-                        : 'text-[var(--color-muted-fg)] hover:text-[var(--color-foreground)] hover:bg-[var(--color-surface)]'
-                    }`}
-                  >
-                    {link.label}
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeDropdown === link.label ? 'rotate-180' : ''}`} />
-                  </button>
+                  <div className="flex items-center">
+                    <Link
+                      href={link.href!}
+                      className={`px-4 py-2 rounded-xl transition-all whitespace-nowrap ${
+                        isTransparent
+                          ? 'text-white/80 hover:text-white hover:bg-white/10'
+                          : 'text-[var(--color-muted-fg)] hover:text-[var(--color-foreground)] hover:bg-[var(--color-surface)]'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                    <button 
+                      onClick={() => setActiveDropdown(activeDropdown === link.label ? null : link.label)}
+                      className={`p-2 transition-all ${
+                        isTransparent ? 'text-white/60 hover:text-white' : 'text-[var(--color-muted-fg)] hover:text-[var(--color-foreground)]'
+                      }`}
+                      aria-expanded={activeDropdown === link.label}
+                    >
+                      <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${activeDropdown === link.label ? 'rotate-180' : ''}`} />
+                    </button>
+                  </div>
                 ) : (
                   <Link
                     href={link.href!}
@@ -207,24 +221,32 @@ export function Header() {
                 <div key={link.label} className="flex flex-col border-b border-[var(--color-card-border)] last:border-0 pb-3">
                   {link.subLinks ? (
                     <>
-                      <button 
-                        onClick={() => setActiveDropdown(activeDropdown === link.label ? null : link.label)}
-                        className="flex items-center justify-between py-4 px-2 w-full text-left"
-                      >
-                        <span className="text-xl font-black tracking-tight text-[var(--color-foreground)] uppercase">{link.label}</span>
-                        <ChevronDown className={`w-5 h-5 text-[var(--color-primary-base)] transition-transform duration-300 ${activeDropdown === link.label ? 'rotate-180' : ''}`} />
-                      </button>
+                      <div className="flex items-center justify-between w-full">
+                        <Link 
+                          href={link.href!}
+                          className="flex-1 py-4 px-2 text-xl font-black tracking-tight text-[var(--color-foreground)] uppercase hover:text-[var(--color-primary-base)] transition-colors"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {link.label}
+                        </Link>
+                        <button 
+                          onClick={() => setActiveDropdown(activeDropdown === link.label ? null : link.label)}
+                          className="p-4"
+                        >
+                          <ChevronDown className={`w-6 h-6 text-[var(--color-primary-base)] transition-transform duration-300 ${activeDropdown === link.label ? 'rotate-180' : ''}`} />
+                        </button>
+                      </div>
                       <div 
                         className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                          activeDropdown === link.label ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
+                          activeDropdown === link.label ? 'max-h-[500px] opacity-100 mt-2' : 'max-h-0 opacity-0'
                         }`}
                       >
-                        <div className="flex flex-col bg-[var(--color-background)] rounded-xl border border-[var(--color-card-border)]">
+                        <div className="flex flex-col bg-[var(--color-background)] rounded-xl border border-[var(--color-card-border)] mb-4">
                           {link.subLinks.map((sub) => (
                             <Link 
                               key={sub.href} 
                               href={sub.href}
-                              className="py-4 px-6 text-base font-semibold text-[var(--color-foreground)] border-b border-[var(--color-card-border)] last:border-0"
+                              className="py-4 px-6 text-base font-semibold text-[var(--color-foreground)] border-b border-[var(--color-card-border)] last:border-0 hover:bg-zinc-50"
                               onClick={() => setMobileOpen(false)}
                             >
                               {sub.label}
@@ -236,7 +258,8 @@ export function Header() {
                   ) : (
                     <Link
                       href={link.href!}
-                      className="py-5 px-2 text-xl font-black tracking-tight text-[var(--color-foreground)] uppercase"
+                      className="py-5 px-2 text-xl font-black tracking-tight text-[var(--color-foreground)] uppercase hover:text-[var(--color-primary-base)] transition-colors"
+                      onClick={() => setMobileOpen(false)}
                     >
                       {link.label}
                     </Link>

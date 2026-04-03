@@ -63,6 +63,16 @@ const allCourses = [
     span: "md:col-span-4",
     color: "from-emerald-500/10 to-teal-500/10",
     bullets: ["Tailored", "Expert", "Focused"]
+  },
+  {
+    title: "Defensive Carbine",
+    subtitle: "Modern Rifle Skills",
+    description: "Run your rifle with confidence. Master zeroing, sling transitions, and tactical accuracy under pressure.",
+    icon: Target,
+    href: "/shooting-range-hardeeville-sc-defensive-carbine",
+    span: "md:col-span-12 lg:col-span-6",
+    color: "from-amber-600/10 to-orange-700/10",
+    bullets: ["Rifle", "Zeroing", "Tactics"]
   }
 ];
 

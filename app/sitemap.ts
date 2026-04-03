@@ -28,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/purchase-a-firearm',
     '/shooting-range-beaufort-sc',
     '/shooting-range-savannah-ga',
+    '/shooting-range-hardeeville-sc-defensive-carbine',
     '/shop',
     '/tactical-lighting-training',
     '/the-range',

@@ -1,5 +1,6 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import Banner from "@/components/layout/Banner";
 import { MobileActions } from "@/components/layout/MobileActions";
 
 export default function SiteLayout({
@@ -52,6 +53,7 @@ export default function SiteLayout({
           })
         }}
       />
+      <Banner />
       <Header />
       {children}
       <Footer />
