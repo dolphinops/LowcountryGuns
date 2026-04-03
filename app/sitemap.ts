@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact',
     '/faq',
     '/firearm-transfers',
-    '/gun-range-hilton-head-sc',
+    '/shooting-range-hilton-head-sc',
     '/gun-rentals',
     '/idpa',
     '/intro-to-competition-shooting',

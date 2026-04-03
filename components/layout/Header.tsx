@@ -67,10 +67,10 @@ export function Header() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
           isTransparent
             ? 'bg-transparent'
-            : 'bg-white/95 backdrop-blur-md border-b border-[var(--color-card-border)] shadow-sm'
+            : 'bg-white border-b border-[var(--color-card-border)] shadow-md'
         }`}
       >
         {/* Gradient Top Bar */}
@@ -84,7 +84,7 @@ export function Header() {
               alt="Lowcountry Guns & Range"
               width={250}
               height={84}
-              className="w-auto h-12 sm:h-[4.5rem] rounded transition-all duration-300"
+              className="w-auto h-14 sm:h-[4.5rem] rounded transition-all duration-300"
               priority
             />
           </Link>
@@ -201,7 +201,7 @@ export function Header() {
 
         {/* Mobile nav panel */}
         {mobileOpen && (
-          <div className="lg:hidden fixed inset-0 top-24 bg-white z-[60] overflow-y-auto pb-20 border-t border-[var(--color-card-border)]">
+          <div className="lg:hidden fixed inset-0 top-[90px] bg-white z-[90] overflow-y-auto pb-32">
             <nav className="px-6 py-8 flex flex-col gap-3">
               {navLinks.map((link) => (
                 <div key={link.label} className="flex flex-col border-b border-[var(--color-card-border)] last:border-0 pb-3">
@@ -214,13 +214,18 @@ export function Header() {
                         <span className="text-xl font-black tracking-tight text-[var(--color-foreground)] uppercase">{link.label}</span>
                         <ChevronDown className={`w-5 h-5 text-[var(--color-primary-base)] transition-transform duration-300 ${activeDropdown === link.label ? 'rotate-180' : ''}`} />
                       </button>
-                      <div className={`grid transition-all duration-300 ease-in-out ${activeDropdown === link.label ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0 pointer-events-none'}`}>
-                        <div className="overflow-hidden flex flex-col bg-[var(--color-surface)] rounded-2xl">
+                      <div 
+                        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                          activeDropdown === link.label ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
+                        }`}
+                      >
+                        <div className="flex flex-col bg-[var(--color-background)] rounded-xl border border-[var(--color-card-border)]">
                           {link.subLinks.map((sub) => (
                             <Link 
                               key={sub.href} 
                               href={sub.href}
-                              className="py-4 px-6 text-base font-semibold text-[var(--color-muted-fg)] active:text-[var(--color-primary-base)] active:bg-[var(--color-primary-base)]/5 border-b border-[var(--color-card-border)]/50 last:border-0"
+                              className="py-4 px-6 text-base font-semibold text-[var(--color-foreground)] border-b border-[var(--color-card-border)] last:border-0"
+                              onClick={() => setMobileOpen(false)}
                             >
                               {sub.label}
                             </Link>

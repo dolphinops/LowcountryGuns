@@ -11,6 +11,6 @@
     { "source": "/concealed-weapon-permit-cwp-sc", "destination": "/conceal-weapon-permit", "permanent": true },
     { "source": "/indoor-gun-range-savannah-ga", "destination": "/shooting-range-savannah-ga", "permanent": true },
     { "source": "/indoor-gun-range-beaufort-sc", "destination": "/shooting-range-beaufort-sc", "permanent": true },
-    { "source": "/indoor-gun-range-hilton-head-sc", "destination": "/gun-range-hilton-head-sc", "permanent": true }
+    { "source": "/indoor-gun-range-hilton-head-sc", "destination": "/shooting-range-hilton-head-sc", "permanent": true }
   ]
 }
