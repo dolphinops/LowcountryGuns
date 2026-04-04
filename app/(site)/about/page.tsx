@@ -27,7 +27,10 @@ export default function About() {
       <div className="gradient-divider" />
 
       {/* ─── TEAM INTRO & PROFILES ─── */}
-      <section className="section-spacing bg-gradient-section text-[var(--color-foreground)] pb-10 pt-16 md:pt-24 relative overflow-hidden">
+      <section
+        id="team"
+        className="section-spacing bg-gradient-section text-[var(--color-foreground)] pb-10 pt-16 md:pt-24 relative overflow-hidden scroll-mt-28"
+      >
         {/* Subtle background decoration */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[var(--color-primary-base)]/5 rounded-full blur-[100px] pointer-events-none transform translate-x-1/3 -translate-y-1/3" />
         

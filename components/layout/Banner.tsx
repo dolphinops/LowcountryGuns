@@ -1,33 +1,65 @@
-import { kv } from '@vercel/kv';
+'use client';
+
+import { useCallback, useEffect, useState } from 'react';
+import { MOTD_BROADCAST_NAME } from '@/lib/motd-broadcast';
 import { AlertCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
-export default async function Banner() {
-  let message = '';
-  
-  try {
-    // If KV is not configured, we just don't show the banner
-    if (process.env.KV_REST_API_URL) {
-      message = await kv.get<string>('motd_banner_message') || '';
-    }
-  } catch (error) {
-    console.error('Error fetching banner message:', error);
-  }
+export default function Banner() {
+  const [message, setMessage] = useState<string | null>(null);
 
-  // Hide banner if message is empty
-  if (!message) return null;
+  const load = useCallback(() => {
+    fetch('/api/motd', { cache: 'no-store' })
+      .then((r) => r.json())
+      .then((data: { message?: string }) => {
+        setMessage(typeof data.message === 'string' ? data.message : '');
+      })
+      .catch(() => setMessage(''));
+  }, []);
+
+  useEffect(() => {
+    load();
+
+    const onVis = () => {
+      if (document.visibilityState === 'visible') load();
+    };
+    document.addEventListener('visibilitychange', onVis);
+
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) load();
+    };
+    window.addEventListener('pageshow', onPageShow);
+
+    let bc: BroadcastChannel | undefined;
+    if (typeof BroadcastChannel !== 'undefined') {
+      try {
+        bc = new BroadcastChannel(MOTD_BROADCAST_NAME);
+        bc.onmessage = () => load();
+      } catch {
+        bc = undefined;
+      }
+    }
+
+    return () => {
+      document.removeEventListener('visibilitychange', onVis);
+      window.removeEventListener('pageshow', onPageShow);
+      bc?.close();
+    };
+  }, [load]);
+
+  if (message === null || !message) return null;
 
   return (
     <div className="relative isolate z-[110] flex items-center gap-x-6 overflow-hidden bg-gradient-to-r from-amber-600 via-orange-600 to-amber-600 px-6 py-2.5 sm:px-3.5 sm:before:flex-1 animate-in fade-in slide-in-from-top-1 shadow-md">
-      {/* Background decoration */}
-      <div 
-        className="absolute left-[max(-7rem,41%)] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl" 
+      <div
+        className="absolute left-[max(-7rem,41%)] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
         aria-hidden="true"
       >
-        <div 
-          className="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30" 
+        <div
+          className="aspect-[577/310] w-[36.0625rem] bg-gradient-to-r from-[#ff80b5] to-[#9089fc] opacity-30"
           style={{
-            clipPath: 'polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)'
+            clipPath:
+              'polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
           }}
         />
       </div>

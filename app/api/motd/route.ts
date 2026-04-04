@@ -1,51 +1,76 @@
-import { kv } from '@vercel/kv';
-import { NextResponse } from 'next/server';
+import { z } from 'zod';
+import {
+  getMotdFromKv,
+  isVercelKvConfigured,
+  setMotdInKv,
+} from '@/lib/motd-kv';
+import { getExpectedMotdAdminSecret } from '@/lib/motd-auth';
+import { jsonNoStore } from '@/lib/json-no-store';
+import { looksLikeRedisAuthOrPermissionFailure } from '@/lib/redis-error';
 
-const BANNER_KEY = 'motd_banner_message';
-const ADMIN_PASSWORD = 'lcguns2026';
+export const dynamic = 'force-dynamic';
+
+const motdPostSchema = z.object({
+  message: z.string().max(100),
+});
+
+const REDIS_WRITE_HINT =
+  'Redis refused the write. Use the primary REST token with write access (UPSTASH_REDIS_REST_TOKEN or KV_REST_API_TOKEN), not a read-only token.';
 
 export async function GET() {
   try {
-    // If KV is not configured, we'll return an empty string or a fallback
-    if (!process.env.KV_REST_API_URL) {
-      console.warn('Vercel KV not configured. Using fallback memory store.');
-      return NextResponse.json({ message: '' });
+    if (!isVercelKvConfigured()) {
+      console.warn(
+        'Redis REST not configured. Set KV_REST_API_URL + KV_REST_API_TOKEN (legacy) or UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN (Marketplace). MOTD GET returns empty.',
+      );
+      return jsonNoStore({ message: '' });
     }
 
-    const message = await kv.get<string>(BANNER_KEY);
-    return NextResponse.json({ message: message || '' });
+    const message = await getMotdFromKv();
+    return jsonNoStore({ message: message || '' });
   } catch (error) {
     console.error('Error fetching MOTD:', error);
-    return NextResponse.json({ message: '' }, { status: 500 });
+    return jsonNoStore({ message: '' }, { status: 500 });
   }
 }
 
 export async function POST(req: Request) {
   try {
-    const { message } = await req.json();
+    const expected = getExpectedMotdAdminSecret();
+    if (!expected) {
+      return jsonNoStore({ error: 'Server misconfigured' }, { status: 503 });
+    }
+
     const authHeader = req.headers.get('Authorization');
-    const password = authHeader?.replace('Bearer ', '');
+    const token = authHeader?.replace(/^Bearer\s+/i, '').trim();
 
-    // Authorization Check
-    if (password !== ADMIN_PASSWORD) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (!token || token !== expected) {
+      return jsonNoStore({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Validation
-    if (message.length > 100) {
-      return NextResponse.json({ error: 'Message too long (max 100 chars)' }, { status: 400 });
+    const raw = await req.json().catch(() => null);
+    const parsed = motdPostSchema.safeParse(raw);
+    if (!parsed.success) {
+      return jsonNoStore({ error: 'Invalid input' }, { status: 400 });
+    }
+    const { message } = parsed.data;
+
+    if (!isVercelKvConfigured()) {
+      return jsonNoStore(
+        { error: 'KV Store not configured on Vercel' },
+        { status: 500 },
+      );
     }
 
-    // Save to KV
-    if (!process.env.KV_REST_API_URL) {
-      return NextResponse.json({ error: 'KV Store not configured on Vercel' }, { status: 500 });
-    }
+    await setMotdInKv(message);
 
-    await kv.set(BANNER_KEY, message);
-    
-    return NextResponse.json({ success: true, message });
+    return jsonNoStore({ success: true, message });
   } catch (error) {
     console.error('Error updating MOTD:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    const raw = error instanceof Error ? error.message : String(error);
+    if (looksLikeRedisAuthOrPermissionFailure(raw)) {
+      return jsonNoStore({ error: REDIS_WRITE_HINT }, { status: 502 });
+    }
+    return jsonNoStore({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

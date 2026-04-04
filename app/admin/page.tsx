@@ -4,6 +4,15 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Shield, Save, LogOut, CheckCircle, AlertTriangle, MessageSquare } from 'lucide-react';
 import Image from 'next/image';
+import { broadcastMotdUpdated } from '@/lib/motd-broadcast';
+
+const SESSION_FLAG = 'lcguns_admin_session';
+const BEARER_KEY = 'lcguns_motd_bearer';
+
+function getStoredBearer(): string {
+  if (typeof window === 'undefined') return '';
+  return sessionStorage.getItem(BEARER_KEY) ?? '';
+}
 
 export default function AdminPage() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -13,18 +22,20 @@ export default function AdminPage() {
   const [error, setError] = useState('');
   const [charLimit] = useState(100);
 
-  // Check if already logged in (simple session)
   useEffect(() => {
-    const session = localStorage.getItem('lcguns_admin_session');
-    if (session === 'true') {
+    const session = localStorage.getItem(SESSION_FLAG);
+    const bearer = getStoredBearer();
+    if (session === 'true' && bearer) {
       setIsAdmin(true);
       fetchCurrentMOTD();
+    } else if (session === 'true' && !bearer) {
+      localStorage.removeItem(SESSION_FLAG);
     }
   }, []);
 
   const fetchCurrentMOTD = async () => {
     try {
-      const res = await fetch('/api/motd');
+      const res = await fetch('/api/motd', { cache: 'no-store' });
       const data = await res.json();
       setMessage(data.message || '');
     } catch (err) {
@@ -32,14 +43,35 @@ export default function AdminPage() {
     }
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'lcguns2026') {
+    setError('');
+    try {
+      const res = await fetch('/api/motd/verify', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${password}` },
+      });
+      if (res.status === 503) {
+        setError(
+          'Admin login is not configured on the server. Set MOTD_ADMIN_SECRET in the deployment environment (or .env.local locally), then restart the app.',
+        );
+        return;
+      }
+      if (res.status === 401) {
+        setError('Invalid password. Please try again.');
+        return;
+      }
+      if (!res.ok) {
+        setError(`Login failed (HTTP ${res.status}). Try again or contact support.`);
+        return;
+      }
+      sessionStorage.setItem(BEARER_KEY, password);
+      localStorage.setItem(SESSION_FLAG, 'true');
+      setPassword('');
       setIsAdmin(true);
-      localStorage.setItem('lcguns_admin_session', 'true');
       fetchCurrentMOTD();
-    } else {
-      setError('Invalid password. Please try again.');
+    } catch {
+      setError('Could not reach server. Try again.');
     }
   };
 
@@ -52,23 +84,63 @@ export default function AdminPage() {
     setStatus('loading');
     setError('');
 
+    const bearer = getStoredBearer();
+    if (!bearer) {
+      setStatus('error');
+      setError('Session expired. Please log out and sign in again.');
+      return;
+    }
+
     try {
       const res = await fetch('/api/motd', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${password || 'lcguns2026'}` // In a real app, use a session token
+          Authorization: `Bearer ${bearer}`,
         },
-        body: JSON.stringify({ message })
+        body: JSON.stringify({ message }),
       });
 
+      const data = (await res.json().catch(() => null)) as { error?: string } | null;
+      const apiError = data?.error;
+
       if (res.ok) {
+        broadcastMotdUpdated();
+        fetchCurrentMOTD();
         setStatus('success');
         setTimeout(() => setStatus('idle'), 3000);
+      } else if (res.status === 401) {
+        setStatus('error');
+        setError('Session expired. Please log out and sign in again.');
+      } else if (res.status === 503) {
+        setStatus('error');
+        setError(
+          'Server is missing MOTD_ADMIN_SECRET. Add it to the environment and restart before saving.',
+        );
+      } else if (res.status === 400) {
+        setStatus('error');
+        setError(
+          'Message could not be saved (invalid input). Keep text at or under 100 characters.',
+        );
+      } else if (res.status === 502) {
+        setStatus('error');
+        setError(
+          apiError ||
+            'Redis rejected the update. Confirm the REST token in Vercel has write access.',
+        );
+      } else if (res.status === 500 && apiError === 'KV Store not configured on Vercel') {
+        setStatus('error');
+        setError(
+          'Redis is not configured. In Vercel, add Upstash Redis (Marketplace) or legacy KV env vars, then pull env locally. Need KV_REST_* or UPSTASH_REDIS_REST_* URL + token.',
+        );
+      } else if (res.status === 500) {
+        setStatus('error');
+        setError('Could not save the banner. Try again later.');
       } else {
-        throw new Error('Failed to update banner.');
+        setStatus('error');
+        setError(`Save failed (HTTP ${res.status}). Try again.`);
       }
-    } catch (err) {
+    } catch {
       setStatus('error');
       setError('System Error: Could not update banner at this time.');
     }
@@ -76,7 +148,8 @@ export default function AdminPage() {
 
   const handleLogout = () => {
     setIsAdmin(false);
-    localStorage.removeItem('lcguns_admin_session');
+    localStorage.removeItem(SESSION_FLAG);
+    sessionStorage.removeItem(BEARER_KEY);
     setPassword('');
   };
 
@@ -204,7 +277,7 @@ export default function AdminPage() {
           <div>
             <h4 className="text-sm font-bold text-amber-900 mb-1">Production Sync</h4>
             <p className="text-xs text-amber-800/80 leading-relaxed font-medium transition-all">
-              Changes reflect instantly. If you are testing locally, ensure you have connected your Vercel project to the KV database using the command line.
+              Changes reflect instantly. You need <span className="font-mono text-[10px]">MOTD_ADMIN_SECRET</span> set on the server and Vercel KV connected for the banner to persist.
             </p>
           </div>
         </div>

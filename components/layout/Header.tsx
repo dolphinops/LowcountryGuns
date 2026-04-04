@@ -40,8 +40,10 @@ const navLinks: NavLink[] = [
       { href: '/firearm-transfers', label: 'Firearm Transfers' },
     ]
   },
-  { href: '/shop', label: 'Shop (Coming Soon)' },
+  { href: '/shop', label: 'Shop' },
   { href: '/blog', label: 'Blog' },
+  { href: '/about', label: 'About' },
+  { href: '/about#team', label: 'Team' },
   { href: '/contact', label: 'Contact' },
 ];
 

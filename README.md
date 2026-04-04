@@ -14,9 +14,11 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3275](http://localhost:3275) with your browser to see the result (`npm run dev` uses port **3275**).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Message of the day (MOTD) and Vercel KV
+
+The banner text is stored in **Redis via `@vercel/kv`** (`lib/motd-kv.ts`): either legacy **`KV_REST_API_*`** env vars or Marketplace **Upstash** **`UPSTASH_REDIS_REST_*`**. Add a Redis integration from the [Vercel Marketplace](https://vercel.com/marketplace?category=storage&search=redis), connect it to the project, then run **`vercel env pull .env.local`**. Set **`MOTD_ADMIN_SECRET`** for `/admin`. See `.env.example` and the [KV → Redis migration note](https://vercel.com/docs/storage/vercel-kv/kv-reference).
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
