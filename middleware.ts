@@ -5,10 +5,8 @@ import { isCanonicalSiteHost } from "@/lib/site";
 /**
  * Non-canonical hosts (*.vercel.app, localhost, etc.) must not accumulate search equity.
  * Canonical production: lcguns.com (and optional www).
- *
- * Next.js 16+: `middleware` was renamed to `proxy` (same behavior at the network boundary).
  */
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   if (pathname === "/robots.txt" || pathname === "/sitemap.xml") {
     return NextResponse.next();
