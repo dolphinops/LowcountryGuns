@@ -21,7 +21,7 @@ export default function Memberships() {
     <div className="flex flex-col">
       {/* ─── HERO SECTION ─── */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-dark">
-        <div className="absolute inset-0 bg-[url('/images/IMG_2502.webp')] bg-cover bg-center bg-no-repeat opacity-90 rotate-90 scale-[1.75]" />
+        <div className="absolute inset-0 bg-hero-img-2502 bg-cover bg-center bg-no-repeat opacity-90 rotate-90 scale-[1.75]" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/90 via-[#0a0a0b]/20 to-transparent z-[1]" />
         
         <div className="relative z-10 content-container animate-fade-up text-center max-w-4xl mx-auto">

@@ -4,6 +4,9 @@ import { Resend } from 'resend';
 import { contactFormSchema } from '@/lib/contact-schema';
 import { escapeHtml } from '@/lib/html-escape';
 import { resolveKvRestConfig } from '@/lib/motd-kv';
+import { getResendMailConfig } from '@/lib/resend-config';
+
+export const runtime = 'nodejs';
 
 const RATE_WINDOW_SEC = 15 * 60;
 const RATE_MAX = 8;
@@ -38,14 +41,23 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Too many requests. Try again later.' }, { status: 429 });
   }
 
-  const apiKey = process.env.RESEND_API_KEY?.trim();
-  const from = process.env.RESEND_FROM_EMAIL?.trim();
+  const mail = getResendMailConfig();
   const to = process.env.CONTACT_TO_EMAIL?.trim() || 'aj@lcguns.com';
 
-  if (!apiKey || !from) {
-    console.error('contact: missing RESEND_API_KEY or RESEND_FROM_EMAIL');
-    return NextResponse.json({ error: 'Service unavailable.' }, { status: 503 });
+  if (!mail) {
+    console.error(
+      'contact: Resend not configured — set RESEND_API_KEY and RESEND_FROM_EMAIL (or RESEND_FROM) on the server (e.g. Vercel → Environment Variables → Production).',
+    );
+    return NextResponse.json(
+      {
+        error:
+          'We could not send your message from the website. Please call the Pro Shop at 843-784-5474 or try again later.',
+      },
+      { status: 503 },
+    );
   }
+
+  const { apiKey, from } = mail;
 
   let body: unknown;
   try {

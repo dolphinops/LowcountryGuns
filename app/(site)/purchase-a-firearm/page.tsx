@@ -11,7 +11,7 @@ export default function Purchase() {
     <div className="flex flex-col">
       {/* ─── HERO SECTION ─── */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-dark">
-        <div className="absolute inset-0 bg-[url('/images/IMG_8194.webp')] bg-cover bg-center bg-no-repeat opacity-25 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-hero-img-8194 bg-cover bg-center bg-no-repeat opacity-25 mix-blend-overlay" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/80 to-transparent z-[1]" />
         
         <div className="relative z-10 content-container animate-fade-up text-center max-w-4xl mx-auto">

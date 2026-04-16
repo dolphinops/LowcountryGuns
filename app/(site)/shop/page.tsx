@@ -32,7 +32,7 @@ export default function ShopPlaceholder() {
     <div className="flex flex-col min-h-screen">
       {/* ─── HERO SECTION ─── */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-dark">
-        <div className="absolute inset-0 bg-[url('/images/IMG_8205.webp')] bg-cover bg-center bg-no-repeat opacity-40 scale-[1.05]" />
+        <div className="absolute inset-0 bg-hero-img-8205 bg-cover bg-center bg-no-repeat opacity-40 scale-[1.05]" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/95 via-[#0a0a0b]/40 to-transparent z-[1]" />
         
         <div className="relative z-10 content-container animate-fade-up text-center max-w-4xl mx-auto">

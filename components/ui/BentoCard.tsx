@@ -24,7 +24,7 @@ export function BentoCard({
           {description && <p className="text-sm text-[var(--color-muted-fg)]">{description}</p>}
         </div>
       )}
-      <div className="flex-1">
+      <div className="flex min-h-0 flex-1 flex-col justify-center">
         {children}
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/Button';
 import { BentoCard } from '@/components/ui/BentoCard';
-import { MapPin, Phone, Mail, Clock, Send, MessageSquare } from 'lucide-react';
+import { MapPin, Phone, Clock, Send, MessageSquare } from 'lucide-react';
 import { useState } from 'react';
 
 export default function ContactPage() {
@@ -59,12 +59,6 @@ export default function ContactPage() {
       content: "843-784-5474",
       link: "tel:8437845474"
     },
-    {
-      icon: <Mail className="w-6 h-6 text-[var(--color-primary-base)]" />,
-      title: "Email Us",
-      content: "aj@lcguns.com",
-      link: "mailto:aj@lcguns.com"
-    }
   ];
 
   const businessHours = [
@@ -96,16 +90,16 @@ export default function ContactPage() {
       {/* ─── CONTACT INFO CARDS ─── */}
       <section className="py-16 bg-gradient-section">
         <div className="content-container">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 mb-16">
             {contactInfo.map((info, idx) => (
               <a 
                 key={idx} 
                 href={info.link} 
-                className="group block"
+                className="group flex h-full min-h-0"
                 target={info.link.startsWith('http') ? '_blank' : undefined}
                 rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
               >
-                <BentoCard className="p-8 h-full border-[var(--color-card-border)] hover:border-[var(--color-primary-base)] transition-all group-hover:shadow-[0_10px_40px_rgba(103,155,168,0.1)]">
+                <BentoCard className="min-h-0 w-full flex-1 p-8 border-[var(--color-card-border)] hover:border-[var(--color-primary-base)] transition-all group-hover:shadow-[0_10px_40px_rgba(103,155,168,0.1)]">
                   <div className="flex items-center gap-6">
                     <div className="p-4 rounded-xl bg-[var(--color-surface)] group-hover:bg-[var(--color-primary-base)]/10 transition-colors shrink-0 w-fit">
                       {info.icon}

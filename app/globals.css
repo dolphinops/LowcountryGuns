@@ -135,6 +135,24 @@ body {
     padding-right: 1.5rem;
   }
 
+  /*
+   * Hero background images (public/ paths).
+   * Do not use bg-[url('/images/...')] in TSX: Tailwind v4 + Turbopack can treat url() as a
+   * bundler resolve target and break the build with "Can't resolve …/images/…".
+   */
+  .bg-hero-img-1361 {
+    background-image: url("/images/IMG_1361.webp");
+  }
+  .bg-hero-img-2502 {
+    background-image: url("/images/IMG_2502.webp");
+  }
+  .bg-hero-img-8194 {
+    background-image: url("/images/IMG_8194.webp");
+  }
+  .bg-hero-img-8205 {
+    background-image: url("/images/IMG_8205.webp");
+  }
+
   .animate-fade-up {
     animation: fade-up 0.7s ease-out both;
   }
