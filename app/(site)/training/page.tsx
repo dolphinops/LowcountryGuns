@@ -1,10 +1,8 @@
-import { BentoCard } from '@/components/ui/BentoCard';
 import { Button } from '@/components/ui/Button';
 import EventbriteWidget from '@/components/EventbriteWidget';
 import Link from 'next/link';
-import Image from 'next/image';
 import type { Metadata } from 'next';
-import { Shield, Users, Church, Target, ChevronRight, Lock } from 'lucide-react';
+import { Shield, Users, Church, Target, ChevronRight, Lock, Home } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: "Training | Lowcountry Guns & Range",
@@ -19,7 +17,7 @@ const allCourses = [
     subtitle: "Safety & Foundations",
     description: "A comfortable, welcoming environment for women to learn firearm safety and handling fundamentals.",
     icon: Users,
-    href: "/womans-basic-beginner-class",
+    href: "/contact",
     span: "md:col-span-7",
     color: "from-pink-500/10 to-rose-500/10",
     bullets: ["Safety First", "Hands-on", "Empowering"]
@@ -39,7 +37,7 @@ const allCourses = [
     subtitle: "Protecting Your Community",
     description: "Equip your house of worship security team with threat assessment and emergency response skills.",
     icon: Church,
-    href: "/church-safety-team",
+    href: "/contact",
     span: "md:col-span-4",
     color: "from-indigo-500/10 to-purple-500/10",
     bullets: ["Security", "Response", "Teamwork"]
@@ -69,7 +67,7 @@ const allCourses = [
     subtitle: "Modern Rifle Skills",
     description: "Run your rifle with confidence. Master zeroing, sling transitions, and tactical accuracy under pressure.",
     icon: Target,
-    href: "/shooting-range-hardeeville-sc-defensive-carbine",
+    href: "/contact",
     span: "md:col-span-12 lg:col-span-6",
     color: "from-amber-600/10 to-orange-700/10",
     bullets: ["Rifle", "Zeroing", "Tactics"]
@@ -103,6 +101,30 @@ const subscriptionLevels = [
     bullets: ["Advanced practical application"],
   },
 ];
+
+const bookableWidgets = [
+  {
+    id: 'book-private-instruction',
+    title: '1 on 1 Instruction',
+    eventId: '1680552550919',
+    height: 500,
+    courseHref: '/private-firearm-instruction',
+  },
+  {
+    id: 'book-cwp',
+    title: 'Conceal Weapon Permit',
+    eventId: '1680544276169',
+    height: 500,
+    courseHref: '/conceal-weapon-permit',
+  },
+  {
+    id: 'book-defensive-pistol',
+    title: 'Defensive Pistol',
+    eventId: '1985594956967',
+    height: 625,
+    courseHref: '/pistol-courses',
+  },
+] as const;
 
 export default function Training() {
   return (
@@ -138,12 +160,8 @@ export default function Training() {
                 Explore Our <span className="text-gradient">Training Curriculum</span>
               </h2>
               <p className="text-[var(--color-muted-fg)] text-lg font-medium">
-                Premier firearms instruction serving **Savannah**, **Beaufort**, **Hilton Head**, and **Hardeeville**. From absolute beginners to advanced tactical training.
+                Premier firearms instruction in Hardeeville, South Carolina. From absolute beginners to advanced tactical training.
               </p>
-            </div>
-            <div className="hidden md:block">
-
-              <div className="h-px w-32 bg-gradient-to-r from-[var(--color-primary-base)] to-transparent" />
             </div>
           </div>
 
@@ -194,7 +212,7 @@ export default function Training() {
       <div className="gradient-divider" />
 
       {/* ─── EVENTBRITE BOOKING SECTION ─── */}
-      <section className="py-24 bg-white">
+      <section id="book-sessions" className="scroll-mt-28 py-24 bg-white">
         <div className="content-container">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-black tracking-tight text-[var(--color-foreground)] mb-4">
@@ -206,17 +224,54 @@ export default function Training() {
           </div>
 
           <div className="flex flex-col gap-10 max-w-6xl mx-auto">
-            <div className="flex flex-col gap-6 p-8 rounded-3xl bg-zinc-50 border border-[var(--color-card-border)] shadow-sm">
-              <h3 className="text-xl font-bold text-center text-[var(--color-primary-dark)]">1 on 1 Instruction</h3>
-              <EventbriteWidget eventId="1680552550919" />
-            </div>
-            <div className="flex flex-col gap-6 p-8 rounded-3xl bg-zinc-50 border border-[var(--color-card-border)] shadow-sm">
-              <h3 className="text-xl font-bold text-center text-[var(--color-primary-dark)]">Conceal Weapon Permit</h3>
-              <EventbriteWidget eventId="1680544276169" />
-            </div>
-            <div className="flex flex-col gap-6 p-8 rounded-3xl bg-zinc-50 border border-[var(--color-card-border)] shadow-sm">
-              <h3 className="text-xl font-bold text-center text-[var(--color-primary-dark)]">Defensive Pistol</h3>
-              <EventbriteWidget eventId="1985594956967" height={625} />
+            {bookableWidgets.map((w) => (
+              <div
+                key={w.id}
+                id={w.id}
+                className="scroll-mt-28 flex flex-col gap-6 rounded-3xl border border-[var(--color-card-border)] bg-zinc-50 p-8 shadow-sm"
+              >
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <h3 className="text-center text-xl font-bold text-[var(--color-primary-dark)] sm:text-left">
+                    {w.title}
+                  </h3>
+                  <nav
+                    aria-label={`${w.title} quick links`}
+                    className="flex flex-wrap items-center justify-center gap-2 sm:justify-end"
+                  >
+                    <Link
+                      href="/#training"
+                      className="inline-flex h-11 min-w-[44px] items-center justify-center gap-2 rounded-full border border-[var(--color-card-border)] bg-white px-4 text-sm font-semibold text-[var(--color-foreground)] transition-all hover:border-[var(--color-primary-base)]/40 hover:bg-[var(--color-primary-base)]/5 hover:text-[var(--color-primary-base)]"
+                    >
+                      <Home className="h-4 w-4 shrink-0" aria-hidden />
+                      Home
+                    </Link>
+                    <Link
+                      href={w.courseHref}
+                      className="inline-flex h-11 min-w-[44px] items-center justify-center gap-1 rounded-full border border-[var(--color-card-border)] bg-white px-4 text-sm font-semibold text-[var(--color-foreground)] transition-all hover:border-[var(--color-primary-base)]/40 hover:bg-[var(--color-primary-base)]/5 hover:text-[var(--color-primary-base)]"
+                    >
+                      Course page
+                      <ChevronRight className="h-4 w-4 shrink-0" aria-hidden />
+                    </Link>
+                  </nav>
+                </div>
+                <EventbriteWidget eventId={w.eventId} height={w.height} />
+              </div>
+            ))}
+
+            <div className="rounded-3xl border border-[var(--color-card-border)] bg-[var(--color-card-bg)] p-8 text-center shadow-sm">
+              <p className="text-base font-medium text-[var(--color-foreground)]">
+                Looking for another class, church team training, or carbine courses?
+              </p>
+              <p className="mt-2 text-sm text-[var(--color-muted-fg)]">
+                We will point you to the right instructor and schedule.
+              </p>
+              <Link
+                href="/contact"
+                className="mt-6 inline-flex h-11 min-w-[44px] items-center justify-center gap-1 rounded-full bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-base)] px-8 text-sm font-semibold text-white shadow-md transition-all hover:from-[var(--color-primary-base)] hover:to-[var(--color-primary-hover)]"
+              >
+                Contact the Pro Shop
+                <ChevronRight className="h-4 w-4" aria-hidden />
+              </Link>
             </div>
           </div>
 

@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { ChevronDown, Menu, X, MapPin, FileText } from 'lucide-react';
 import { MobileActions } from './MobileActions';
+import { DirectionsMapModal } from '@/components/DirectionsMapModal';
 
 interface SubLink {
   href: string;
@@ -26,7 +27,6 @@ const navLinks: NavLink[] = [
     subLinks: [
       { href: '/the-range', label: 'Range Overview' },
       { href: '/training', label: 'Training & Courses' },
-      { href: '/shooting-range-hardeeville-sc-defensive-carbine', label: 'Defensive Carbine' },
       { href: '/first-experience', label: 'Your First Experience' },
       { href: '/memberships', label: 'Memberships' },
     ]
@@ -36,14 +36,13 @@ const navLinks: NavLink[] = [
     href: '/pro-shop',
     subLinks: [
       { href: '/pro-shop', label: 'Shop Overview' },
+      { href: '/shop', label: 'Online Store' },
       { href: '/gun-rentals', label: 'Gun Rentals' },
       { href: '/firearm-transfers', label: 'Firearm Transfers' },
     ]
   },
-  { href: '/shop', label: 'Shop' },
   { href: '/blog', label: 'Blog' },
-  { href: '/about', label: 'About' },
-  { href: '/about#team', label: 'Team' },
+  { href: '/team', label: 'Team' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -186,19 +185,19 @@ export function Header() {
               <FileText className="w-5 h-5" />
             </Link>
 
-            <a
-              href="https://maps.google.com/maps?daddr=98+Purrysburg+Rd,+Hardeeville,+SC+29927"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex items-center justify-center w-10 h-10 rounded-full border transition-all duration-200 ${
-                isTransparent
-                  ? 'text-white border-white/30 hover:bg-white/15 hover:border-white/50'
-                  : 'text-[var(--color-foreground)] border-[var(--color-card-border)] hover:bg-[var(--color-surface)] hover:border-[var(--color-foreground)]/20 shadow-sm'
-              }`}
+            <DirectionsMapModal
+              variant="ghost"
+              size="sm"
+              aria-label="Directions"
               title="Directions"
+              className={`inline-flex shrink-0 !h-10 !w-10 !min-w-0 !rounded-full !p-0 border shadow-sm transition-all duration-200 ${
+                isTransparent
+                  ? '!border-white/30 !text-white hover:!border-white/50 hover:!bg-white/15 hover:!text-white'
+                  : '!border-[var(--color-card-border)] !text-[var(--color-foreground)] hover:!border-[var(--color-foreground)]/20 hover:!bg-[var(--color-surface)] hover:!text-[var(--color-foreground)]'
+              }`}
             >
-              <MapPin className="w-5 h-5" />
-            </a>
+              <MapPin className="h-5 w-5 shrink-0" aria-hidden />
+            </DirectionsMapModal>
 
             <Link href="/memberships" className="hidden sm:inline-flex">
               <Button size="md" variant="primary">Membership</Button>

@@ -1,8 +1,8 @@
-import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { Target, Zap, Shield, CheckCircle, Clock, MapPin, AlertTriangle, ChevronLeft, ArrowRight } from 'lucide-react';
+import { Target, Zap, Shield, CheckCircle, Clock, AlertTriangle, ChevronLeft } from 'lucide-react';
+import EventbriteWidget from '@/components/EventbriteWidget';
 
 export const metadata: Metadata = {
   title: "Defensive Pistol Courses | Tactical Firearms Training Savannah & Beaufort",
@@ -24,14 +24,14 @@ export default function DefensivePistol() {
             className="object-cover opacity-60 brightness-[0.5] scale-[1.1] hover:scale-105 transition-transform duration-[10s] ease-out" 
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/80 to-black z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/50 z-[1]" />
         
         <div className="relative z-10 content-container animate-fade-up max-w-5xl mx-auto">
-          <Link href="/training" className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-[var(--color-primary-light)] transition-colors mb-12 group drop-shadow-sm font-bold">
+          <Link href="/training" className="flex w-fit items-center gap-2 text-sm text-zinc-400 hover:text-[var(--color-primary-light)] transition-colors mb-12 group drop-shadow-sm font-bold">
             <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to all Training
           </Link>
           
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8">
+          <div className="flex w-fit items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8">
             <Zap className="w-3 h-3 text-yellow-500" />
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-200">Advanced Combat Skills</span>
           </div>
@@ -59,7 +59,7 @@ export default function DefensivePistol() {
                 <h2 className="text-4xl font-black text-[var(--color-foreground)] mb-8 tracking-tight">Tactical Pistol Training for Savannah & Beaufort Shooters</h2>
                 <div className="space-y-6 text-[var(--color-muted-fg)] text-lg leading-relaxed font-medium">
                   <p>
-                    Static marksmanship is only the first step in self-defense. Our Defensive Pistol Course is designed for shooters who want to move beyond the fundamentals and learn how to actually fight with a handgun. This is the top choice for advanced **firearms training in Savannah** and **Beaufort**.
+                    Static marksmanship is only the first step in self-defense. Our Defensive Pistol Course is designed for shooters who want to move beyond the fundamentals and learn how to actually fight with a handgun. This is the top choice for advanced firearms training in Savannah and Beaufort.
                   </p>
                   <p>
                     This intensive class focuses on real-world applications: clearing malfunctions, rapid-fire accuracy, and shooting from various tactical positions. We emphasize the critical balance of speed and accuracy required to survive a lethal encounter.
@@ -122,11 +122,19 @@ export default function DefensivePistol() {
                       <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-emerald-500" /> Sturdy Gun Belt</li>
                     </ul>
                   </div>
-                  <Link href="tel:8437845474" className="block pt-4">
-                    <Button className="w-full h-14 rounded-2xl text-lg font-black group shadow-lg shadow-[var(--color-primary-base)]/20">
-                      Reserve Your Slot <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </Link>
+                  <div className="border-t border-[var(--color-card-border)] pt-8">
+                    <p className="mb-4 text-[10px] font-bold uppercase tracking-widest text-[var(--color-muted-fg-light)]">
+                      Book this class
+                    </p>
+                    <EventbriteWidget eventId="1985594956967" height={625} />
+                    <p className="mt-4 text-center text-xs font-medium text-[var(--color-muted-fg)]">
+                      Trouble with the widget?{' '}
+                      <a href="tel:8437845474" className="font-semibold text-[var(--color-primary-base)] underline-offset-2 hover:underline">
+                        Call the Pro Shop
+                      </a>
+                      {' '}— 843-784-5474
+                    </p>
+                  </div>
                 </div>
               </div>
             </aside>

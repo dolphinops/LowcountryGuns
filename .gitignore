@@ -32,9 +32,11 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
-# vercel
-.vercel
+# vercel (ignore local cache; keep linked project for team CLI/MCP)
+.vercel/*
+!.vercel/project.json
 
 # typescript
 *.tsbuildinfo

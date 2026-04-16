@@ -7,14 +7,43 @@ import { useState } from 'react';
 
 export default function ContactPage() {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [formError, setFormError] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setFormError(null);
     setFormStatus('submitting');
-    // Simulate API delay
-    setTimeout(() => {
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const subject = (fd.get('subject') as string) || 'General Inquiry';
+    const payload = {
+      name: String(fd.get('name') || '').trim(),
+      phone: String(fd.get('phone') || '').trim(),
+      email: String(fd.get('email') || '').trim(),
+      subject,
+      message: String(fd.get('message') || '').trim(),
+    };
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+
+      if (!res.ok) {
+        setFormError(data.error || 'Something went wrong. Please try again or call us.');
+        setFormStatus('idle');
+        return;
+      }
+
       setFormStatus('success');
-    }, 1500);
+      form.reset();
+    } catch {
+      setFormError('Network error. Check your connection and try again.');
+      setFormStatus('idle');
+    }
   };
 
   const contactInfo = [
@@ -33,8 +62,8 @@ export default function ContactPage() {
     {
       icon: <Mail className="w-6 h-6 text-[var(--color-primary-base)]" />,
       title: "Email Us",
-      content: "info@lowcountryguns.com",
-      link: "mailto:info@lowcountryguns.com"
+      content: "aj@lcguns.com",
+      link: "mailto:aj@lcguns.com"
     }
   ];
 
@@ -112,17 +141,27 @@ export default function ContactPage() {
                     </div>
                     <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
                     <p className="text-[var(--color-muted-fg)] mb-8">We&apos;ll get back to you within 24 business hours.</p>
-                    <Button variant="outline" onClick={() => setFormStatus('idle')}>Send Another Message</Button>
+                    <Button variant="outline" onClick={() => { setFormStatus('idle'); setFormError(null); }}>Send Another Message</Button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
+                    {formError ? (
+                      <p
+                        className="text-sm font-medium text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3"
+                        role="alert"
+                      >
+                        {formError}
+                      </p>
+                    ) : null}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label htmlFor="name" className="text-sm font-bold text-[var(--color-muted-fg)] px-1">Full Name</label>
                         <input 
                           id="name"
+                          name="name"
                           required
                           placeholder="John Doe"
+                          autoComplete="name"
                           className="w-full h-14 bg-[var(--color-surface)] border border-[var(--color-card-border)] rounded-xl px-4 py-3 outline-none focus:border-[var(--color-primary-base)] focus:ring-1 focus:ring-[var(--color-primary-base)] transition-all font-medium" 
                         />
                       </div>
@@ -130,9 +169,11 @@ export default function ContactPage() {
                         <label htmlFor="phone" className="text-sm font-bold text-[var(--color-muted-fg)] px-1">Phone Number</label>
                         <input 
                           id="phone"
+                          name="phone"
                           type="tel"
                           required
                           placeholder="(843) 555-0123"
+                          autoComplete="tel"
                           className="w-full h-14 bg-[var(--color-surface)] border border-[var(--color-card-border)] rounded-xl px-4 py-3 outline-none focus:border-[var(--color-primary-base)] focus:ring-1 focus:ring-[var(--color-primary-base)] transition-all font-medium" 
                         />
                       </div>
@@ -142,9 +183,11 @@ export default function ContactPage() {
                       <label htmlFor="email" className="text-sm font-bold text-[var(--color-muted-fg)] px-1">Email Address</label>
                       <input 
                         id="email"
+                        name="email"
                         type="email"
                         required
                         placeholder="john@example.com"
+                        autoComplete="email"
                         className="w-full h-14 bg-[var(--color-surface)] border border-[var(--color-card-border)] rounded-xl px-4 py-3 outline-none focus:border-[var(--color-primary-base)] focus:ring-1 focus:ring-[var(--color-primary-base)] transition-all font-medium" 
                       />
                     </div>
@@ -153,14 +196,17 @@ export default function ContactPage() {
                       <label htmlFor="subject" className="text-sm font-bold text-[var(--color-muted-fg)] px-1">How can we help?</label>
                       <select 
                         id="subject"
+                        name="subject"
+                        required
+                        defaultValue="General Inquiry"
                         className="w-full h-14 bg-[var(--color-surface)] border border-[var(--color-card-border)] rounded-xl px-4 py-3 outline-none focus:border-[var(--color-primary-base)] focus:ring-1 focus:ring-[var(--color-primary-base)] transition-all font-medium appearance-none cursor-pointer"
                       >
-                        <option>General Inquiry</option>
-                        <option>Range Membership</option>
-                        <option>Training / Courses</option>
-                        <option>FFL Transfers</option>
-                        <option>Private Parties</option>
-                        <option>Product Availability</option>
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Range Membership">Range Membership</option>
+                        <option value="Training / Courses">Training / Courses</option>
+                        <option value="FFL Transfers">FFL Transfers</option>
+                        <option value="Private Parties">Private Parties</option>
+                        <option value="Product Availability">Product Availability</option>
                       </select>
                     </div>
 
@@ -168,6 +214,7 @@ export default function ContactPage() {
                       <label htmlFor="message" className="text-sm font-bold text-[var(--color-muted-fg)] px-1">Message</label>
                       <textarea 
                         id="message"
+                        name="message"
                         required
                         rows={4}
                         placeholder="Tell us more about what you need..."
@@ -217,10 +264,11 @@ export default function ContactPage() {
               {/* Map Embed Placeholder / Image Link */}
               <div className="relative group overflow-hidden rounded-3xl border border-[var(--color-card-border)] aspect-video bg-zinc-100 shadow-sm">
                  <iframe 
-                    title="Lowcountry Guns and Range Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3374.887854613271!2d-81.1278143!3d32.2280209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88fbc8d672520335%3A0xc3f6bd548ca73fdc!2sLowcountry%20Guns%20and%20Range!5e0!3m2!1sen!2sus!4v1711820000000!5m2!1sen!2sus"
+                    title="98 Purrysburg Rd, Hardeeville, SC 29927"
+                    src={`https://www.google.com/maps?q=${encodeURIComponent('98 Purrysburg Rd, Hardeeville, SC 29927')}&z=15&hl=en&output=embed`}
                     className="absolute inset-0 w-full h-full border-0 grayscale group-hover:grayscale-0 transition-all duration-500"
                     loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
                  ></iframe>
                  <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
                     <a 

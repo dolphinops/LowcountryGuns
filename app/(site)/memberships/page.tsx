@@ -1,8 +1,15 @@
 import { BentoCard } from '@/components/ui/BentoCard';
-import { Button } from '@/components/ui/Button';
-import Link from 'next/link';
+import { EmbeddedFrameModal } from '@/components/EmbeddedFrameModal';
 import { CheckCircle } from 'lucide-react';
 import type { Metadata } from 'next';
+
+/** HubSpot Payments — use payments host for iframe-friendly checkout (redirects from app.hubspot.com). */
+const HUBSPOT_PREMIUM_CHECKOUT =
+  'https://payments-na1.hubspot.com/payments/mRKDNfFrsXmfP?referrer=PAYMENT_LINK';
+const HUBSPOT_PREMIUM_PLUS_CHECKOUT =
+  'https://payments-na1.hubspot.com/payments/wdqP7c6R?referrer=PAYMENT_LINK';
+const HUBSPOT_FAMILY_CHECKOUT =
+  'https://payments-na1.hubspot.com/payments/F4wS7bxpw9H7dM?referrer=PAYMENT_LINK';
 
 export const metadata: Metadata = {
   title: "Memberships | Lowcountry Guns & Range",
@@ -64,9 +71,19 @@ export default function Memberships() {
                 <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-[var(--color-primary-base)] shrink-0" /> 1 Machine Gun Rental Per Year</li>
                 <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-[var(--color-primary-base)] shrink-0" /> $20 Gun Transfers</li>
               </ul>
-              <Link href="https://app.hubspot.com/payments/mRKDNfFrsXmfP?referrer=PAYMENT_LINK" target="_blank" className="mt-auto block">
-                <Button variant="outline" className="w-full h-12 hover:bg-gradient-to-r hover:from-[var(--color-primary-dark)] hover:to-[var(--color-primary-base)] hover:text-white hover:border-transparent transition-all">Select Premium</Button>
-              </Link>
+              <div className="mt-auto block w-full">
+                <EmbeddedFrameModal
+                  src={HUBSPOT_PREMIUM_CHECKOUT}
+                  newTabHref="https://app.hubspot.com/payments/mRKDNfFrsXmfP?referrer=PAYMENT_LINK"
+                  dialogTitle="Premium membership checkout"
+                  subtitle="Secure payment · HubSpot"
+                  variant="outline"
+                  className="w-full h-12 transition-all hover:border-transparent hover:bg-gradient-to-r hover:from-[var(--color-primary-dark)] hover:to-[var(--color-primary-base)] hover:text-white"
+                  footerHint="Checkout runs in a secure HubSpot window. Use “Open in new tab” if the embedded page does not load."
+                >
+                  Select Premium
+                </EmbeddedFrameModal>
+              </div>
             </BentoCard>
 
             {/* Premium+ */}
@@ -94,9 +111,19 @@ export default function Memberships() {
                 <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-[var(--color-primary-base)] shrink-0" /> 1 Machine Gun Rental Per Year</li>
                 <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-[var(--color-primary-base)] shrink-0" /> $20 Gun Transfers</li>
               </ul>
-              <Link href="https://app.hubspot.com/payments/wdqP7c6R?referrer=PAYMENT_LINK" target="_blank" className="mt-auto block">
-                <Button variant="primary" className="w-full h-12 text-base shadow-[0_4px_14px_rgba(103,155,168,0.4)]">Select Premium+</Button>
-              </Link>
+              <div className="mt-auto block w-full">
+                <EmbeddedFrameModal
+                  src={HUBSPOT_PREMIUM_PLUS_CHECKOUT}
+                  newTabHref="https://app.hubspot.com/payments/wdqP7c6R?referrer=PAYMENT_LINK"
+                  dialogTitle="Premium+ membership checkout"
+                  subtitle="Secure payment · HubSpot"
+                  variant="primary"
+                  className="h-12 w-full text-base shadow-[0_4px_14px_rgba(103,155,168,0.4)]"
+                  footerHint="Checkout runs in a secure HubSpot window. Use “Open in new tab” if the embedded page does not load."
+                >
+                  Select Premium+
+                </EmbeddedFrameModal>
+              </div>
             </BentoCard>
 
             {/* Family Plan */}
@@ -120,9 +147,19 @@ export default function Memberships() {
                 <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-[var(--color-primary-base)] shrink-0" /> 1 Machine Gun Rental Per Year</li>
                 <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-[var(--color-primary-base)] shrink-0" /> $20 Gun Transfers</li>
               </ul>
-              <Link href="https://app.hubspot.com/payments/F4wS7bxpw9H7dM?referrer=PAYMENT_LINK" target="_blank" className="mt-auto block">
-                <Button variant="outline" className="w-full h-12 hover:bg-gradient-to-r hover:from-[var(--color-primary-dark)] hover:to-[var(--color-primary-base)] hover:text-white hover:border-transparent transition-all">Select Family</Button>
-              </Link>
+              <div className="mt-auto block w-full">
+                <EmbeddedFrameModal
+                  src={HUBSPOT_FAMILY_CHECKOUT}
+                  newTabHref="https://app.hubspot.com/payments/F4wS7bxpw9H7dM?referrer=PAYMENT_LINK"
+                  dialogTitle="Family plan checkout"
+                  subtitle="Secure payment · HubSpot"
+                  variant="outline"
+                  className="h-12 w-full transition-all hover:border-transparent hover:bg-gradient-to-r hover:from-[var(--color-primary-dark)] hover:to-[var(--color-primary-base)] hover:text-white"
+                  footerHint="Checkout runs in a secure HubSpot window. Use “Open in new tab” if the embedded page does not load."
+                >
+                  Select Family
+                </EmbeddedFrameModal>
+              </div>
             </BentoCard>
 
           </div>

@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Static routes discovered via app directory
   const staticRoutes = [
     '',
-    '/about',
+    '/team',
     '/blog',
     '/careers',
     '/church-safety-team',

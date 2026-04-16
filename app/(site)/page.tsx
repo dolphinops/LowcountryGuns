@@ -11,12 +11,12 @@ import {
   Award, 
   Users, 
   ChevronRight,
-  HelpCircle,
   DollarSign, 
   ShieldCheck
 } from 'lucide-react';
 import { Accordion } from '@/components/ui/Accordion';
 import { YouTubeFacade } from '@/components/ui/YouTubeFacade';
+import { DirectionsMapModal } from '@/components/DirectionsMapModal';
 
 
 /* ─── Quick-fact data ─── */
@@ -37,6 +37,31 @@ const quickFacts = [
     body: 'Range Safety Officers on duty at all times. Mandatory safety briefing for first-time shooters.',
   },
 ];
+
+const facilityShowcaseTiles = [
+  {
+    title: '10 Indoor Bays',
+    blurb: 'Climate-controlled, 75-foot rifle-rated lanes with electronic targets.',
+    src: '/images/IMG_9122.webp',
+    alt: 'Shooters practicing in the indoor range bays at Lowcountry Guns',
+    imageClass:
+      'object-cover transition-transform duration-700 group-hover:scale-110 rotate-90 scale-[1.75]',
+  },
+  {
+    title: 'Full-Service Pro Shop',
+    blurb: 'Firearms, ammo, accessories, and transfers.',
+    src: '/images/facility-pro-shop-rifle-wall.png',
+    alt: 'Pro shop rifle wall with modern sporting rifles, bolt-actions, and retail signage',
+    imageClass: 'object-cover object-center transition-transform duration-700 group-hover:scale-105',
+  },
+  {
+    title: '170+ Rental Firearms',
+    blurb: 'Try before you buy — pistols, rifles, and full-auto.',
+    src: '/images/facility-range-shooter-lane.png',
+    alt: 'Shooter on an indoor range lane with eye and ear protection, aiming downrange toward a paper target',
+    imageClass: 'object-cover object-center transition-transform duration-700 group-hover:scale-105',
+  },
+] as const;
 
 /* ─── Review data ─── */
 const reviews = [
@@ -59,10 +84,16 @@ const reviews = [
 
 /* ─── Gallery images ─── */
 const galleryImages = [
-  { src: '/images/89535FDA-30EB-4C6C-8BBF-9CEC9EDE8AF4.webp', alt: 'Lowcountry Guns Pro Shop Holsters', tall: true },
+  {
+    src: '/images/gallery-instructor-youth-lane.png',
+    alt: 'Instructor assisting a young shooter at the range, lane 2, with eye and ear protection',
+  },
   { src: '/images/IMG_8205.webp', alt: 'Lowcountry Guns Pro Shop Display' },
   { src: '/images/IMG_8194.webp', alt: 'Lowcountry Guns Pro Shop Customers' },
-  { src: '/images/C5376FBA-E5A2-4F53-9618-428D1DD50446.webp', alt: 'Lowcountry Guns Indoor Range Bay Rifle', tall: true },
+  {
+    src: '/images/gallery-arrival-walkway.png',
+    alt: 'Guest walking toward Lowcountry Guns along the fenced entrance path, parking and trees in the background',
+  },
   { src: '/images/IMG_2502.webp', alt: 'Two people coaching in the indoor range bay' },
   { src: '/images/legacy/DSC1395.webp', alt: 'Indoor range perspective' },
 ];
@@ -162,8 +193,13 @@ export default function Home() {
             <br />
             <span className="text-gradient-light brightness-125">Indoor Gun Range</span>
           </h1>
-          <p className="text-lg md:text-xl text-zinc-300 max-w-2xl leading-relaxed mb-4">
-            Serving Hardeeville, Savannah, Hilton Head & Beaufort. 10 state-of-the-art climate-controlled shooting bays. Open 7 days a week — Just 1 minute off I-95 at Exit 5.
+          <p className="text-base sm:text-lg md:text-xl text-zinc-300 max-w-4xl leading-relaxed mb-4">
+            <span className="block text-balance">
+              Serving Hardeeville, Savannah, Hilton Head & Beaufort.
+            </span>
+            <span className="block text-balance">
+              10 climate-controlled shooting bays · Open 7 days — 1 minute off I-95, Exit 5.
+            </span>
           </p>
           <div className="flex items-center gap-2 text-zinc-400 font-medium mb-10 animate-fade-up delay-1">
              <MapPin className="w-5 h-5 text-[var(--color-primary-base)]" />
@@ -173,16 +209,16 @@ export default function Home() {
             <Link href="/the-range">
               <Button size="lg" variant="primary" className="rounded-full w-full sm:w-auto px-10 shadow-[0_0_20px_rgba(103,155,168,0.4)] hover:shadow-[0_0_30px_rgba(103,155,168,0.6)]">Visit The Range</Button>
             </Link>
-            <a 
-              href="https://maps.google.com/maps?daddr=98+Purrysburg+Rd,+Hardeeville,+SC+29927"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto"
-            >
-              <Button size="lg" variant="outline" className="rounded-full border-white/40 text-white hover:bg-white hover:text-[#0a0a0b] hover:border-white w-full px-10 backdrop-blur-sm">
-                Get Directions <span className="ml-2 group-hover:translate-x-1 transition-transform">📍</span>
-              </Button>
-            </a>
+            <div className="w-full sm:w-auto">
+              <DirectionsMapModal
+                size="lg"
+                variant="outline"
+                className="group w-full rounded-full border-white/40 px-10 text-white backdrop-blur-sm hover:border-white hover:bg-white hover:text-[#0a0a0b] sm:w-auto"
+              >
+                Get Directions{' '}
+                <span className="ml-2 transition-transform group-hover:translate-x-1">📍</span>
+              </DirectionsMapModal>
+            </div>
           </div>
 
           {/* Trust bar */}
@@ -202,20 +238,20 @@ export default function Home() {
       </section>
 
       {/* ─── NEW SHOPPER BANNER — High visibility for older customers ─── */}
-      <section className="bg-[var(--color-primary-base)] text-white py-6 md:py-8 shadow-inner overflow-hidden relative group">
+      <section className="bg-[var(--color-primary-base)] text-white py-4 md:py-5 shadow-inner overflow-hidden relative group">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer pointer-events-none" />
-        <div className="content-container flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-          <div className="flex items-center gap-4 text-center md:text-left">
-            <div className="hidden sm:flex w-14 h-14 bg-white/20 rounded-full items-center justify-center shrink-0 border border-white/30 backdrop-blur-sm">
-               <ShieldCheck className="w-8 h-8 text-white" />
+        <div className="content-container flex flex-col md:flex-row items-center justify-between gap-4 md:gap-5 relative z-10">
+          <div className="flex items-center gap-3 md:gap-4 text-center md:text-left">
+            <div className="hidden sm:flex w-11 h-11 bg-white/20 rounded-full items-center justify-center shrink-0 border border-white/30 backdrop-blur-sm">
+               <ShieldCheck className="w-6 h-6 text-white" />
             </div>
             <div>
-               <h2 className="text-xl md:text-2xl font-black uppercase tracking-tight leading-tight">First Time Visiting?</h2>
-               <p className="text-white/80 font-medium md:text-lg">Save 10 minutes at the counter by signing your waiver online.</p>
+               <h2 className="text-lg md:text-xl font-black uppercase tracking-tight leading-tight">First Time Visiting?</h2>
+               <p className="text-sm md:text-base text-white/80 font-medium leading-snug">Save 10 minutes at the counter by signing your waiver online.</p>
             </div>
           </div>
-          <Link href="/waiver" className="w-full md:w-auto">
-             <Button size="lg" className="bg-white text-[var(--color-primary-base)] hover:bg-zinc-100 hover:scale-105 transition-all font-black uppercase tracking-widest px-10 h-16 rounded-2xl w-full md:w-auto shadow-xl border-none">
+          <Link href="/waiver" className="w-full md:w-auto shrink-0">
+             <Button size="md" className="bg-white text-[var(--color-primary-base)] hover:bg-zinc-100 transition-all font-black uppercase tracking-widest text-xs sm:text-sm h-11 px-6 sm:px-8 rounded-xl w-full md:w-auto shadow-lg border-none">
                 Sign Digital Waiver Now
              </Button>
           </Link>
@@ -226,63 +262,89 @@ export default function Home() {
       <div className="gradient-divider" />
 
       {/* ═══════════════════════════════════════════════════
-          SECTION 3 — FACILITY SHOWCASE (Bento Layout)
+          SECTION 3 — FACILITY (compact: facts + gallery + CTAs)
           ═══════════════════════════════════════════════════ */}
-      <section className="section-spacing bg-gradient-section">
+      <section className="bg-gradient-section py-12 md:py-16 lg:py-20">
         <div className="content-container">
-          <div className="flex justify-between items-end mb-10">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary-base)] mb-2">Our Facility</p>
-              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-                <span className="text-[var(--color-foreground)]">World-Class </span><span className="text-gradient">Indoor Range</span>
+          <div className="mb-8 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-2xl">
+              <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-[var(--color-primary-base)] md:text-sm">
+                Our facility
+              </p>
+              <h2 className="text-balance text-2xl font-extrabold tracking-tight text-[var(--color-foreground)] md:text-3xl lg:text-4xl">
+                <span className="text-[var(--color-foreground)]">World-class </span>
+                <span className="text-gradient">indoor range</span>
               </h2>
+              <p className="mt-3 text-sm font-medium leading-relaxed text-[var(--color-muted-fg)] md:text-base">
+                Ten climate-controlled bays, full pro shop, and 170+ rentals. Walk-ins welcome — open 7 days, one minute off I-95 (Exit 5), Hardeeville.
+              </p>
             </div>
-            <Link href="/the-range" className="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-[var(--color-foreground)] hover:text-[var(--color-primary-base)] transition-colors group">
-              Explore The Range
-              <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+            <Link
+              href="/the-range"
+              className="group inline-flex h-11 shrink-0 items-center justify-center gap-1 self-start rounded-full border border-[var(--color-card-border)] bg-white/80 px-5 text-sm font-semibold text-[var(--color-foreground)] shadow-sm backdrop-blur-sm transition-all hover:border-[var(--color-primary-base)]/40 hover:bg-white md:self-end"
+            >
+              Full range details
+              <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
             </Link>
           </div>
 
-          {/* Bento grid: 1 large left + 2 stacked right */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-            {/* Large feature card */}
-            <div className="lg:col-span-3 relative aspect-[16/9] lg:aspect-auto lg:min-h-[460px] rounded-2xl overflow-hidden group cursor-pointer border border-[var(--color-card-border)]">
-              <div className="absolute inset-0">
-                <Image src="/images/IMG_9122.webp" alt="Shooters practicing in the indoor range bays at Lowcountry Guns" fill className="object-cover transition-transform duration-700 group-hover:scale-110 rotate-90 scale-[1.75]" />
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 p-6 md:p-8">
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">10 Indoor Bays</h3>
-                <p className="text-zinc-300 text-sm max-w-sm">Climate-controlled, 75-foot rifle rated lanes with electronic target retrieval systems.</p>
-              </div>
-            </div>
-
-            {/* Two stacked cards */}
-            <div className="lg:col-span-2 grid grid-cols-1 gap-4">
-              <div className="relative aspect-[16/9] lg:aspect-auto lg:min-h-0 rounded-2xl overflow-hidden group cursor-pointer">
-                <Image src="/images/IMG_8232.webp" alt="Pro Shop interior with extensive firearms selection" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-6">
-                  <h3 className="text-xl font-bold text-white mb-1">Full-Service Pro Shop</h3>
-                  <p className="text-zinc-300 text-sm">Firearms, ammo, and accessories.</p>
+          {/* At a glance — dense facts visitors scan first */}
+          <div className="mb-8 grid gap-3 md:grid-cols-3">
+            {quickFacts.map((fact) => (
+              <div
+                key={fact.title}
+                className="flex gap-4 rounded-xl border border-[var(--color-card-border)] bg-white p-4 shadow-sm transition-all hover:border-[var(--color-primary-base)]/35 md:p-5"
+              >
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[var(--color-primary-base)]/10">
+                  {require('react').cloneElement(fact.icon as React.ReactElement, {
+                    className: 'h-5 w-5 shrink-0 text-[var(--color-primary-base)]',
+                    'aria-hidden': true,
+                  })}
+                </div>
+                <div className="min-w-0 text-left">
+                  <h3 className="text-sm font-bold text-[var(--color-foreground)] md:text-base">{fact.title}</h3>
+                  <p className="mt-1 text-xs font-medium leading-snug text-[var(--color-muted-fg)] md:text-sm md:leading-relaxed">
+                    {fact.body}
+                  </p>
                 </div>
               </div>
-
-              <div className="relative aspect-[16/9] lg:aspect-auto lg:min-h-0 rounded-2xl overflow-hidden group cursor-pointer">
-                <Image src="/images/IMG_7892.webp" alt="Gun rental display case with pistols and rifles" fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-6">
-                  <h3 className="text-xl font-bold text-white mb-1">170+ Rental Firearms</h3>
-                  <p className="text-zinc-300 text-sm">Try before you buy — pistols, rifles, and full-auto.</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
 
-          {/* Mobile link */}
-          <div className="mt-6 sm:hidden">
-            <Link href="/the-range">
-              <Button variant="outline" className="w-full">Explore The Range →</Button>
+          {/* Equal photo tiles — faster scan than asymmetric bento */}
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+            {facilityShowcaseTiles.map((tile) => (
+              <Link
+                key={tile.title}
+                href="/the-range"
+                className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-[var(--color-card-border)] shadow-sm transition-all hover:border-[var(--color-primary-base)]/30 hover:shadow-md"
+              >
+                <Image
+                  src={tile.src}
+                  alt={tile.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                  className={tile.imageClass}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                <div className="absolute bottom-0 left-0 p-4 md:p-5">
+                  <h3 className="text-base font-bold text-white md:text-lg">{tile.title}</h3>
+                  <p className="mt-0.5 text-xs text-zinc-300 md:text-sm">{tile.blurb}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-col gap-3 sm:mx-auto sm:max-w-xl sm:flex-row sm:justify-center">
+            <Link href="/the-range" className="w-full sm:w-auto sm:flex-1">
+              <Button variant="primary" size="md" className="h-12 w-full shadow-lg sm:min-w-[11rem]">
+                Range rules and pricing
+              </Button>
+            </Link>
+            <Link href="/training" className="w-full sm:w-auto sm:flex-1">
+              <Button variant="outline" size="md" className="h-12 w-full border-[var(--color-card-border)] sm:min-w-[11rem]">
+                Training and courses
+              </Button>
             </Link>
           </div>
         </div>
@@ -292,36 +354,123 @@ export default function Home() {
       <div className="gradient-divider" />
 
       {/* ═══════════════════════════════════════════════════
-          SECTION 4 — QUICK FACTS (Icon-led)
+          SECTION 3b — TRAINING HIGHLIGHTS
           ═══════════════════════════════════════════════════ */}
-      <section className="section-spacing bg-gradient-section-reverse">
+      <section
+        id="training"
+        className="section-spacing scroll-mt-28 bg-white border-y border-[var(--color-card-border)] text-[var(--color-foreground)]"
+      >
         <div className="content-container">
-          <div className="text-center mb-12">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary-base)] mb-2">Visit Info</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-              <span className="text-[var(--color-foreground)]">Everything You </span><span className="text-gradient">Need to Know</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {quickFacts.map((fact) => (
-              <div key={fact.title} className="bg-white border border-[var(--color-card-border)] shadow-sm rounded-2xl p-8 text-center flex flex-col items-center justify-center transform transition-transform hover:-translate-y-1 hover:border-[var(--color-primary-base)]/50">
-                <div className="mb-4 bg-[var(--color-primary-base)]/10 p-4 rounded-full inline-flex">
-                  {/* Clone icon to change color to primary */}
-                  {require('react').cloneElement(fact.icon as React.ReactElement, { className: 'w-10 h-10 mx-auto text-[var(--color-primary-base)]' })}
-                </div>
-                <h3 className="text-xl font-bold text-[var(--color-foreground)] mb-3">{fact.title}</h3>
-                <p className="text-sm text-[var(--color-muted-fg)] leading-relaxed font-medium">{fact.body}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex justify-center gap-5 mt-10">
-            <Link href="/the-range">
-              <Button variant="primary" size="md" className="shadow-lg">View Range Rules</Button>
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-10 lg:mb-12">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary-base)] mb-2">
+                Training
+              </p>
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-balance leading-[1.08]">
+                <span className="text-[var(--color-foreground)]">Build Skills With </span>
+                <span className="text-gradient">Certified Instructors</span>
+              </h2>
+              <p className="mt-4 text-base text-[var(--color-muted-fg)] leading-relaxed font-medium">
+                From first-time permits to advanced pistol work — structured classes and private coaching on our range.
+              </p>
+            </div>
+            <Link
+              href="/training"
+              className="group inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-[var(--color-card-border)] bg-[var(--color-card-bg)] px-6 text-sm font-semibold text-[var(--color-foreground)] transition-all hover:border-[var(--color-primary-base)]/40 hover:bg-[var(--color-primary-base)]/5 hover:text-[var(--color-primary-base)] md:self-end"
+            >
+              View all training
+              <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
             </Link>
-            <Link href="/training">
-              <Button variant="secondary" size="md" className="shadow-lg">Explore Training</Button>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8 max-w-6xl mx-auto">
+            <div className="group flex flex-col rounded-2xl border border-[var(--color-card-border)] bg-[var(--color-card-bg)] p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-[var(--color-primary-base)]/40 hover:shadow-[0_12px_40px_rgba(103,155,168,0.12)] md:p-8">
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary-base)]/10 text-[var(--color-primary-base)] transition-colors group-hover:bg-[var(--color-primary-base)]/15">
+                <Shield className="h-6 w-6" aria-hidden />
+              </div>
+              <h3 className="text-xl font-bold tracking-tight text-[var(--color-foreground)] text-balance">
+                CWP Certification
+              </h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--color-muted-fg)]">
+                South Carolina–approved concealed weapon permit training — law, safe storage, and live-fire qualification.
+              </p>
+              <div className="mt-6 flex flex-col gap-3">
+                <Link
+                  href="/training#book-cwp"
+                  className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-base)] text-center text-sm font-semibold text-white shadow-md transition-all hover:from-[var(--color-primary-base)] hover:to-[var(--color-primary-hover)]"
+                >
+                  Book online
+                </Link>
+                <Link
+                  href="/conceal-weapon-permit"
+                  className="inline-flex h-11 w-full items-center justify-center gap-1 text-sm font-semibold text-[var(--color-primary-base)] transition-colors hover:text-[var(--color-primary-hover)]"
+                >
+                  Course overview
+                  <ChevronRight className="h-4 w-4" aria-hidden />
+                </Link>
+              </div>
+            </div>
+
+            <div className="group flex flex-col rounded-2xl border border-[var(--color-card-border)] bg-[var(--color-card-bg)] p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-[var(--color-primary-base)]/40 hover:shadow-[0_12px_40px_rgba(103,155,168,0.12)] md:p-8">
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary-base)]/10 text-[var(--color-primary-base)] transition-colors group-hover:bg-[var(--color-primary-base)]/15">
+                <Users className="h-6 w-6" aria-hidden />
+              </div>
+              <h3 className="text-xl font-bold tracking-tight text-[var(--color-foreground)] text-balance">
+                One on One Training
+              </h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--color-muted-fg)]">
+                Private instruction tailored to your goals — new gun owners, skill gaps, or prep for a specific course.
+              </p>
+              <div className="mt-6 flex flex-col gap-3">
+                <Link
+                  href="/training#book-private-instruction"
+                  className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-base)] text-center text-sm font-semibold text-white shadow-md transition-all hover:from-[var(--color-primary-base)] hover:to-[var(--color-primary-hover)]"
+                >
+                  Book online
+                </Link>
+                <Link
+                  href="/private-firearm-instruction"
+                  className="inline-flex h-11 w-full items-center justify-center gap-1 text-sm font-semibold text-[var(--color-primary-base)] transition-colors hover:text-[var(--color-primary-hover)]"
+                >
+                  Course overview
+                  <ChevronRight className="h-4 w-4" aria-hidden />
+                </Link>
+              </div>
+            </div>
+
+            <div className="group flex flex-col rounded-2xl border border-[var(--color-card-border)] bg-[var(--color-card-bg)] p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-[var(--color-primary-base)]/40 hover:shadow-[0_12px_40px_rgba(103,155,168,0.12)] md:p-8">
+              <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-primary-base)]/10 text-[var(--color-primary-base)] transition-colors group-hover:bg-[var(--color-primary-base)]/15">
+                <Target className="h-6 w-6" aria-hidden />
+              </div>
+              <h3 className="text-xl font-bold tracking-tight text-[var(--color-foreground)] text-balance">
+                Defensive Pistol
+              </h3>
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--color-muted-fg)]">
+                Draw, reloads, and accuracy under pressure — practical pistol skills for serious concealed carriers.
+              </p>
+              <div className="mt-6 flex flex-col gap-3">
+                <Link
+                  href="/training#book-defensive-pistol"
+                  className="inline-flex h-12 w-full items-center justify-center rounded-lg bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-base)] text-center text-sm font-semibold text-white shadow-md transition-all hover:from-[var(--color-primary-base)] hover:to-[var(--color-primary-hover)]"
+                >
+                  Book online
+                </Link>
+                <Link
+                  href="/pistol-courses"
+                  className="inline-flex h-11 w-full items-center justify-center gap-1 text-sm font-semibold text-[var(--color-primary-base)] transition-colors hover:text-[var(--color-primary-hover)]"
+                >
+                  Course overview
+                  <ChevronRight className="h-4 w-4" aria-hidden />
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 flex justify-center md:hidden">
+            <Link href="/training" className="w-full max-w-md">
+              <Button variant="primary" size="md" className="h-12 w-full shadow-lg">
+                View all training
+              </Button>
             </Link>
           </div>
         </div>
@@ -422,8 +571,8 @@ export default function Home() {
                   alt={img.alt}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className={`object-cover transition-transform duration-700 group-hover:scale-110
-                    ${img.src.includes('C5376FBA') || img.src.includes('IMG_2502') ? 'rotate-90 scale-[1.6]' : ''}
+                  className={`object-cover object-center transition-transform duration-700 group-hover:scale-110
+                    ${img.src.includes('IMG_2502') ? 'rotate-90 scale-[1.6]' : ''}
                   `}
                 />
               </div>
@@ -438,7 +587,6 @@ export default function Home() {
       <section className="section-spacing bg-white border-y border-[var(--color-card-border)]/50">
         <div className="content-container">
           <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-up">
-             <HelpCircle className="w-12 h-12 text-[var(--color-primary-base)] mx-auto mb-6 opacity-80" />
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
               Got <span className="text-gradient">Questions?</span> We Have Answers.
             </h2>
@@ -532,13 +680,13 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <a
-                href="https://maps.google.com/maps?daddr=98+Purrysburg+Rd,+Hardeeville,+SC+29927"
-                target="_blank"
-                rel="noopener noreferrer"
+              <DirectionsMapModal
+                size="lg"
+                variant="primary"
+                className="rounded-full px-10 shadow-[0_10px_30px_rgba(103,155,168,0.3)] transition-all hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(103,155,168,0.5)]"
               >
-                <Button size="lg" variant="primary" className="rounded-full px-10 shadow-[0_10px_30px_rgba(103,155,168,0.3)] hover:shadow-[0_15px_40px_rgba(103,155,168,0.5)] transform hover:-translate-y-1 transition-all">Get Directions</Button>
-              </a>
+                Get Directions
+              </DirectionsMapModal>
             </div>
 
             <div className="relative aspect-video lg:aspect-square rounded-2xl overflow-hidden border border-[var(--color-card-border)] shadow-xl transform transition-all hover:scale-[1.01] hover:shadow-2xl">

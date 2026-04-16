@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { WaiverForm } from './WaiverForm';
 
 export const metadata: Metadata = {
   title: "Waiver | Lowcountry Guns & Range",
@@ -30,8 +29,17 @@ export default function Waiver() {
       <section className="section-spacing bg-gradient-section">
         <div className="content-container flex flex-col items-center">
           
-          <div className="w-full max-w-4xl gradient-border-card p-6 md:p-10 bg-[var(--color-background)]">
-            <WaiverForm />
+          <div className="w-full max-w-4xl gradient-border-card bg-[var(--color-background)] p-4 md:p-8">
+            <p className="mb-4 text-center text-sm text-[var(--color-muted-fg)] md:text-left">
+              The waiver loads below. On phones, scroll inside the frame if the form is taller than your screen.
+            </p>
+            <iframe
+              title="Lowcountry Guns range waiver"
+              src="/embed/waiver"
+              className="block h-[min(78vh,820px)] min-h-[520px] w-full rounded-2xl border border-[var(--color-card-border)] bg-white shadow-sm md:min-h-[640px]"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
 
         </div>

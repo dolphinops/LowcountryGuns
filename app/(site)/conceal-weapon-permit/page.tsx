@@ -1,8 +1,8 @@
-import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { Shield, CheckCircle, Clock, MapPin, Scale, ChevronLeft, ArrowRight } from 'lucide-react';
+import { Shield, CheckCircle, Clock, MapPin, Scale, ChevronLeft } from 'lucide-react';
+import EventbriteWidget from '@/components/EventbriteWidget';
 
 export const metadata: Metadata = {
   title: "Concealed Weapon Permit (CWP) Classes | Savannah, GA & Beaufort, SC",
@@ -24,14 +24,14 @@ export default function ConcealWeaponPermit() {
             className="object-cover opacity-60 brightness-[0.5] scale-[1.1] hover:scale-105 transition-transform duration-[10s] ease-out" 
           />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/80 to-black z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/40 to-black/50 z-[1]" />
         
         <div className="relative z-10 content-container animate-fade-up max-w-5xl mx-auto">
-          <Link href="/training" className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-[var(--color-primary-light)] transition-colors mb-12 group drop-shadow-sm font-bold">
+          <Link href="/training" className="flex w-fit items-center gap-2 text-sm text-zinc-400 hover:text-[var(--color-primary-light)] transition-colors mb-12 group drop-shadow-sm font-bold">
             <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to all Training
           </Link>
           
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8">
+          <div className="flex w-fit items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-8">
             <Shield className="w-3 h-3 text-[var(--color-primary-base)]" />
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-200">Official SC SLED Certification</span>
           </div>
@@ -62,7 +62,7 @@ export default function ConcealWeaponPermit() {
                     Our South Carolina Conceal Weapon Permit (CWP) course meets all state-mandated requirements for carrying a concealed handgun. This comprehensive class ensures you are legally, morally, and tactically prepared for self-defense.
                   </p>
                   <p>
-                    Located in Hardeeville, we are the premier choice for residents in **Savannah, GA**, **Beaufort, SC**, and **Bluffton**. We bridge the gap between basic shooting skills and a deep understanding of the legal responsibilities that come with carrying a firearm.
+                    Located in Hardeeville, we are the premier choice for residents in Savannah, GA, Beaufort, SC, and Bluffton. We bridge the gap between basic shooting skills and a deep understanding of the legal responsibilities that come with carrying a firearm.
                   </p>
                   <p>
                     From classroom instruction on SC gun laws to live-fire qualification on our state-of-the-art range, our instructors provide the highest level of CWP training in the region.
@@ -122,11 +122,19 @@ export default function ConcealWeaponPermit() {
                       <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-emerald-500" /> Eye & Ear protection</li>
                     </ul>
                   </div>
-                  <Link href="tel:8437845474" className="block pt-4">
-                    <Button className="w-full h-14 rounded-2xl text-lg font-black group shadow-lg shadow-[var(--color-primary-base)]/20">
-                      Book CWP Training <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </Link>
+                  <div className="border-t border-[var(--color-card-border)] pt-8">
+                    <p className="mb-4 text-[10px] font-bold uppercase tracking-widest text-[var(--color-muted-fg-light)]">
+                      Book this class
+                    </p>
+                    <EventbriteWidget eventId="1680544276169" height={500} />
+                    <p className="mt-4 text-center text-xs font-medium text-[var(--color-muted-fg)]">
+                      Trouble with the widget?{' '}
+                      <a href="tel:8437845474" className="font-semibold text-[var(--color-primary-base)] underline-offset-2 hover:underline">
+                        Call the Pro Shop
+                      </a>
+                      {' '}— 843-784-5474
+                    </p>
+                  </div>
                 </div>
               </div>
             </aside>
