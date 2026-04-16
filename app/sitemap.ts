@@ -1,8 +1,9 @@
-import { MetadataRoute } from 'next'
-import { BLOG_POSTS } from '@/data/blog-posts'
- 
+import { MetadataRoute } from "next";
+import { BLOG_POSTS } from "@/data/blog-posts";
+import { getCanonicalSiteOrigin } from "@/lib/site";
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://lcguns.com'
+  const baseUrl = getCanonicalSiteOrigin();
   
   // Static routes discovered via app directory
   const staticRoutes = [
@@ -14,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/conceal-weapon-permit',
     '/contact',
     '/faq',
+    '/first-experience',
     '/firearm-transfers',
     '/shooting-range-hilton-head-sc',
     '/gun-rentals',

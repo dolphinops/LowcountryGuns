@@ -2,7 +2,8 @@ import { Button } from '@/components/ui/Button';
 import EventbriteWidget from '@/components/EventbriteWidget';
 import Link from 'next/link';
 import Image from 'next/image';
-import type { Metadata } from 'next';
+import type { Metadata } from "next";
+import { getCanonicalSiteOrigin } from "@/lib/site";
 import { Users, Shield, CheckCircle, MapPin, Clock, Phone, Star, ArrowRight, Navigation } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -82,6 +83,7 @@ const faqs = [
 ];
 
 export default function FirstExperience() {
+  const origin = getCanonicalSiteOrigin();
   return (
     <div className="flex flex-col bg-[#0a0a0b] text-white selection:bg-[var(--color-primary-base)] selection:text-white">
 
@@ -469,29 +471,52 @@ export default function FirstExperience() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": "Lowcountry Guns & Range",
-            "description": "Professional safety training and certified 1-on-1 instruction in a state-of-the-art indoor facility.",
-            "address": {
+            name: "Lowcountry Guns & Range",
+            description:
+              "Professional safety training and certified 1-on-1 instruction in a state-of-the-art indoor facility.",
+            parentOrganization: { "@id": `${origin}/#organization` },
+            address: {
               "@type": "PostalAddress",
-              "streetAddress": "98 Purrysburg Rd",
-              "addressLocality": "Hardeeville",
-              "addressRegion": "SC",
-              "postalCode": "29927",
-              "addressCountry": "US"
+              streetAddress: "98 Purrysburg Rd",
+              addressLocality: "Hardeeville",
+              addressRegion: "SC",
+              postalCode: "29927",
+              addressCountry: "US",
             },
-            "telephone": "843-784-5474",
-            "url": "https://lcguns.com/first-experience",
-            "geo": {
+            telephone: "843-784-5474",
+            url: `${origin}/first-experience`,
+            geo: {
               "@type": "GeoCoordinates",
-              "latitude": 32.2280209,
-              "longitude": -81.1278143
+              latitude: 32.2280209,
+              longitude: -81.1278143,
             },
-            "openingHoursSpecification": [
-              { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Saturday"], "opens": "10:00", "closes": "18:00" },
-              { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "10:00", "closes": "19:00" },
-              { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "12:00", "closes": "18:00" }
-            ]
-          })
+            openingHoursSpecification: [
+              {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
+                opens: "10:00",
+                closes: "18:00",
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: "Friday",
+                opens: "10:00",
+                closes: "19:00",
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: "Saturday",
+                opens: "10:00",
+                closes: "18:00",
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: "Sunday",
+                opens: "12:00",
+                closes: "18:00",
+              },
+            ],
+          }),
         }}
       />
 

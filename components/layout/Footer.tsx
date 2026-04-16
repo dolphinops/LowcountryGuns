@@ -50,12 +50,12 @@ export function Footer() {
         
         <div className="flex flex-col gap-3">
           <h3 className="font-semibold text-sm text-[var(--color-foreground)] uppercase tracking-wider">Service Areas</h3>
-          <Link href="/shooting-range-savannah-ga" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Savannah, GA</Link>
-          <Link href="/gun-range-hilton-head-sc" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Hilton Head, SC</Link>
-          <Link href="/shooting-range-beaufort-sc" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Beaufort, SC</Link>
-          <p className="text-sm text-[var(--color-muted-fg)] mt-2">Hardeeville, SC</p>
-          <p className="text-sm text-[var(--color-muted-fg)]">Bluffton, SC</p>
-          <p className="text-sm text-[var(--color-muted-fg)]">Pooler, GA</p>
+          <p className="text-xs text-[var(--color-muted-fg)] leading-snug">
+            Indoor range and pro shop in Hardeeville — easy drives from:
+          </p>
+          <Link href="/shooting-range-savannah-ga" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Savannah and Pooler, GA</Link>
+          <Link href="/shooting-range-hilton-head-sc" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Hilton Head and Bluffton, SC</Link>
+          <Link href="/shooting-range-beaufort-sc" className="text-sm text-[var(--color-muted-fg)] hover:text-[var(--color-primary-base)] transition-colors">Beaufort and Port Royal, SC</Link>
         </div>
 
         <div className="flex flex-col gap-3">

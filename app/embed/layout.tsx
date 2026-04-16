@@ -1,4 +1,9 @@
-import type { ReactNode } from 'react';
+import type { Metadata } from "next";
+import type { ReactNode } from "react";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 /**
  * Minimal chrome for embedded pages (e.g. waiver inside an iframe on /waiver).

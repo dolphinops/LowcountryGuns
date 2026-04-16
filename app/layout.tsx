@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { getCanonicalSiteOrigin } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://lcguns.com'),
+  metadataBase: new URL(getCanonicalSiteOrigin()),
   title: {
     template: '%s | Lowcountry Guns & Range',
     default: 'Lowcountry Guns & Range | SC & GA Premier Indoor Shooting Range',
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://lowcountryguns.com',
+    url: getCanonicalSiteOrigin(),
     siteName: 'Lowcountry Guns & Range',
     images: [{
       url: '/images/og-image.jpg',

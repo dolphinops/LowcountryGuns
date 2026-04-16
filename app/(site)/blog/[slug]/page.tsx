@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { BLOG_POSTS } from "@/data/blog-posts";
+import { getCanonicalSiteOrigin } from "@/lib/site";
 
 interface PostPageProps {
   params: Promise<{
@@ -46,17 +47,23 @@ export default async function BlogPostPage({ params }: PostPageProps) {
   }
 
   // Generate JSON-LD for the article
+  const origin = getCanonicalSiteOrigin();
+  const articleUrl = `${origin}/blog/${post.slug}`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": post.title,
-    "image": [`https://lowcountryguns.com${post.image}`],
-    "datePublished": new Date(post.date).toISOString(),
-    "author": [{
-      "@type": "Organization",
-      "name": "Lowcountry Guns & Range",
-      "url": "https://lowcountryguns.com"
-    }]
+    headline: post.title,
+    image: [`${origin}${post.image}`],
+    url: articleUrl,
+    mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
+    datePublished: new Date(post.date).toISOString(),
+    author: [
+      {
+        "@type": "Organization",
+        name: "Lowcountry Guns & Range",
+        url: origin,
+      },
+    ],
   };
 
   return (

@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/Button';
 import Image from 'next/image';
 import Link from 'next/link';
-import Script from 'next/script';
+import Script from "next/script";
 import { 
   Shield, 
   MapPin, 
@@ -100,66 +100,6 @@ const galleryImages = [
 export default function Home() {
   return (
     <>
-      {/* Structured Data for Local SEO */}
-      <Script
-        id="local-business-jsonld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "GunStore",
-            "name": "Lowcountry Guns & Range",
-            "image": "https://lcguns.com/images/IMG_8205.webp",
-            "url": "https://lcguns.com",
-            "telephone": "843-784-5474",
-            "priceRange": "$$",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "98 Purrysburg Rd",
-              "addressLocality": "Hardeeville",
-              "addressRegion": "SC",
-              "postalCode": "29927",
-              "addressCountry": "US"
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": 32.2858,
-              "longitude": -81.0825
-            },
-            "openingHoursSpecification": [
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
-                "opens": "10:00",
-                "closes": "18:00"
-              },
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Friday",
-                "opens": "10:00",
-                "closes": "19:00"
-              },
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Saturday",
-                "opens": "10:00",
-                "closes": "18:00"
-              },
-              {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": "Sunday",
-                "opens": "12:00",
-                "closes": "18:00"
-              }
-            ],
-            "sameAs": [
-              "https://www.facebook.com/lowcountrygunsandrange/",
-              "https://www.instagram.com/lowcountrygunsandrange/"
-            ]
-          })
-        }}
-      />
-
       <div className="flex flex-col">
 
       {/* ═══════════════════════════════════════════════════
