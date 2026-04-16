@@ -156,7 +156,7 @@ export default function Home() {
       <section className="relative h-[90vh] min-h-[600px] max-h-[900px] flex items-end justify-center overflow-hidden bg-[#0a0a0b]">
 
 
-        {/* Poster on all viewports; MP4 only on md+ (see HeroBackdrop) */}
+        {/* Black base; MP4 only on md+ (see HeroBackdrop) */}
         <HeroBackdrop />
 
         {/* Gradient overlays */}
