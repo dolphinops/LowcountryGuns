@@ -99,11 +99,35 @@ export async function POST(req: Request) {
     subject: `[lcguns.com] ${subject}`,
     text,
     html,
-    tags: [{ name: 'source', value: 'contact_form' }],
   });
 
   if (error) {
-    console.error('contact: Resend error', error);
+    console.error('contact: Resend error', {
+      name: error.name,
+      message: error.message,
+      statusCode: error.statusCode,
+    });
+
+    // Safe hints for common Resend failures (see Resend dashboard → Logs for full detail).
+    if (error.name === 'invalid_from_address') {
+      return NextResponse.json(
+        {
+          error:
+            'Email is not fully configured (sender address). Please call the Pro Shop at 843-784-5474 or use the form again after we update settings.',
+        },
+        { status: 502 },
+      );
+    }
+    if (error.name === 'monthly_quota_exceeded' || error.name === 'daily_quota_exceeded') {
+      return NextResponse.json(
+        {
+          error:
+            'We could not deliver your message right now due to email limits. Please call the Pro Shop at 843-784-5474.',
+        },
+        { status: 502 },
+      );
+    }
+
     return NextResponse.json({ error: 'Could not send your message. Please try again or call us.' }, { status: 502 });
   }
 
