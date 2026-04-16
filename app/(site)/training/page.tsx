@@ -212,26 +212,26 @@ export default function Training() {
       <div className="gradient-divider" />
 
       {/* ─── EVENTBRITE BOOKING SECTION ─── */}
-      <section id="book-sessions" className="scroll-mt-28 py-24 bg-white">
-        <div className="content-container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-[var(--color-foreground)] mb-4">
+      <section id="book-sessions" className="scroll-mt-28 bg-white py-16 sm:py-20 md:py-24">
+        <div className="content-container min-w-0">
+          <div className="mb-10 text-center md:mb-16">
+            <h2 className="mb-4 text-3xl font-black tracking-tight text-[var(--color-foreground)] md:text-5xl">
               Book Your <span className="text-gradient">Session</span>
             </h2>
-            <p className="text-[var(--color-muted-fg)] text-lg max-w-2xl mx-auto italic font-medium">
+            <p className="mx-auto max-w-2xl text-base font-medium italic text-[var(--color-muted-fg)] md:text-lg">
               Practice Becomes Permanent. Start with Expert Training.
             </p>
           </div>
 
-          <div className="flex flex-col gap-10 max-w-6xl mx-auto">
+          <div className="mx-auto flex w-full min-w-0 max-w-6xl flex-col gap-8 md:gap-10">
             {bookableWidgets.map((w) => (
               <div
                 key={w.id}
                 id={w.id}
-                className="scroll-mt-28 flex flex-col gap-6 rounded-3xl border border-[var(--color-card-border)] bg-zinc-50 p-8 shadow-sm"
+                className="scroll-mt-28 flex flex-col overflow-hidden rounded-3xl border border-[var(--color-card-border)] bg-zinc-50 shadow-sm"
               >
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                  <h3 className="text-center text-xl font-bold text-[var(--color-primary-dark)] sm:text-left">
+                <div className="flex flex-col gap-4 px-4 pb-4 pt-6 sm:flex-row sm:items-start sm:justify-between sm:px-6 sm:pb-2 sm:pt-8 md:px-8">
+                  <h3 className="text-center text-lg font-bold text-[var(--color-primary-dark)] sm:text-left md:text-xl">
                     {w.title}
                   </h3>
                   <nav
@@ -254,11 +254,13 @@ export default function Training() {
                     </Link>
                   </nav>
                 </div>
-                <EventbriteWidget eventId={w.eventId} height={w.height} />
+                <div className="min-w-0 border-t border-[var(--color-card-border)] bg-white px-2 pb-6 pt-2 sm:px-4 sm:pb-8 md:px-8">
+                  <EventbriteWidget eventId={w.eventId} height={w.height} />
+                </div>
               </div>
             ))}
 
-            <div className="rounded-3xl border border-[var(--color-card-border)] bg-[var(--color-card-bg)] p-8 text-center shadow-sm">
+            <div className="rounded-3xl border border-[var(--color-card-border)] bg-[var(--color-card-bg)] px-4 py-8 text-center shadow-sm sm:px-8">
               <p className="text-base font-medium text-[var(--color-foreground)]">
                 Looking for another class, church team training, or carbine courses?
               </p>

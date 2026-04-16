@@ -51,5 +51,16 @@ export default function EventbriteWidget({ eventId, height = 500 }: { eventId: s
     };
   }, [eventId]);
 
-  return <div id={`eventbrite-widget-container-${eventId}`} className="w-full bg-white rounded-xl overflow-visible shadow-sm border border-zinc-100 min-w-[320px]" style={{ minHeight: height }}></div>;
+  return (
+    <div className="w-full min-w-0">
+      {/* min-w-0 + optional horizontal scroll: Eventbrite iframes often have a min width; avoid page-level overflow on phones */}
+      <div className="w-full min-w-0 overflow-x-auto overscroll-x-contain [-webkit-overflow-scrolling:touch] rounded-xl border border-[var(--color-card-border)] bg-[var(--color-card-bg)] shadow-sm">
+        <div
+          id={`eventbrite-widget-container-${eventId}`}
+          className="mx-auto w-full min-w-0 max-w-full bg-white [&_iframe]:mx-auto [&_iframe]:block [&_iframe]:max-w-full [&_iframe]:min-h-0"
+          style={{ minHeight: height }}
+        />
+      </div>
+    </div>
+  );
 }
