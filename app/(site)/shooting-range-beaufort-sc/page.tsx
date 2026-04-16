@@ -6,6 +6,8 @@ import Script from 'next/script';
 import { Clock, Shield, Target, ChevronRight } from 'lucide-react';
 import type { Metadata } from "next";
 import { getCanonicalSiteOrigin } from "@/lib/site";
+import { LocationFaqSection } from "@/components/seo/LocationFaqSection";
+import { beaufortLocationFaqs } from "@/data/seo-location-faqs";
 
 const SITE = getCanonicalSiteOrigin();
 const PAGE_PATH = '/shooting-range-beaufort-sc';
@@ -204,6 +206,13 @@ export default function BeaufortLanding() {
           </div>
         </div>
       </section>
+
+      <LocationFaqSection
+        pathname={PAGE_PATH}
+        items={beaufortLocationFaqs}
+        title="Common questions from Beaufort and Port Royal visitors"
+        description="Drive routes, minors on the range, training options, and what to pack — aligned with FAQ markup on this page."
+      />
     </div>
   );
 }

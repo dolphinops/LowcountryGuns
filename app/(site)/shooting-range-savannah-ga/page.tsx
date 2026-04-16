@@ -6,6 +6,8 @@ import Script from 'next/script';
 import { Clock, Shield, Target, ChevronRight } from 'lucide-react';
 import type { Metadata } from "next";
 import { getCanonicalSiteOrigin } from "@/lib/site";
+import { LocationFaqSection } from "@/components/seo/LocationFaqSection";
+import { savannahLocationFaqs } from "@/data/seo-location-faqs";
 
 const SITE = getCanonicalSiteOrigin();
 const PAGE_PATH = '/shooting-range-savannah-ga';
@@ -206,6 +208,13 @@ export default function SavannahLanding() {
           </div>
         </div>
       </section>
+
+      <LocationFaqSection
+        pathname={PAGE_PATH}
+        items={savannahLocationFaqs}
+        title="Common questions from Savannah and Pooler visitors"
+        description="Drive times, walk-ins, and what to bring — answers match the FAQ structured data on this page."
+      />
     </div>
   );
 }

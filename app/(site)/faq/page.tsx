@@ -1,8 +1,10 @@
-import type { Metadata } from 'next';
-import { Accordion } from '@/components/ui/Accordion';
-import { BentoCard } from '@/components/ui/BentoCard';
-import { Button } from '@/components/ui/Button';
-import Link from 'next/link';
+import type { Metadata } from "next";
+import Script from "next/script";
+import { Accordion } from "@/components/ui/Accordion";
+import { BentoCard } from "@/components/ui/BentoCard";
+import { Button } from "@/components/ui/Button";
+import Link from "next/link";
+import { buildFaqPageJsonLd } from "@/lib/jsonld-faq";
 
 export const metadata: Metadata = {
   title: "FAQ | Lowcountry Guns & Range",
@@ -16,7 +18,7 @@ const faqs = [
   },
   {
     question: "Can my children shoot at your range?",
-    answer: "Yes. All shooters under the age of 18 must be accompanied by a parent or legal guardian 21 or older. Caliber's must be approved by the Range Officer."
+    answer: "Yes. All shooters under the age of 18 must be accompanied by a parent or legal guardian 21 or older. Calibers must be approved by the Range Officer."
   },
   {
     question: "How much does it cost to use the range?",
@@ -39,6 +41,13 @@ const faqs = [
 export default function FAQ() {
   return (
     <div className="content-container py-12 md:py-24 flex flex-col gap-12">
+      <Script
+        id="jsonld-faq-page"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildFaqPageJsonLd(faqs, "/faq")),
+        }}
+      />
       <div className="flex flex-col gap-4 max-w-3xl">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-[var(--color-foreground)]">
           Frequently Asked Questions

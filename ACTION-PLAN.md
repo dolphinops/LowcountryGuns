@@ -1,38 +1,18 @@
 # SEO Action Plan — Lowcountry Guns & Range
 
-**Primary audit URL:** [https://lowcountry-guns.vercel.app/](https://lowcountry-guns.vercel.app/)  
-**Intended production canonical (from codebase):** `https://lcguns.com` (`metadataBase`, sitemap `<loc>`)
+**Production:** [https://lcguns.com/](https://lcguns.com/)  
+**Preview:** [https://lowcountry-guns.vercel.app/](https://lowcountry-guns.vercel.app/) (noindex via `X-Robots-Tag`)
 
-Priority labels follow the seo-audit skill: **Critical** → **Low**.
-
----
-
-## Critical
-
-| # | Action | Rationale |
-|---|--------|-----------|
-| C1 | **Unify canonical origin** across `openGraph.url`, Twitter card absolute URLs, **all** JSON-LD `url` / `@id` / primary `image` URLs, and internal absolute links in schema. Prefer **`https://lcguns.com`** everywhere *or* explicitly document `lowcountryguns.com` as 301 → `lcguns.com` and stop emitting the alternate in metadata. | Eliminates split signals between **lcguns.com**, **lowcountryguns.com**, and **lowcountry-guns.vercel.app** (observed on live HTML). |
-| C2 | **Single primary structured data** on the homepage: remove redundant overlapping `@type` (ShootingRange vs GunStore) or relate them with `@id` + `Department` pattern without conflicting `url`. | Reduces risk of incorrect / ambiguous rich result entity. |
+**Status (April 16, 2026 re-audit):** Items **C1, C2, H1, H3, M3** from the prior plan are **implemented** (canonical `lcguns.com`, single ShootingRange JSON-LD, middleware noindex on non-canonical hosts, `/first-experience` in sitemap, `public/llms.txt`). **H2** (`NEXT_PUBLIC_SITE_URL`) is documented in `.env.example` and optional on Vercel production.
 
 ---
 
-## High
+## Medium (remaining)
 
 | # | Action | Rationale |
 |---|--------|-----------|
-| H1 | **Preview / staging:** If `*.vercel.app` must not rank, set **`robots` noindex** (Next `metadata` or `headers()` `X-Robots-Tag`) when `VERCEL_ENV !== 'production'` or when host is not `lcguns.com`. | Prevents duplicate indexing of deployment URLs. |
-| H2 | **`metadataBase` from env:** e.g. `NEXT_PUBLIC_SITE_URL` for previews so OG images and canonicals resolve to the tab origin during QA. | Stops false negatives in social debuggers. |
-| H3 | **Sitemap:** Add missing route **`/first-experience`** to [`app/sitemap.ts`](app/sitemap.ts). | Page is in primary nav but omitted from sitemap list. |
-
----
-
-## Medium
-
-| # | Action | Rationale |
-|---|--------|-----------|
-| M1 | Run **PageSpeed Insights** (mobile) on homepage, `/contact`, `/training`, one **shooting-range-*** URL; fix any **LCP** > 2.5s or **INP** regressions tied to video or third-party scripts. | Validates real-user metrics; not run in this audit pass. |
-| M2 | **Location pages:** Ensure each has unique `meta title` / `description`, `alternates.canonical` (already on three shooting-range pages), and **FAQPage** JSON-LD only where content truly matches FAQ schema guidelines. | Extra local SERP surface without stuffing. |
-| M3 | Consider **`/llms.txt`** at canonical host with concise facts + policy links. | GEO / AI citation hygiene. |
+| M1 | Run **PageSpeed Insights** (mobile) on `/`, `/contact`, `/training`, one **shooting-range-*** URL; fix regressions (**LCP**, **INP**, **CLS**). | Field/lab data not captured in markdown audits. |
+| M2 | **Done (Apr 2026):** **FAQPage** JSON-LD + visible accordions on `/`, `/faq`, and Savannah / Hilton Head / Beaufort shooting-range pages (`lib/jsonld-faq.ts`, `data/seo-location-faqs.ts`, `components/seo/LocationFaqSection.tsx`). | FAQ markup mirrors on-page Q&A. |
 
 ---
 
@@ -40,20 +20,21 @@ Priority labels follow the seo-audit skill: **Critical** → **Low**.
 
 | # | Action | Rationale |
 |---|--------|-----------|
-| L1 | Add **security headers** (`Content-Security-Policy` report-only first) via `next.config` headers or Vercel config — tune for any inline scripts used by JSON-LD. | Defense in depth for public forms and embeds. |
-| L2 | **Screenshots / visual regression** (desktop + mobile) for hero, training grid, and footer — store in `screenshots/` if you adopt the full skill pipeline with Playwright. | Catches typographic / CTA issues across breakpoints. |
+| L1 | **Partial:** Global headers in `next.config.ts`: **Referrer-Policy: strict-origin-when-cross-origin**, **X-DNS-Prefetch-Control: on**. Full **Content-Security-Policy** (report-only or enforce) still optional — tune for Trustindex / Eventbrite / inline JSON-LD. | Safer defaults without breaking third parties. |
+| L2 | **Playwright** screenshots (desktop + mobile) for hero, training, footer — optional `screenshots/` folder. | Visual QA for marketing. |
 
 ---
 
-## Verification checklist (after changes)
+## Verification (current)
 
-1. `curl -sS https://lcguns.com/ | grep -E 'og:url|canonical|application/ld\\+json'` — single domain in absolute URLs.  
-2. Rich Results Test / Schema.org validator on homepage — one clear `LocalBusiness` / `ShootingRange` primary.  
-3. `curl -sS https://lcguns.com/sitemap.xml | grep first-experience` — URL present when live on Next.  
-4. Vercel preview response: `X-Robots-Tag: noindex` **or** confirm only production domain is publicly linked.
+1. `curl -sSIL https://lcguns.com/ | grep -i x-robots` — expect **empty** (indexable production).  
+2. `curl -sSIL https://lowcountry-guns.vercel.app/ | grep -i x-robots` — expect **`noindex, nofollow`**.  
+3. `curl -sS https://lcguns.com/ | grep og:url` — expect **`https://lcguns.com`**.  
+4. `curl -sS https://lcguns.com/sitemap.xml | grep first-experience` — expect **hit**.  
+5. `curl -sSIL https://lcguns.com/llms.txt` — expect **200**.
 
 ---
 
-## Not in scope for this pass
+## Historical note
 
-- **Live WordPress** at `https://lcguns.com` (Kinsta / Rank Math) vs **Next** cutover — DNS/hosting migration is a **go-live** decision outside this file’s implementation list. When Next serves `lcguns.com`, re-run this audit against production.
+The earlier plan referred to **WordPress on `lcguns.com`**; production now resolves to the **Next.js** deployment. If DNS or hosting changes again, re-run checks (1)–(5) above.

@@ -1,10 +1,10 @@
-# Full SEO Audit — Lowcountry Guns & Range
+# Full SEO Audit — Lowcountry Guns & Range (re-audit)
 
-**Audit URL:** [https://lowcountry-guns.vercel.app/](https://lowcountry-guns.vercel.app/)  
-**Audit date:** April 16, 2026  
-**Stack observed:** Next.js on Vercel (prerendered HTML, `server: Vercel`, `strict-transport-security` present)
+**Primary URL:** [https://lcguns.com/](https://lcguns.com/) — **Next.js on Vercel** (`server: Vercel`, prerendered HTML)  
+**Preview URL (checks):** [https://lowcountry-guns.vercel.app/](https://lowcountry-guns.vercel.app/)  
+**Re-audit date:** April 16, 2026  
 
-> **Scope note:** `scripts/fetch_page.py` and optional Google/DataForSEO helpers from the audit skill are not in this repo. Findings combine live HTTP/HTML checks against the Vercel host, `curl` for `robots.txt` / `sitemap.xml`, and static review of the Next.js codebase (`app/`, `vercel.json`).
+> **Method:** Live `curl` against production and preview, `robots.txt` / `sitemap.xml` / `llms.txt`, HTML meta and JSON-LD spot checks. No `scripts/fetch_page.py` in repo; no Lighthouse/CrUX API in this pass.
 
 ---
 
@@ -12,130 +12,119 @@
 
 | Metric | Value |
 |--------|--------|
-| **SEO health score (estimated)** | **64 / 100** |
-| **Business type** | Hybrid **local brick-and-mortar** (indoor shooting range + retail/training) — SAB-style service area copy for Savannah / Hilton Head / Beaufort |
+| **SEO health score (estimated)** | **83 / 100** |
+| **Business type** | Hybrid **local brick-and-mortar** (indoor shooting range + retail + training), strong service-area positioning |
 
-### Top 5 issues (severity)
+### What improved since the last audit
 
-1. **Critical — Split canonical / brand URLs:** On the audited host, HTML exposes **`og:url`** as `https://lowcountryguns.com`, **Open Graph / Twitter images** as `https://lcguns.com/...`, **ShootingRange** JSON-LD as `lowcountryguns.com`, and **GunStore** JSON-LD as `lcguns.com` — while the page is served from **`lowcountry-guns.vercel.app`**. Search engines and social crawlers see **three** authority targets plus preview host noise.
-2. **High — Robots + sitemap point off-host:** `robots.txt` declares `Sitemap: https://lcguns.com/sitemap.xml` and the sitemap `<loc>` entries are all `https://lcguns.com/...`. That is appropriate for **production** canonical strategy but confirms the preview domain is **not** the URL set to consolidate signals; any accidental indexing of the preview duplicates content without self-referential sitemap entries.
-3. **High — Duplicate JSON-LD entity definitions on homepage:** Both **ShootingRange** (layout) and **GunStore** (home page) with **different** `url` / `@id` / `image` domains — risks ambiguous primary entity for rich results.
-4. **Medium — Sitemap completeness (code):** `app/sitemap.ts` does not include **`/first-experience`**, which exists in the app and is linked from navigation ([sitemap source](app/sitemap.ts)).
-5. **Medium — AI / GEO surface:** No `llms.txt` (optional); preview host should use `X-Robots-Tag: noindex` if the deployment must stay non-canonical (Vercel project or middleware).
+1. **Canonical alignment:** Live HTML shows **`og:url`** = `https://lcguns.com` and **`og:image`** on the same host — no more `lowcountryguns.com` split in social tags.
+2. **Structured data:** Homepage exposes a **single** primary **`ShootingRange`** graph (via shared `lib/site.ts`) with `@id` `https://lcguns.com/#organization`, `sameAs`, and consistent hours.
+3. **Sitemap:** **`https://lcguns.com/first-experience`** appears in `sitemap.xml`.
+4. **Preview / duplicate indexing:** **`X-Robots-Tag: noindex, nofollow`** on `lowcountry-guns.vercel.app`; **production `lcguns.com`** has **no** that header in spot check — intended split.
+5. **GEO:** **`/llms.txt`** returns **200** with concise facts and policy links.
+6. **Mobile hero:** Background **MP4 does not mount on small viewports** (`HeroBackdrop` client gate) — reduces cellular load and main-thread decode issues.
 
-### Top 5 quick wins
+### Remaining opportunities (not blockers)
 
-1. Pick **one** canonical apex (`https://lcguns.com` per `metadataBase` is the clearest production choice) and align **`openGraph.url`**, **all JSON-LD `url` / `@id` / `sameAs`**, and **schema images** to that origin (or relative paths resolved by `metadataBase`).
-2. Collapse homepage structured data to **one** primary `@type` (e.g. `ShootingRange` or `LocalBusiness` + `department` if needed) with a single `@id`.
-3. Add **`/first-experience`** to `app/sitemap.ts` with sensible `changeFrequency` / `priority`.
-4. For **preview only:** set environment-based `metadata.robots = { index: false, follow: false }` or `X-Robots-Tag: noindex` so Google does not index `*.vercel.app`.
-5. Add **`VERCEL_URL` / `NEXT_PUBLIC_SITE_URL`-aware** `metadataBase` in non-production so OG tags on previews match the opened tab (reduces QA confusion).
+| Area | Note |
+|------|------|
+| **Lab / field CWV** | No PageSpeed or CrUX pull in this pass — score for Performance category stays conservative. |
+| **Third parties** | Trustindex / Eventbrite — watch **INP** on training and homepage. |
+| **CSP** | No `Content-Security-Policy` in headers — optional hardening. |
+| **Location SERP extras** | FAQPage JSON-LD on location landings only if content truly qualifies. |
 
 ---
 
-## Technical SEO (~22% weight) — score ~62
+## Technical SEO (~22% weight) — score **88**
 
 | Check | Result |
 |--------|--------|
-| **HTTP / TLS** | `200` on `/`; **HSTS** with preload (`strict-transport-security: max-age=63072000; includeSubDomains; preload`). |
-| **Caching** | `x-vercel-cache: HIT` / prerender — good for TTFB on static shell. |
-| **robots.txt** | Serves Next-generated rules: allow `/`, disallow `/api/`, `/_next/`, `/static/`; sitemap line points to **`https://lcguns.com/sitemap.xml`**. |
-| **Sitemap** | `/sitemap.xml` returns `200` with XML urlset; all `<loc>` values use **`https://lcguns.com`**, not the audit host. |
-| **Redirects** | `vercel.json` + `next.config.ts` include useful legacy path 301s (e.g. indoor gun range → shooting-range slugs). |
-| **Indexability of preview** | No `noindex` observed on homepage response headers from spot check — **risk** if this URL is not intended to rank. |
-
-**Crawl model:** Internal route count in-repo is modest (~34 `page.tsx` files + blog slugs from `data/blog-posts.ts`), well under the skill’s 500-page cap. No full recursive crawl was executed; sitemap + route list is sufficient for this site size.
+| **HTTP / TLS** | `200` on `/`; **HSTS** on Vercel (`strict-transport-security` with long `max-age`). |
+| **Production host** | `lcguns.com` serves the **same** Next stack as the project (not legacy WordPress in this check). |
+| **robots.txt** | Allow `/`, disallow `/api/`, `/_next/`, `/static/`; **Sitemap:** `https://lcguns.com/sitemap.xml`. |
+| **Sitemap** | Valid urlset; **`/first-experience`** included among static routes. |
+| **Preview** | `*.vercel.app` gets **`X-Robots-Tag: noindex, nofollow`** via middleware. |
+| **Redirects** | `vercel.json` + `next.config.ts` retain legacy path 301s. |
 
 ---
 
-## Content quality & E-E-A-T (~23% weight) — score ~82
+## Content quality & E-E-A-T (~23% weight) — score **82**
 
-- **Homepage** ([live snapshot](https://lowcountry-guns.vercel.app/)): Clear value prop, location, hours, pricing, training paths, FAQ block, reviews — strong **local + YMYL-adjacent** signals for a range.
-- **Blog** exists with long-form posts in data — supports expertise when published on canonical domain.
-- **Thin content risk:** Low for core pages; embed/waiver utility routes are fine if noindexed or minimally linked.
-
----
-
-## On-page SEO (~20% weight) — score ~58
-
-- **Title / description** (root metadata): Clear, keyword-aware, geographically scoped — good.
-- **Canonical / social consistency:** Weakened by **`og:url`** ≠ **`metadataBase`** domain and mixed absolute URLs in tags — **priority fix** before production cutover.
-- **Heading hierarchy** (from rendered content): Single H1-style hero; sections use H2/H3 — acceptable pattern.
-- **Internal linking:** Service-area and training links present in body/footer; location landing pages exist in codebase.
+- Homepage: clear offer, NAP, hours, pricing, training, FAQ, reviews — solid for local + regulated-adjacent niche.
+- Blog: structured long-form in-repo; **BlogPosting** JSON-LD uses canonical origin.
 
 ---
 
-## Schema & structured data (~10% weight) — score ~55
+## On-page SEO (~20% weight) — score **86**
 
-- **ShootingRange** (site layout): `url` / `@id` on `lowcountryguns.com` ([`app/(site)/layout.tsx`](app/(site)/layout.tsx)).
-- **GunStore** (homepage): `url` / `image` on `lcguns.com` ([`app/(site)/page.tsx`](app/(site)/page.tsx)).
-- **LocalBusiness-style** JSON-LD on select location pages — good pattern when URLs align with canonical.
-
-**Recommendation:** One graph, one `@id`, `sameAs` for GBP/Facebook/Instagram only, consistent `url` with production canonical.
+- Title / description: strong, geo-specific defaults.
+- **Open Graph:** `og:url` and image URLs align with **`https://lcguns.com`** on live fetch.
+- Headings: single hero headline pattern; section H2/H3 structure is sensible.
 
 ---
 
-## Performance & CWV (~10% weight) — score ~72 (lab not run)
+## Schema & structured data (~10% weight) — score **82**
 
-- Static prerender + CDN cache hit — positive.
-- Hero **video** with `preload="none"` + poster — sensible for LCP tradeoffs; still validate **LCP** (poster vs first paint) in PageSpeed **on mobile**.
-- Third-party widgets (e.g. Eventbrite) — monitor **INP** on training pages.
-
-*CrUX / Lighthouse was not run in this pass (no `scripts/google_auth.py` / CI artifact).*
+- Sitewide **ShootingRange** with stable **`@id`**, `url`, `sameAs`, `openingHoursSpecification` aligned with footer.
+- Location pages keep dedicated JSON-LD with canonical **`SITE`** from `getCanonicalSiteOrigin()`.
+- **GunStore** duplicate block removed from homepage (single primary entity).
 
 ---
 
-## Images (~5% weight) — score ~70
+## Performance & CWV (~10% weight) — score **78** (estimated)
 
-- `next/image` and descriptive `alt` on key homepage tiles (code review).
-- **OG image** resolves via absolute `https://lcguns.com/images/og-image.jpg` while `og:url` says `lowcountryguns.com` — inconsistent social debugging.
+- Static prerender + CDN — good baseline.
+- **Mobile:** hero video deferred to **md+** only; poster `Image` with **priority** — materially better than autoplay MP4 on phones (still run PSI mobile to validate **LCP**).
+- Third-party scripts remain the main INP risk — measure on `/training` and homepage.
 
 ---
 
-## AI search readiness / GEO (~10% weight) — score ~48
+## Images (~5% weight) — score **78**
 
-- No **`/llms.txt`** in repo.
-- **Citability:** Strong factual blocks (hours, address, pricing) help; split URLs hurt unambiguous citation.
+- `next/image` + descriptive `alt` on key tiles (codebase pattern).
+- OG image absolute URL matches canonical host on live HTML.
+
+---
+
+## AI search readiness / GEO (~10% weight) — score **78**
+
+- **`https://lcguns.com/llms.txt`** and **`https://lowcountry-guns.vercel.app/llms.txt`** both **200** with structured summary and deep links.
+- On-page copy remains citation-friendly (address, hours, pricing).
 
 ---
 
 ## Local SEO (contextual)
 
-- NAP consistent in on-page copy: **98 Purrysburg Rd, Hardeeville, SC**, **843-784-5474**.
-- **GBP alignment:** Ensure GBP primary category and hours match schema `openingHoursSpecification` (Friday 10–19 matches footer copy on live scrape).
+- NAP: **98 Purrysburg Rd, Hardeeville, SC 29927**, **843-784-5474** — consistent with schema.
+- Keep **Google Business Profile** hours and primary category in sync with schema + footer.
 
 ---
 
 ## Security / headers (spot check)
 
-- **HSTS** present on Vercel deployment.
-- **No** `Content-Security-Policy` in sample response — optional hardening for YMYL-adjacent sites.
+- **HSTS** present.
+- **CSP:** not set — backlog if you want defense-in-depth alongside JSON-LD and embeds.
 
 ---
 
-## Scoring weights (from skill)
+## Scoring weights (seo-audit skill)
 
-| Category | Weight | Est. subscore |
-|----------|--------|----------------|
-| Technical SEO | 22% | 62 |
+| Category | Weight | Subscore (this pass) |
+|----------|--------|-------------------------|
+| Technical SEO | 22% | 88 |
 | Content quality | 23% | 82 |
-| On-page SEO | 20% | 58 |
-| Schema | 10% | 55 |
-| Performance (CWV) | 10% | 72 |
-| AI readiness | 10% | 48 |
-| Images | 5% | 70 |
+| On-page SEO | 20% | 86 |
+| Schema | 10% | 82 |
+| Performance (CWV) | 10% | 78 |
+| AI readiness | 10% | 78 |
+| Images | 5% | 78 |
 
-**Blended ≈ 64/100** — pulled down primarily by **URL / schema fragmentation** and **preview indexability** considerations, not by thin copy.
-
----
-
-## Optional next steps (tooling)
-
-- Run **Lighthouse / PageSpeed Insights** mobile on homepage + `/training` + one location page; attach scores to a future revision of this file.
-- If Google APIs are configured locally, add `scripts/google_auth.py` per skill and enrich with **CrUX + GSC**.
+**Blended ≈ 83/100** — uplift driven by **canonical + schema consolidation**, **preview noindex**, **sitemap + llms.txt**, and **mobile hero behavior**. Residual gap is mostly **unmeasured CWV** and optional **CSP / FAQ schema** depth.
 
 ---
 
-## PDF
+## Optional next steps
 
-The skill’s `scripts/google_report.py --type full` is **not present** in this repository. If you add that script (or an external report generator), a PDF can be produced from this markdown.
+- Run **PageSpeed Insights** (mobile) on `/`, `/training`, `/shooting-range-savannah-ga`; log LCP / INP / CLS.
+- **Google Search Console** after steady state: coverage, enhancements, `/sitemap.xml` submit.
+- PDF pipeline: still no `scripts/google_report.py` in repo.

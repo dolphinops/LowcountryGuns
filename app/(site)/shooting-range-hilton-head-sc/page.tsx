@@ -6,6 +6,8 @@ import Script from 'next/script';
 import { Clock, Shield, Target, ChevronRight } from 'lucide-react';
 import type { Metadata } from "next";
 import { getCanonicalSiteOrigin } from "@/lib/site";
+import { LocationFaqSection } from "@/components/seo/LocationFaqSection";
+import { hiltonHeadLocationFaqs } from "@/data/seo-location-faqs";
 
 const SITE = getCanonicalSiteOrigin();
 const PAGE_PATH = '/shooting-range-hilton-head-sc';
@@ -211,6 +213,13 @@ export default function HiltonHeadLanding() {
           </div>
         </div>
       </section>
+
+      <LocationFaqSection
+        pathname={PAGE_PATH}
+        items={hiltonHeadLocationFaqs}
+        title="Common questions from Hilton Head and Bluffton visitors"
+        description="Drive time, waivers, and pro shop basics — visible here and in FAQ structured data."
+      />
     </div>
   );
 }

@@ -17,6 +17,8 @@ import {
 import { Accordion } from '@/components/ui/Accordion';
 import { YouTubeFacade } from '@/components/ui/YouTubeFacade';
 import { DirectionsMapModal } from '@/components/DirectionsMapModal';
+import { HeroBackdrop } from '@/components/home/HeroBackdrop';
+import { buildFaqPageJsonLd, type FaqItem } from '@/lib/jsonld-faq';
 
 
 /* ─── Quick-fact data ─── */
@@ -97,9 +99,55 @@ const galleryImages = [
   { src: '/images/IMG_2502.webp', alt: 'Two people coaching in the indoor range bay' },
   { src: '/images/legacy/DSC1395.webp', alt: 'Indoor range perspective' },
 ];
+
+const homeFaqItems: FaqItem[] = [
+  {
+    question: 'Do I need to make a reservation?',
+    answer:
+      "No! We are open 7 days a week for walk-ins. Just bring your photo ID and we'll get you on a lane as quickly as possible. Members enjoy priority lane access.",
+  },
+  {
+    question: 'Is the range climate controlled?',
+    answer:
+      'Yes. Our facility is kept at a perfect 70° year-round. More importantly, we use an advanced EPA-standard ventilation system that circulates massive amounts of fresh, filtered air for your health and safety.',
+  },
+  {
+    question: 'What is the longest lane distance?',
+    answer:
+      'Our range features 10 fully-equipped lanes with a maximum distance of 25 yards. All lanes are rifle-rated.',
+  },
+  {
+    question: 'What is the dress code for the range?',
+    answer:
+      'For your safety, close-toed shoes and crew neck shirts are required. We do not allow flip-flops, tank tops, or low-cut shirts as they do not provide adequate protection from hot brass.',
+  },
+  {
+    question: "Can I rent firearms if I don't own one?",
+    answer:
+      "Absolutely. We have over 170 rental firearms available, including the latest models from major manufacturers. It's a great way to 'try before you buy'.",
+  },
+  {
+    question: 'Can my children shoot at your range?',
+    answer:
+      'Yes. Shooters under 18 must be accompanied by a parent or legal guardian aged 21 or older. Our RSOs will ensure a safe and educational experience for the whole family.',
+  },
+  {
+    question: 'What does it cost to use the range?',
+    answer:
+      'Range fees are $22.00 per person, per visit. Best of all, there is NO time limit on your session! We want you to take your time and practice safely.',
+  },
+];
+
 export default function Home() {
   return (
     <>
+      <Script
+        id="jsonld-faq-home"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(buildFaqPageJsonLd(homeFaqItems, '/')),
+        }}
+      />
       <div className="flex flex-col">
 
       {/* ═══════════════════════════════════════════════════
@@ -108,20 +156,8 @@ export default function Home() {
       <section className="relative h-[90vh] min-h-[600px] max-h-[900px] flex items-end justify-center overflow-hidden bg-[#0a0a0b]">
 
 
-        {/* Self-hosted background video with optimized poster and preload settings */}
-        <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none opacity-80">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="none"
-            poster="/images/hero-poster.jpg"
-            className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
-          >
-            <source src="/videos/hero-bg.mp4" type="video/mp4" />
-          </video>
-        </div>
+        {/* Poster on all viewports; MP4 only on md+ (see HeroBackdrop) */}
+        <HeroBackdrop />
 
         {/* Gradient overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/40 to-[#0a0a0b]/10 z-[2]" />
@@ -202,7 +238,7 @@ export default function Home() {
       <div className="gradient-divider" />
 
       {/* ═══════════════════════════════════════════════════
-          SECTION 3 — FACILITY (compact: facts + gallery + CTAs)
+          SECTION 3 — FACILITY + photo gallery + CTAs
           ═══════════════════════════════════════════════════ */}
       <section className="bg-gradient-section py-12 md:py-16 lg:py-20">
         <div className="content-container">
@@ -273,6 +309,39 @@ export default function Home() {
                 </div>
               </Link>
             ))}
+          </div>
+
+          <div className="mt-8 border-t border-[var(--color-card-border)]/50 pt-6">
+            <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--color-primary-base)]">
+                Range photos
+              </h3>
+              <Link
+                href="/the-range"
+                className="text-xs font-medium text-[var(--color-muted-fg)] transition-colors hover:text-[var(--color-primary-base)]"
+              >
+                See full range details →
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-3 gap-1.5 sm:gap-2 lg:grid-cols-6">
+              {galleryImages.map((img) => (
+                <div
+                  key={img.src}
+                  className="group relative aspect-[5/4] overflow-hidden rounded-md border border-[var(--color-card-border)]/80 bg-zinc-900 sm:rounded-lg"
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(max-width:640px) 33vw, (max-width:1024px) 33vw, 16vw"
+                    className={`object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]
+                    ${img.src.includes('IMG_2502') ? 'rotate-90 scale-125' : ''}
+                  `}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:mx-auto sm:max-w-xl sm:flex-row sm:justify-center">
@@ -492,36 +561,6 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════
-          SECTION 7 — PHOTO GALLERY (Masonry)
-          ═══════════════════════════════════════════════════ */}
-      <section className="section-spacing bg-gradient-section">
-        <div className="content-container">
-          <div className="text-center mb-10">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary-base)] mb-2">Gallery</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-              <span className="text-[var(--color-foreground)]">Explore Our </span><span className="text-gradient">Facilities</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {galleryImages.map((img) => (
-              <div key={img.src} className="relative aspect-[4/3] rounded-2xl overflow-hidden group bg-zinc-900 border border-[var(--color-card-border)]">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className={`object-cover object-center transition-transform duration-700 group-hover:scale-110
-                    ${img.src.includes('IMG_2502') ? 'rotate-90 scale-[1.6]' : ''}
-                  `}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════
           SECTION 7.5 — ROBUST FAQ
           ═══════════════════════════════════════════════════ */}
       <section className="section-spacing bg-white border-y border-[var(--color-card-border)]/50">
@@ -530,42 +569,13 @@ export default function Home() {
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
               Got <span className="text-gradient">Questions?</span> We Have Answers.
             </h2>
-            <p className="text-lg text-[var(--color-muted-fg)] leading-relaxed">
-              Everything you need to know about visiting the Lowcountry's premier indoor shooting destination.
+            <p className="text-balance text-lg text-[var(--color-muted-fg)] leading-relaxed">
+              What to know before you visit our premier indoor range.
             </p>
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <Accordion items={[
-              {
-                question: "Do I need to make a reservation?",
-                answer: "No! We are open 7 days a week for walk-ins. Just bring your photo ID and we'll get you on a lane as quickly as possible. Members enjoy priority lane access."
-              },
-              {
-                question: "Is the range climate controlled?",
-                answer: "Yes. Our facility is kept at a perfect 70° year-round. More importantly, we use an advanced EPA-standard ventilation system that circulates massive amounts of fresh, filtered air for your health and safety."
-              },
-              {
-                question: "What is the longest lane distance?",
-                answer: "Our range features 10 fully-equipped lanes with a maximum distance of 25 yards. All lanes are rifle-rated."
-              },
-              {
-                question: "What is the dress code for the range?",
-                answer: "For your safety, close-toed shoes and crew neck shirts are required. We do not allow flip-flops, tank tops, or low-cut shirts as they do not provide adequate protection from hot brass."
-              },
-              {
-                question: "Can I rent firearms if I don't own one?",
-                answer: "Absolutely. We have over 170 rental firearms available, including the latest models from major manufacturers. It's a great way to 'try before you buy'."
-              },
-              {
-                question: "Can my children shoot at your range?",
-                answer: "Yes. Shooters under 18 must be accompanied by a parent or legal guardian aged 21 or older. Our RSOs will ensure a safe and educational experience for the whole family."
-              },
-              {
-                question: "What does it cost to use the range?",
-                answer: "Range fees are $22.00 per person, per visit. Best of all, there is NO time limit on your session! We want you to take your time and practice safely."
-              }
-            ]} />
+            <Accordion items={homeFaqItems} />
             
             <div className="mt-12 text-center">
               <Link href="/faq">

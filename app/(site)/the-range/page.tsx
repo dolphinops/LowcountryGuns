@@ -9,6 +9,32 @@ export const metadata: Metadata = {
   description: "Information about our 10-bay indoor shooting range, accessible from Savannah, GA and Beaufort, SC. Rules, gun rentals, and lane information."
 };
 
+type FacilityGalleryPhoto = {
+  src: string;
+  alt: string;
+  /** Portrait / odd aspect sources: rotate + scale so `object-cover` fills the 5:4 tile without letterboxing. */
+  imgClassName?: string;
+};
+
+const facilityGalleryPhotos: FacilityGalleryPhoto[] = [
+  {
+    src: "/images/IMG_9122.webp",
+    alt: "Shooters practicing in the indoor shooting bays at Lowcountry Guns",
+    imgClassName: "rotate-90 scale-[1.38]",
+  },
+  { src: "/images/legacy/DSC02296.webp", alt: "Indoor range bay with modern lane system and downrange lighting" },
+  {
+    src: "/images/IMG_2502.webp",
+    alt: "Two people coaching in an indoor range bay",
+    imgClassName: "rotate-90 scale-[1.28]",
+  },
+  { src: "/images/legacy/DSC1390.webp", alt: "Range interior showing shooting lanes and backstop" },
+  { src: "/images/legacy/DSC02326.webp", alt: "Facility common area and seating near the range desk" },
+  { src: "/images/legacy/DSC1668.webp", alt: "Lowcountry Guns exterior and entrance from the parking area" },
+  { src: "/images/legacy/DSC02433.webp", alt: "Electronic target retrieval system on the firing line" },
+  { src: "/images/legacy/DSC1670.webp", alt: "Wide view of the indoor range bay environment" },
+];
+
 export default function TheRange() {
   return (
     <div className="flex flex-col">
@@ -173,118 +199,41 @@ export default function TheRange() {
 
       <div className="gradient-divider" />
 
-      {/* ─── FACILITY GALLERY ─── */}
-      <section className="section-spacing bg-white text-[var(--color-foreground)]">
+      {/* ─── Facility photos: even 2×4 grid, no stagger ─── */}
+      <section className="border-y border-[var(--color-card-border)] bg-[var(--color-surface)] py-12 md:py-16">
         <div className="content-container">
-          <div className="text-center mb-10">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary-base)] mb-2">Visual Tour</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-              <span className="text-[var(--color-foreground)]">Facility </span><span className="text-gradient">Gallery</span>
+          <div className="mb-6 md:mb-8">
+            <p className="text-xs font-semibold uppercase tracking-wider text-[var(--color-primary-base)]">
+              Facility photos
+            </p>
+            <h2 className="mt-1 text-balance text-2xl font-extrabold tracking-tight text-[var(--color-foreground)] md:text-3xl">
+              Inside our bays, lanes, and arrival
             </h2>
+            <p className="mt-2 max-w-2xl text-balance text-sm font-medium leading-relaxed text-[var(--color-muted-fg)] md:text-base">
+              Eight photos: bays, retail floor, and building exterior.
+            </p>
           </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover shadow-xl">
-              <Image 
-                src="/images/IMG_9122.webp" 
-                alt="Shooters practicing in the indoor shooting bays" 
-                fill 
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700 rotate-90 scale-[1.75]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover mt-0 sm:mt-12 md:mt-8 shadow-xl">
-              <Image 
-                src="/images/legacy/DSC02296.webp" 
-                alt="Indoor range bay with modern lane system" 
-                fill 
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover shadow-xl">
-              <Image 
-                src="/images/IMG_2502.webp" 
-                alt="Two people coaching in an indoor range bay" 
-                fill 
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700 rotate-90 scale-[1.6]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover shadow-xl">
-              <Image 
-                src="/images/legacy/DSC1390.webp" 
-                alt="Range interior showing shooting lanes" 
-                fill 
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover mt-0 sm:mt-12 md:mt-8 shadow-xl">
-              <Image 
-                src="/images/legacy/DSC02326.webp" 
-                alt="Facility common area and seating" 
-                fill 
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover shadow-xl">
-              <Image 
-                src="/images/legacy/DSC1668.webp" 
-                alt="Lowcountry Guns exterior and entrance" 
-                fill 
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover mt-0 sm:mt-12 md:mt-8 shadow-xl">
-              <Image 
-                src="/images/legacy/DSC02433.webp" 
-                alt="Range target retrieval system" 
-                fill 
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700 hover:brightness-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover shadow-xl">
-              <Image 
-                src="/images/legacy/DSC02450.webp" 
-                alt="Shooting lane perspective" 
-                fill 
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover mt-0 sm:mt-12 md:mt-8 shadow-xl">
-              <Image 
-                src="/images/legacy/DSC02457.webp" 
-                alt="Tactical practice in the bay" 
-                fill 
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-            <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/20 group glow-hover shadow-xl">
-              <Image 
-                src="/images/legacy/DSC1670.webp" 
-                alt="Indoor range bay environment" 
-                fill 
-                sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-          </div>
+
+          <ul className="m-0 grid list-none grid-cols-2 gap-2 p-0 sm:gap-3 lg:grid-cols-4">
+            {facilityGalleryPhotos.map((photo) => (
+              <li
+                key={photo.src}
+                className="relative aspect-[5/4] overflow-hidden rounded-lg border border-[var(--color-card-border)] bg-zinc-100 shadow-sm"
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(max-width: 1024px) 50vw, 25vw"
+                  className={
+                    photo.imgClassName
+                      ? `object-cover object-center transition-transform duration-500 ${photo.imgClassName} hover:brightness-[1.04]`
+                      : "object-cover object-center transition-transform duration-500 hover:scale-[1.02]"
+                  }
+                />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </div>
