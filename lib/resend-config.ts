@@ -9,7 +9,7 @@
  */
 export const DEFAULT_RESEND_FROM = 'Lowcountry Guns <noreply@lcguns.com>' as const;
 
-export const DEFAULT_CONTACT_TO_EMAIL = 'aj@lcguns.com' as const;
+export const DEFAULT_CONTACT_TO_EMAIL = 'info@lcguns.com' as const;
 
 /** Resend onboarding sender only allows test recipients; ignore if left in env by mistake. */
 const RESEND_ONBOARDING_FROM_RE = /onboarding@resend\.dev/i;
