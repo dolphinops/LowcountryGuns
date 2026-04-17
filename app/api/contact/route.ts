@@ -4,7 +4,7 @@ import { Resend } from 'resend';
 import { contactFormSchema } from '@/lib/contact-schema';
 import { escapeHtml } from '@/lib/html-escape';
 import { resolveKvRestConfig } from '@/lib/motd-kv';
-import { getResendMailConfig } from '@/lib/resend-config';
+import { DEFAULT_CONTACT_TO_EMAIL, getResendMailConfig } from '@/lib/resend-config';
 
 export const runtime = 'nodejs';
 
@@ -42,11 +42,11 @@ export async function POST(req: Request) {
   }
 
   const mail = getResendMailConfig();
-  const to = process.env.CONTACT_TO_EMAIL?.trim() || 'aj@lcguns.com';
+  const to = process.env.CONTACT_TO_EMAIL?.trim() || DEFAULT_CONTACT_TO_EMAIL;
 
   if (!mail) {
     console.error(
-      'contact: Resend not configured — set RESEND_API_KEY and RESEND_FROM_EMAIL (or RESEND_FROM) on the server (e.g. Vercel → Environment Variables → Production).',
+      'contact: Resend not configured — set RESEND_API_KEY on the server (e.g. Vercel → Environment Variables → Production). Sender defaults to noreply@lcguns.com; override with RESEND_FROM_EMAIL if needed.',
     );
     return NextResponse.json(
       {
@@ -68,7 +68,12 @@ export async function POST(req: Request) {
 
   const parsed = contactFormSchema.safeParse(body);
   if (!parsed.success) {
-    return NextResponse.json({ error: 'Please check your form and try again.' }, { status: 400 });
+    const firstMsg = parsed.error.issues[0]?.message?.trim();
+    const safeError =
+      firstMsg && firstMsg.length <= 200 && !/[<>]/.test(firstMsg)
+        ? firstMsg
+        : 'Please check your form and try again.';
+    return NextResponse.json({ error: safeError }, { status: 400 });
   }
 
   const { name, phone, email, subject, message } = parsed.data;
@@ -108,27 +113,60 @@ export async function POST(req: Request) {
       statusCode: error.statusCode,
     });
 
-    // Safe hints for common Resend failures (see Resend dashboard → Logs for full detail).
+    const phone = '843-784-5474';
+
+    /** Resend messages are usually safe; strip noise and cap length for the browser. */
+    const resendHint = (() => {
+      const raw = typeof error.message === 'string' ? error.message.replace(/\s+/g, ' ').trim() : '';
+      if (!raw || raw.length > 400) return '';
+      if (/\bre_[A-Za-z0-9_-]{10,}\b/.test(raw)) return '';
+      return raw;
+    })();
+
     if (error.name === 'invalid_from_address') {
       return NextResponse.json(
         {
-          error:
-            'Email is not fully configured (sender address). Please call the Pro Shop at 843-784-5474 or use the form again after we update settings.',
-        },
-        { status: 502 },
-      );
-    }
-    if (error.name === 'monthly_quota_exceeded' || error.name === 'daily_quota_exceeded') {
-      return NextResponse.json(
-        {
-          error:
-            'We could not deliver your message right now due to email limits. Please call the Pro Shop at 843-784-5474.',
+          error: `The site email sender is not allowed yet (${resendHint || 'invalid from'}). Verify your domain in Resend and set RESEND_FROM_EMAIL on Vercel to an address on that domain, or call ${phone}.`,
+          code: error.name,
         },
         { status: 502 },
       );
     }
 
-    return NextResponse.json({ error: 'Could not send your message. Please try again or call us.' }, { status: 502 });
+    /** Resend test / onboarding `from` only allows delivery to the account owner inbox. */
+    const rawMsg = typeof error.message === 'string' ? error.message : '';
+    if (/testing emails|only send testing|verify a domain at resend/i.test(rawMsg)) {
+      console.error(
+        'contact: Resend blocked send — use a From address on your verified domain (not onboarding@resend.dev).',
+        { configuredFrom: from },
+      );
+      return NextResponse.json(
+        {
+          error: `We could not deliver your message through the form right now. Please call the Pro Shop at ${phone}.`,
+          code: 'resend_verified_domain_required',
+        },
+        { status: 502 },
+      );
+    }
+
+    if (error.name === 'monthly_quota_exceeded' || error.name === 'daily_quota_exceeded') {
+      return NextResponse.json(
+        {
+          error: `Email quota reached. Please call the Pro Shop at ${phone}.`,
+          code: error.name,
+        },
+        { status: 502 },
+      );
+    }
+
+    const suffix = resendHint ? ` (${resendHint})` : '';
+    return NextResponse.json(
+      {
+        error: `Could not send your message${suffix}. Try again or call the Pro Shop at ${phone}.`,
+        code: error.name,
+      },
+      { status: 502 },
+    );
   }
 
   return NextResponse.json({ ok: true });

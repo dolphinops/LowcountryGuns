@@ -517,7 +517,6 @@ export default function Home() {
         
         <div className="content-container relative z-10">
           <div className="text-center mb-12">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-primary-base)] mb-2">Social Proof</p>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
               <span className="text-[var(--color-foreground)]">What Our </span><span className="text-gradient">Customers Say</span>
             </h2>

@@ -14,7 +14,7 @@ export const contactFormSchema = z.object({
   phone: z.string().trim().min(7, 'Phone is required').max(40),
   email: z.string().trim().email('Invalid email'),
   subject: z.enum(CONTACT_SUBJECTS),
-  message: z.string().trim().min(10, 'Message is too short').max(5000),
+  message: z.string().trim().min(5, 'Message is too short').max(5000),
 });
 
 export type ContactFormPayload = z.infer<typeof contactFormSchema>;

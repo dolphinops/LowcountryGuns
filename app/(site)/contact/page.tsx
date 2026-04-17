@@ -30,10 +30,25 @@ export default function ContactPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
-      const data = (await res.json().catch(() => ({}))) as { error?: string };
+
+      const raw = await res.text();
+      let data: { error?: string; code?: string } = {};
+      if (raw) {
+        try {
+          data = JSON.parse(raw) as { error?: string; code?: string };
+        } catch {
+          /* non-JSON error body */
+        }
+      }
 
       if (!res.ok) {
-        setFormError(data.error || 'Something went wrong. Please try again or call us.');
+        const fallback =
+          res.status === 429
+            ? 'Too many submissions from this network. Please wait a bit or call 843-784-5474.'
+            : res.status === 503
+              ? 'The contact form is not configured on the server yet. Please call 843-784-5474.'
+              : 'Something went wrong. Please try again or call 843-784-5474.';
+        setFormError(data.error || fallback);
         setFormStatus('idle');
         return;
       }
