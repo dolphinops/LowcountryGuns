@@ -41,8 +41,8 @@ export default function ProShop() {
         
         <div className="content-container relative z-10">
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <BentoCard className="lg:col-span-2 border-[var(--color-card-border)] bg-white shadow-sm p-8 md:p-10 hover:border-[var(--color-primary-base)] transition-all duration-500 rounded-3xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <BentoCard className="lg:col-span-7 border-[var(--color-card-border)] bg-white shadow-sm p-8 md:p-10 hover:border-[var(--color-primary-base)] transition-all duration-500 rounded-3xl">
               <div className="flex items-center gap-4 mb-6">
                 <div className="p-3 rounded-2xl bg-[var(--color-primary-base)]/10">
                   <ShoppingBag className="w-8 h-8 text-[var(--color-primary-base)]" />
@@ -60,7 +60,7 @@ export default function ProShop() {
               </div>
             </BentoCard>
 
-            <BentoCard title="What We Carry" className="border-[var(--color-card-border)] bg-white shadow-sm hover:border-[var(--color-primary-base)] transition-all duration-500 rounded-3xl">
+            <BentoCard title="What We Carry" className="lg:col-span-5 border-[var(--color-card-border)] bg-white shadow-sm hover:border-[var(--color-primary-base)] transition-all duration-500 rounded-3xl">
               <ul className="space-y-4 text-sm text-[var(--color-muted-fg)] mt-4 font-medium">
                 <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-[var(--color-primary-base)]" /> Handguns (Glock, FN, S&W)</li>
                 <li className="flex items-center gap-3"><CheckCircle className="w-4 h-4 text-[var(--color-primary-base)]" /> AR-Style Rifles</li>

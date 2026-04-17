@@ -26,9 +26,9 @@ export default function IDPA() {
       </div>
 
       {/* ─── CONTENT + PORTRAIT SIDEBAR ─── */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left: Info Cards */}
-        <div className="lg:col-span-2 flex flex-col gap-6">
+        <div className="lg:col-span-7 flex flex-col gap-6">
           <BentoCard title="What is IDPA?" className="bg-[var(--color-primary-base)]/5 border-[var(--color-primary-base)]/20">
             <p className="text-[var(--color-muted-fg)] leading-relaxed mt-4">
               LCGUNs proudly hosts IDPA matches once per month, providing a safe, structured, and welcoming environment for shooters of all experience levels. Whether you are brand new to competitive shooting or looking to sharpen real-world defensive skills, IDPA is one of the most accessible and practical shooting sports available.
@@ -73,7 +73,7 @@ export default function IDPA() {
         </div>
 
         {/* Right: Portrait Action Shots Stack */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 lg:col-span-5">
           <div className="relative aspect-[2/3] rounded-xl overflow-hidden shadow-lg">
             <Image src="/images/legacy/DSC02457.webp" alt="IDPA competitor engaging targets" fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover" />
           </div>

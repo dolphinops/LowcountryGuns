@@ -54,7 +54,7 @@ export default function PrivateInstruction() {
 
         <div className="content-container relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-8 flex flex-col gap-16">
+            <div className="lg:col-span-7 flex flex-col gap-16">
               <div className="max-w-3xl text-balance">
                 <h2 className="text-4xl font-black text-[var(--color-foreground)] mb-8 tracking-tight">Personalized Shooting Lessons for All Skill Levels</h2>
                 <div className="space-y-6 text-[var(--color-muted-fg)] text-lg leading-relaxed font-medium">
@@ -88,7 +88,7 @@ export default function PrivateInstruction() {
               </div>
             </div>
 
-            <aside className="lg:col-span-4 flex flex-col gap-8">
+            <aside className="lg:col-span-5 flex flex-col gap-8">
               <div className="sticky top-32 p-8 md:p-10 rounded-3xl bg-white border border-[var(--color-card-border)] shadow-2xl shadow-zinc-200/50">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-surface)] border border-[var(--color-card-border)] text-[10px] font-bold uppercase tracking-widest text-[var(--color-primary-dark)] mb-6">
                   Booking Info

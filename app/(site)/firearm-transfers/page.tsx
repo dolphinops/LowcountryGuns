@@ -19,9 +19,9 @@ export default function FirearmTransfers() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         
-        <BentoCard title="Transfer Fees" className="lg:col-span-1 bg-[var(--color-primary-base)]/5 border-[var(--color-primary-base)]/20 flex flex-col">
+        <BentoCard title="Transfer Fees" className="lg:col-span-5 bg-[var(--color-primary-base)]/5 border-[var(--color-primary-base)]/20 flex flex-col">
           <div className="flex flex-col gap-6 mt-6">
             <div>
               <p className="text-2xl font-bold text-[var(--color-foreground)]">$45.00<span className="text-sm font-normal text-[var(--color-muted-fg)]">/firearm</span></p>
@@ -34,7 +34,7 @@ export default function FirearmTransfers() {
           </div>
         </BentoCard>
 
-        <BentoCard title="Transfer Policies" className="lg:col-span-2">
+        <BentoCard title="Transfer Policies" className="lg:col-span-7">
           <div className="flex flex-col gap-4 mt-4 space-y-2 text-sm text-[var(--color-muted-fg)]">
             <p>
               <strong className="text-[var(--color-foreground)] font-semibold">Identification:</strong> The firearm will only be transferred to the individual listed on the invoice provided with the shipment. <strong className="text-red-500">NO EXCEPTIONS</strong>.

@@ -57,12 +57,12 @@ export default function FAQ() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-        <BentoCard className="lg:col-span-2">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <BentoCard className="lg:col-span-7">
           <Accordion items={faqs} />
         </BentoCard>
 
-        <BentoCard title="Still have questions?" className="bg-[var(--color-card-border)]/30">
+        <BentoCard title="Still have questions?" className="lg:col-span-5 bg-[var(--color-card-border)]/30">
           <div className="flex flex-col gap-4 pt-2">
             <p className="text-sm text-[var(--color-muted-fg)]">
               Can&apos;t find the answer you&apos;re looking for? Give us a call or visit the range and our staff will be happy to help.

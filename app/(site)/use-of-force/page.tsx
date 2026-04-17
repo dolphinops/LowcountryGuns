@@ -27,8 +27,8 @@ export default function UseOfForce() {
         <Image src="/images/legacy/DSC1390.webp" alt="Use of Force Training" fill className="object-cover" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 flex flex-col gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="lg:col-span-7 flex flex-col gap-8">
           <BentoCard title="Course Overview">
             <p className="text-[var(--color-muted-fg)] leading-relaxed mt-4">
               Our Use of Force course goes far beyond marksmanship. It&apos;s designed for concealed carriers and armed citizens who want a deeper understanding of what happens before, during, and after a critical incident involving force.
@@ -56,7 +56,7 @@ export default function UseOfForce() {
           </BentoCard>
         </div>
 
-        <div className="lg:col-span-1 flex flex-col gap-6">
+        <div className="lg:col-span-5 flex flex-col gap-6">
           <BentoCard title="Course Details" className="border-[var(--color-primary-base)]/50">
             <div className="flex flex-col gap-4 mt-4">
               <div className="flex justify-between border-b border-[var(--color-card-border)] pb-2 text-sm">
