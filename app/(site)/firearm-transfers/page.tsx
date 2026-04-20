@@ -1,5 +1,6 @@
 import { BentoCard } from '@/components/ui/BentoCard';
 import Image from 'next/image';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -17,6 +18,14 @@ export default function FirearmTransfers() {
         <p className="text-lg text-[var(--color-muted-fg)] leading-relaxed">
           Streamlined firearm transfer process for firearms purchased from online merchants, private parties, and other venues.
         </p>
+        <div className="pt-2">
+          <Link
+            href="/the-range/firearm-transfer"
+            className="inline-flex min-h-11 items-center justify-center rounded-full bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-base)] px-8 text-sm font-semibold text-white shadow-md transition-all duration-200 hover:from-[var(--color-primary-base)] hover:to-[var(--color-primary-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-base)] focus-visible:ring-offset-2"
+          >
+            Start a transfer request
+          </Link>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">

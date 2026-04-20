@@ -146,6 +146,7 @@ export function Footer() {
                     Explore
                   </p>
                   <FooterLink href="/the-range">The Range</FooterLink>
+                  <FooterLink href="/the-range/firearm-transfer">Firearm transfer request</FooterLink>
                   <FooterLink href="/training">Training</FooterLink>
                   <FooterLink href="/first-experience">Your First Experience</FooterLink>
                   <FooterLink href="/memberships">Memberships</FooterLink>

@@ -29,6 +29,7 @@ const navLinks: NavLink[] = [
       { href: '/training', label: 'Training & Courses' },
       { href: '/first-experience', label: 'Your First Experience' },
       { href: '/memberships', label: 'Memberships' },
+      { href: '/the-range/firearm-transfer', label: 'Firearm Transfer Request' },
     ]
   },
   { 

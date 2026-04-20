@@ -34,6 +34,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/shop',
     '/tactical-lighting-training',
     '/the-range',
+    '/the-range/firearm-transfer',
     '/training',
     '/use-of-force',
     '/waiver',
