@@ -10,9 +10,7 @@ export function WaiverForm() {
         src="//js.hsforms.net/forms/embed/v2.js"
         strategy="afterInteractive"
         onLoad={() => {
-          // @ts-expect-error — HubSpot global injected by external script
           if (typeof window !== 'undefined' && window.hbspt) {
-            // @ts-expect-error — HubSpot global injected by external script
             window.hbspt.forms.create({
               region: 'na1',
               portalId: '46537828',

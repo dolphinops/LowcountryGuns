@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/react";
 import { getCanonicalSiteOrigin } from "@/lib/site";
 import "./globals.css";
+
+const googleAnalyticsMeasurementId =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() || "G-289MRSSQZ0";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -51,6 +56,8 @@ export default function RootLayout({
         <main className="flex-1 w-full flex flex-col">
           {children}
         </main>
+        <Analytics />
+        <GoogleAnalytics gaId={googleAnalyticsMeasurementId} />
       </body>
     </html>
   );
