@@ -6,7 +6,8 @@
     "dev": "next dev --port 3275",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "indexnow": "tsx scripts/ping-indexnow.ts"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.4",
