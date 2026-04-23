@@ -21,18 +21,10 @@ interface NavLink {
 }
 
 const trainingSubLinks: SubLink[] = [
-  { href: '/training', label: 'Training overview' },
-  { href: '/first-experience', label: 'Your First Experience' },
-  { href: '/womans-basic-beginner-class', label: "Woman's Basic Beginner Class" },
-  { href: '/conceal-weapon-permit', label: 'Concealed Weapon Permit (CWP)' },
-  { href: '/pistol-courses', label: 'Defensive Pistol' },
-  { href: '/private-firearm-instruction', label: 'Private firearm instruction' },
-  { href: '/intro-to-competition-shooting', label: 'Intro to competition shooting' },
+  { href: '/private-firearm-instruction', label: 'One-on-one instruction' },
+  { href: '/conceal-weapon-permit', label: 'CWP' },
+  { href: '/pistol-courses', label: 'Defensive pistol course' },
   { href: '/idpa', label: 'IDPA' },
-  { href: '/shooting-range-hardeeville-sc-defensive-carbine', label: 'Defensive carbine' },
-  { href: '/tactical-lighting-training', label: 'Tactical lighting training' },
-  { href: '/use-of-force', label: 'Use of force' },
-  { href: '/church-safety-team', label: 'Church safety team' },
 ];
 
 const navLinks: NavLink[] = [
