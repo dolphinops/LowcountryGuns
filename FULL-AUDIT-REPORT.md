@@ -1,10 +1,18 @@
-# Full SEO Audit — Lowcountry Guns & Range (re-audit)
+# Full SEO Audit — Lowcountry Guns & Range
 
-**Primary URL:** [https://lcguns.com/](https://lcguns.com/) — **Next.js on Vercel** (`server: Vercel`, prerendered HTML)  
-**Preview URL (checks):** [https://lowcountry-guns.vercel.app/](https://lowcountry-guns.vercel.app/)  
-**Re-audit date:** April 16, 2026  
+## Audit scope (canonical domain)
 
-> **Method:** Live `curl` against production and preview, `robots.txt` / `sitemap.xml` / `llms.txt`, HTML meta and JSON-LD spot checks. No `scripts/fetch_page.py` in repo; no Lighthouse/CrUX API in this pass.
+| | |
+|--|--|
+| **Hostname audited** | **`lcguns.com`** (production) |
+| **Primary origin** | **`https://lcguns.com`** — all sitemap `<loc>` URLs, live fetches, and recommendations assume this apex host unless stated otherwise. |
+| **Out of scope** | Preview URLs (`*.vercel.app`), localhost, and any domain that is not `lcguns.com` / `www.lcguns.com` — those are only noted where middleware affects indexing. |
+| **`www.lcguns.com`** | Redirects to apex **`https://lcguns.com`** (308); audit historical notes may still compare both hosts. |
+
+**Property audited:** `https://lcguns.com/`  
+**Audit date:** 2026-04-22  
+**Method:** Live HTTP fetch against **`https://lcguns.com`** (homepage, `robots.txt`, `sitemap.xml`, `llms.txt`), HEAD crawl of all sitemap URLs (37) on **`lcguns.com`**, response headers, and static review of `app/` routes and metadata.  
+**Note:** The workspace does not include `scripts/fetch_page.py` / `scripts/google_auth.py` from the audit skill template, so CrUX, GSC indexation, GA4, Lighthouse lab scores, and Playwright screenshots were **not** pulled automatically.
 
 ---
 
@@ -12,119 +20,120 @@
 
 | Metric | Value |
 |--------|--------|
-| **SEO health score (estimated)** | **83 / 100** |
-| **Business type** | Hybrid **local brick-and-mortar** (indoor shooting range + retail + training), strong service-area positioning |
+| **SEO health score (estimated)** | **79 / 100** |
+| **Business type** | **Local brick-and-mortar** — indoor shooting range + pro shop + training (Hardeeville, SC; regional draw Savannah / Hilton Head / Beaufort). |
+| **Sitemap URLs checked** | 37 — all returned **HTTP 200** |
+| **robots.txt** | Allows `/`; disallows `/api/`, `/_next/`, `/static/`; declares sitemap |
 
-### What improved since the last audit
+### Top 5 issues (severity)
 
-1. **Canonical alignment:** Live HTML shows **`og:url`** = `https://lcguns.com` and **`og:image`** on the same host — no more `lowcountryguns.com` split in social tags.
-2. **Structured data:** Homepage exposes a **single** primary **`ShootingRange`** graph (via shared `lib/site.ts`) with `@id` `https://lcguns.com/#organization`, `sameAs`, and consistent hours.
-3. **Sitemap:** **`https://lcguns.com/first-experience`** appears in `sitemap.xml`.
-4. **Preview / duplicate indexing:** **`X-Robots-Tag: noindex, nofollow`** on `lowcountry-guns.vercel.app`; **production `lcguns.com`** has **no** that header in spot check — intended split.
-5. **GEO:** **`/llms.txt`** returns **200** with concise facts and policy links.
-6. **Mobile hero:** Background **MP4 does not mount on small viewports** (`HeroBackdrop` client gate) — reduces cellular load and main-thread decode issues.
+1. **High — Host consolidation:** *Mitigated in app (2026):* **`www.lcguns.com`** now **308-redirects** to **`https://lcguns.com`**. Re-verify in production after deploy; keep **GSC** on the apex property.
+2. **High — Canonical signals:** *Mitigated in app (2026):* apex responses add an HTTP **`Link` `rel="canonical"`** header; some routes also use **`metadata.alternates.canonical`**. Re-fetch headers / HTML after deploy; finish **GSC** URL Inspection pass.
+3. **Medium — Security headers:** Strong **HSTS** present; no **Content-Security-Policy**, **X-Frame-Options**, or **Permissions-Policy** in sampled responses (Vercel + `next.config` only add Referrer-Policy and X-DNS-Prefetch-Control).
+4. **Medium — Performance evidence:** No CrUX / PageSpeed run in this audit. Homepage payload is large (~168KB HTML) with rich media; validate **LCP / INP / CLS** in production (especially hero video and third-party analytics).
+5. **Low — `humans.txt`:** Returns **404** (optional; no SEO penalty).
 
-### Remaining opportunities (not blockers)
+### Top 5 quick wins
 
-| Area | Note |
-|------|------|
-| **Lab / field CWV** | No PageSpeed or CrUX pull in this pass — score for Performance category stays conservative. |
-| **Third parties** | Trustindex / Eventbrite — watch **INP** on training and homepage. |
-| **CSP** | No `Content-Security-Policy` in headers — optional hardening. |
-| **Location SERP extras** | FAQPage JSON-LD on location landings only if content truly qualifies. |
-
----
-
-## Technical SEO (~22% weight) — score **88**
-
-| Check | Result |
-|--------|--------|
-| **HTTP / TLS** | `200` on `/`; **HSTS** on Vercel (`strict-transport-security` with long `max-age`). |
-| **Production host** | `lcguns.com` serves the **same** Next stack as the project (not legacy WordPress in this check). |
-| **robots.txt** | Allow `/`, disallow `/api/`, `/_next/`, `/static/`; **Sitemap:** `https://lcguns.com/sitemap.xml`. |
-| **Sitemap** | Valid urlset; **`/first-experience`** included among static routes. |
-| **Preview** | `*.vercel.app` gets **`X-Robots-Tag: noindex, nofollow`** via middleware. |
-| **Redirects** | `vercel.json` + `next.config.ts` retain legacy path 301s. |
+1. Submit / refresh **`https://lcguns.com/sitemap.xml`** in Google Search Console (already valid XML and discoverable from `robots.txt`).
+2. After deploy, confirm **308 www → apex** and **`Link: rel="canonical"`** in response headers; run **GSC URL Inspection** on key URLs.
+3. Keep **`llms.txt`** updated when major services change — it is already well structured for AI crawlers.
+4. Ensure **`NEXT_PUBLIC_SITE_URL`** on Vercel matches the GSC property (e.g. `https://lcguns.com`) so sitemap and metadata stay aligned.
+5. Add **PageSpeed Insights** or **CrUX** checks to CI or a quarterly calendar (field data drives the Performance score).
 
 ---
 
-## Content quality & E-E-A-T (~23% weight) — score **82**
+## Category scores (0–100) and weights
 
-- Homepage: clear offer, NAP, hours, pricing, training, FAQ, reviews — solid for local + regulated-adjacent niche.
-- Blog: structured long-form in-repo; **BlogPosting** JSON-LD uses canonical origin.
+| Category | Score | Notes |
+|----------|-------|--------|
+| Technical SEO (22%) | 76 | Crawl + index basics strong; host/canonical and header hardening gaps |
+| Content quality (23%) | 82 | Clear local value prop, service pages, blog, FAQ; continue E-E-A-T depth on money pages |
+| On-page SEO (20%) | 80 | Solid default metadata in `app/layout.tsx`; per-page titles need periodic review |
+| Schema (10%) | 85 | `ShootingRange` in site layout; FAQ JSON-LD on home; local + article patterns on key routes |
+| Performance / CWV (10%) | 70 | *Estimated* without field data; Next/Image and modern stack help |
+| AI search readiness (10%) | 88 | **`/llms.txt` 200** with accurate NAP-style facts and policy links |
+| Images (5%) | 82 | Descriptive `alt` patterns in homepage code; spot-check remaining pages |
 
----
-
-## On-page SEO (~20% weight) — score **86**
-
-- Title / description: strong, geo-specific defaults.
-- **Open Graph:** `og:url` and image URLs align with **`https://lcguns.com`** on live fetch.
-- Headings: single hero headline pattern; section H2/H3 structure is sensible.
-
----
-
-## Schema & structured data (~10% weight) — score **82**
-
-- Sitewide **ShootingRange** with stable **`@id`**, `url`, `sameAs`, `openingHoursSpecification` aligned with footer.
-- Location pages keep dedicated JSON-LD with canonical **`SITE`** from `getCanonicalSiteOrigin()`.
-- **GunStore** duplicate block removed from homepage (single primary entity).
+**Weighted composite ≈ 79.**
 
 ---
 
-## Performance & CWV (~10% weight) — score **78** (estimated)
+## Technical SEO
 
-- Static prerender + CDN — good baseline.
-- **Mobile:** hero video deferred to **md+** only; poster `Image` with **priority** — materially better than autoplay MP4 on phones (still run PSI mobile to validate **LCP**).
-- Third-party scripts remain the main INP risk — measure on `/training` and homepage.
-
----
-
-## Images (~5% weight) — score **78**
-
-- `next/image` + descriptive `alt` on key tiles (codebase pattern).
-- OG image absolute URL matches canonical host on live HTML.
+| Item | Status |
+|------|--------|
+| **robots.txt** | OK — allows crawl; sitemap line present |
+| **XML sitemap** | OK — 37 URLs; includes blog posts and `/the-range/firearm-transfer` |
+| **HTTP status** | All sitemap URLs **200** on HEAD check |
+| **Redirects** | `next.config.ts` has permanent redirects for legacy paths (`/about` → `/team`, etc.) |
+| **Non-canonical hosts** | Middleware sets **noindex** for non-production hosts; **`www.lcguns.com`** **308** → apex **`lcguns.com`**; indexable host list is **apex only** |
+| **Security headers** | HSTS present; consider CSP (report-only first), frame-ancestors, Permissions-Policy |
 
 ---
 
-## AI search readiness / GEO (~10% weight) — score **78**
+## Content & E-E-A-T
 
-- **`https://lcguns.com/llms.txt`** and **`https://lowcountry-guns.vercel.app/llms.txt`** both **200** with structured summary and deep links.
-- On-page copy remains citation-friendly (address, hours, pricing).
-
----
-
-## Local SEO (contextual)
-
-- NAP: **98 Purrysburg Rd, Hardeeville, SC 29927**, **843-784-5474** — consistent with schema.
-- Keep **Google Business Profile** hours and primary category in sync with schema + footer.
+- Strong **local relevance** (address, hours, service cities, range rules) supports trust for a regulated category (firearms).
+- **Blog** and **FAQ** support informational queries and citability.
+- **Recommendation:** Add or refresh **author / bylines** and **last updated** signals on long-form guides where appropriate; keep medical/legal claims conservative and accurate.
 
 ---
 
-## Security / headers (spot check)
+## On-page SEO
 
-- **HSTS** present.
-- **CSP:** not set — backlog if you want defense-in-depth alongside JSON-LD and embeds.
-
----
-
-## Scoring weights (seo-audit skill)
-
-| Category | Weight | Subscore (this pass) |
-|----------|--------|-------------------------|
-| Technical SEO | 22% | 88 |
-| Content quality | 23% | 82 |
-| On-page SEO | 20% | 86 |
-| Schema | 10% | 82 |
-| Performance (CWV) | 10% | 78 |
-| AI readiness | 10% | 78 |
-| Images | 5% | 78 |
-
-**Blended ≈ 83/100** — uplift driven by **canonical + schema consolidation**, **preview noindex**, **sitemap + llms.txt**, and **mobile hero behavior**. Residual gap is mostly **unmeasured CWV** and optional **CSP / FAQ schema** depth.
+- Root **title** and **meta description** present and keyword-aware (verified in fetched HTML).
+- **Single H1** on homepage in source (`app/(site)/page.tsx`).
+- **Recommendation:** Audit a sample of location/training pages for unique titles and meta descriptions (avoid boilerplate duplication).
 
 ---
 
-## Optional next steps
+## Schema / structured data
 
-- Run **PageSpeed Insights** (mobile) on `/`, `/training`, `/shooting-range-savannah-ga`; log LCP / INP / CLS.
-- **Google Search Console** after steady state: coverage, enhancements, `/sitemap.xml` submit.
-- PDF pipeline: still no `scripts/google_report.py` in repo.
+- **ShootingRange** (and related) via `getShootingRangeJsonLd()` in `app/(site)/layout.tsx`.
+- **FAQPage** on homepage via `buildFaqPageJsonLd`.
+- **Location-style** blocks on regional landing pages (e.g. Hilton Head, Savannah, Beaufort).
+- **Blog:** Article-style JSON-LD in `app/(site)/blog/[slug]/page.tsx`.
+- **Recommendation:** Run Rich Results Test on homepage + one blog URL after each major template change; avoid conflicting `@id` graphs if you add Organization sitewide.
+
+---
+
+## Performance (CWV)
+
+- **Not measured** in this pass (no PSI/CrUX API).
+- Homepage uses **video hero** (`HeroBackdrop`), many images (many via `next/image` — good), analytics scripts — validate **INP** after GA + Vercel Analytics deploy.
+
+---
+
+## AI search readiness (GEO)
+
+- **`https://lcguns.com/llms.txt`** — **200**, clear summary, canonical URL, policies, contact — **excellent**.
+- Internal linking from guides to **FAQ**, **waiver**, and **contact** supports bot traversal.
+
+---
+
+## Images
+
+- Homepage facility/gallery blocks use **specific alts** (good for accessibility and image search).
+- **Recommendation:** Periodic audit for decorative vs informative images and lazy-loading below the fold.
+
+---
+
+## Crawl scope
+
+- **Domain:** All crawled URLs were **`https://lcguns.com/...`** from the live **`https://lcguns.com/sitemap.xml`**.
+- **Pages exercised:** 37 (full sitemap for **lcguns.com**).
+- **robots.txt:** Fetched from **`https://lcguns.com/robots.txt`** — did not block marketing paths used here.
+- **Not in sitemap (expected):** `/admin`, `/api/*`, `/embed/*` — appropriate.
+
+---
+
+## Optional enrichments (when tooling exists)
+
+- **`python scripts/google_auth.py --check`** → attach CrUX, GSC coverage, GA4 organic trends.
+- **`scripts/fetch_page.py` + Playwright** → screenshots and mobile layout pass.
+- **`scripts/google_report.py --type full`** → enterprise PDF export.
+
+---
+
+*End of report.*

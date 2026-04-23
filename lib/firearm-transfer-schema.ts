@@ -14,7 +14,8 @@ export const firearmTransferFormSchema = z.object({
   barrelLength: line('Barrel length', 80),
   finish: line('Finish', 120),
   serialNumber: line('Serial number', 80),
-  countryOfManufacture: line('Country of manufacture', 120),
+  dealerName: line('Dealer name', 120),
+  orderNumber: line('Order number', 80),
   otherIdentifyingInfo: z.string().trim().max(2000).optional().default(''),
 });
 

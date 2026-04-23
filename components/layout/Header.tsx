@@ -20,20 +20,38 @@ interface NavLink {
   subLinks?: SubLink[];
 }
 
+const trainingSubLinks: SubLink[] = [
+  { href: '/training', label: 'Training overview' },
+  { href: '/first-experience', label: 'Your First Experience' },
+  { href: '/womans-basic-beginner-class', label: "Woman's Basic Beginner Class" },
+  { href: '/conceal-weapon-permit', label: 'Concealed Weapon Permit (CWP)' },
+  { href: '/pistol-courses', label: 'Defensive Pistol' },
+  { href: '/private-firearm-instruction', label: 'Private firearm instruction' },
+  { href: '/intro-to-competition-shooting', label: 'Intro to competition shooting' },
+  { href: '/idpa', label: 'IDPA' },
+  { href: '/shooting-range-hardeeville-sc-defensive-carbine', label: 'Defensive carbine' },
+  { href: '/tactical-lighting-training', label: 'Tactical lighting training' },
+  { href: '/use-of-force', label: 'Use of force' },
+  { href: '/church-safety-team', label: 'Church safety team' },
+];
+
 const navLinks: NavLink[] = [
-  { 
-    label: 'The Range', 
+  {
+    label: 'The Range',
     href: '/the-range',
     subLinks: [
-      { href: '/the-range', label: 'Range Overview' },
-      { href: '/training', label: 'Training & Courses' },
-      { href: '/first-experience', label: 'Your First Experience' },
+      { href: '/the-range', label: 'Range overview' },
       { href: '/memberships', label: 'Memberships' },
-      { href: '/the-range/firearm-transfer', label: 'Firearm Transfer Request' },
-    ]
+      { href: '/the-range/firearm-transfer', label: 'Firearm transfer request' },
+    ],
   },
-  { 
-    label: 'Pro Shop', 
+  {
+    label: 'Training',
+    href: '/training',
+    subLinks: trainingSubLinks,
+  },
+  {
+    label: 'Pro Shop',
     href: '/pro-shop',
     subLinks: [
       { href: '/pro-shop', label: 'Shop Overview' },
@@ -141,7 +159,7 @@ export function Header() {
                 {/* Dropdown Menu */}
                 {link.subLinks && (
                   <div className={`absolute top-full left-0 pt-2 transition-all duration-300 ${activeDropdown === link.label ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none'}`}>
-                    <div className="bg-white border border-[var(--color-card-border)] rounded-2xl shadow-xl overflow-hidden min-w-[220px]">
+                    <div className="max-h-[min(32rem,calc(100vh-7rem))] min-w-[min(100vw-2rem,280px)] overflow-y-auto overscroll-contain rounded-2xl border border-[var(--color-card-border)] bg-white shadow-xl">
                       {link.subLinks.map((sub) => (
                         <Link 
                           key={sub.href}

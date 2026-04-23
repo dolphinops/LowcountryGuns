@@ -6,7 +6,7 @@ import { FirearmTransferForm } from './FirearmTransferForm';
 export const metadata: Metadata = {
   title: 'Firearm transfer request | The Range | Lowcountry Guns',
   description:
-    'Submit a firearm transfer request to Lowcountry Guns & Range. Your details are emailed to our team at info@lcguns.com.',
+    'Submit a firearm transfer request to Lowcountry Guns & Range. Your details are sent to our team so we can coordinate your transfer.',
 };
 
 export default function FirearmTransferPage() {

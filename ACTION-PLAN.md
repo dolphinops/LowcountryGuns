@@ -1,40 +1,64 @@
 # SEO Action Plan — Lowcountry Guns & Range
 
-**Production:** [https://lcguns.com/](https://lcguns.com/)  
-**Preview:** [https://lowcountry-guns.vercel.app/](https://lowcountry-guns.vercel.app/) (noindex via `X-Robots-Tag`)
+Prioritized from **Critical** → **Low**. Effort: **S** small / **M** medium / **L** large.
 
-**Status (April 16, 2026 re-audit):** Items **C1, C2, H1, H3, M3** from the prior plan are **implemented** (canonical `lcguns.com`, single ShootingRange JSON-LD, middleware noindex on non-canonical hosts, `/first-experience` in sitemap, `public/llms.txt`). **H2** (`NEXT_PUBLIC_SITE_URL`) is documented in `.env.example` and optional on Vercel production.
+## Scope — `lcguns.com`
 
----
-
-## Medium (remaining)
-
-| # | Action | Rationale |
-|---|--------|-----------|
-| M1 | Run **PageSpeed Insights** (mobile) on `/`, `/contact`, `/training`, one **shooting-range-*** URL; fix regressions (**LCP**, **INP**, **CLS**). | Field/lab data not captured in markdown audits. |
-| M2 | **Done (Apr 2026):** **FAQPage** JSON-LD + visible accordions on `/`, `/faq`, and Savannah / Hilton Head / Beaufort shooting-range pages (`lib/jsonld-faq.ts`, `data/seo-location-faqs.ts`, `components/seo/LocationFaqSection.tsx`). | FAQ markup mirrors on-page Q&A. |
+This plan applies to the **production** site at **`https://lcguns.com`** (hostname **`lcguns.com`**). Configure **Google Search Console**, **`NEXT_PUBLIC_SITE_URL`**, and sitemap submission for **`https://lcguns.com`** (not Vercel preview URLs or other domains). Items that mention **`www.lcguns.com`** are about consolidating traffic **onto your chosen `lcguns.com` property** (apex vs www).
 
 ---
 
-## Low
+## Critical (fix immediately if applicable)
 
-| # | Action | Rationale |
-|---|--------|-----------|
-| L1 | **Partial:** Global headers in `next.config.ts`: **Referrer-Policy: strict-origin-when-cross-origin**, **X-DNS-Prefetch-Control: on**. Full **Content-Security-Policy** (report-only or enforce) still optional — tune for Trustindex / Eventbrite / inline JSON-LD. | Safer defaults without breaking third parties. |
-| L2 | **Playwright** screenshots (desktop + mobile) for hero, training, footer — optional `screenshots/` folder. | Visual QA for marketing. |
-
----
-
-## Verification (current)
-
-1. `curl -sSIL https://lcguns.com/ | grep -i x-robots` — expect **empty** (indexable production).  
-2. `curl -sSIL https://lowcountry-guns.vercel.app/ | grep -i x-robots` — expect **`noindex, nofollow`**.  
-3. `curl -sS https://lcguns.com/ | grep og:url` — expect **`https://lcguns.com`**.  
-4. `curl -sS https://lcguns.com/sitemap.xml | grep first-experience` — expect **hit**.  
-5. `curl -sSIL https://lcguns.com/llms.txt` — expect **200**.
+| # | Action | Rationale | Effort |
+|---|--------|-----------|--------|
+| — | *None identified in this audit.* | Sitemap URLs return 200; robots allows indexing of public pages. | — |
 
 ---
 
-## Historical note
+## High (within ~1 week)
 
-The earlier plan referred to **WordPress on `lcguns.com`**; production now resolves to the **Next.js** deployment. If DNS or hosting changes again, re-run checks (1)–(5) above.
+**Done in repo (deploy to verify):**
+
+- **#1 — Apex host:** `middleware.ts` issues **308** from **`www.lcguns.com`** → **`https://lcguns.com`** (same path and query string). `lib/site.ts` treats only **`lcguns.com`** as indexable (www is not a parallel indexable host).
+- **#2 — Canonical:** Apex HTML routes get an HTTP **`Link: <…>; rel="canonical"`** header built from **`getCanonicalSiteOrigin()`** + pathname (query stripped). Key pages that already export **`alternates.canonical`** keep Next’s `<link rel="canonical">` as well; re-check response headers + View Source after deploy.
+
+| # | Action | Rationale | Effort |
+|---|--------|-----------|--------|
+| ~~1~~ | ~~Host consolidation~~ | *Implemented — see above.* | — |
+| ~~2~~ | ~~Canonical verification~~ | *Implemented — confirm in production.* | **S** |
+| 3 | In **Google Search Console** for **`https://lcguns.com/`** (or Domain **`lcguns.com`**), confirm the property matches your preferred host; submit **`https://lcguns.com/sitemap.xml`**; use **URL Inspection** on `https://lcguns.com/` plus 2–3 template URLs. | Ensures discovery and surfaces coverage errors early for **lcguns.com**. | **S** |
+
+---
+
+## Medium (within ~1 month)
+
+| # | Action | Rationale | Effort |
+|---|--------|-----------|--------|
+| 4 | Add **Content-Security-Policy** in **report-only** mode first, then tighten (account for HubSpot, YouTube, GA, Vercel Analytics). | Reduces XSS blast radius; complements HSTS. | **L** |
+| 5 | Run **PageSpeed Insights** (mobile + desktop) on **`https://lcguns.com/`**, **`https://lcguns.com/the-range`**, and one **`https://lcguns.com/blog/...`** URL; fix largest **LCP** and **INP** regressions. | Field CWV affects ranking and UX; hero + third parties are common bottlenecks. | **M** |
+| 6 | **Schema QA:** Google Rich Results Test on homepage, one location page, one article after changes. | Catches JSON-LD syntax or policy issues before rollout. | **S** |
+| 7 | **Content:** Refresh top 3 commercial pages (memberships, training, transfers) with clear **last updated** date where facts change (pricing, laws). | E-E-A-T and freshness for YMYL-adjacent topics. | **M** |
+
+---
+
+## Low (backlog)
+
+| # | Action | Rationale | Effort |
+|---|--------|-----------|--------|
+| 8 | Optional **`humans.txt`** if you want a human-readable credits/contact file (404 today — harmless). | Minor brand signal only. | **S** |
+| 9 | Add automated **SEO smoke test** (sitemap 200, robots, canonical host) to CI when `scripts/` exist. | Prevents regressions on deploy. | **M** |
+| 10 | When `scripts/google_report.py` is available, generate **PDF audit** for stakeholders. | Skill-recommended deliverable. | **S** (once scripted) |
+
+---
+
+## Success metrics (30–60 days)
+
+- GSC: sitemap **“Success”**, decreasing **“Crawled — not indexed”** for important URLs (where applicable).
+- Stable **CTR** and **average position** on branded + core local queries (GSC).
+- **CWV** “Good” URLs in CrUX / PSI field where measured.
+- No increase in **duplicate** / **alternate page with proper canonical** errors after host consolidation.
+
+---
+
+*Generated alongside `FULL-AUDIT-REPORT.md`.*

@@ -93,7 +93,8 @@ export async function POST(req: Request) {
     `Barrel length: ${d.barrelLength}`,
     `Finish: ${d.finish}`,
     `Serial #: ${d.serialNumber}`,
-    `Country of manufacture: ${d.countryOfManufacture}`,
+    `Dealer name: ${d.dealerName}`,
+    `Order number: ${d.orderNumber}`,
     '',
     d.otherIdentifyingInfo ? `Other identifying information:\n${d.otherIdentifyingInfo}` : 'Other identifying information: (none)',
   ].join('\n');
@@ -116,7 +117,8 @@ export async function POST(req: Request) {
 <p><strong>Barrel length:</strong> ${escapeHtml(d.barrelLength)}</p>
 <p><strong>Finish:</strong> ${escapeHtml(d.finish)}</p>
 <p><strong>Serial #:</strong> ${escapeHtml(d.serialNumber)}</p>
-<p><strong>Country of manufacture:</strong> ${escapeHtml(d.countryOfManufacture)}</p>
+<p><strong>Dealer name:</strong> ${escapeHtml(d.dealerName)}</p>
+<p><strong>Order number:</strong> ${escapeHtml(d.orderNumber)}</p>
 <p><strong>Other identifying information:</strong></p>
 ${otherBlock}
 `;

@@ -14,7 +14,8 @@ export function getCanonicalSiteOrigin(): string {
   }
 }
 
-const INDEXABLE_HOSTS = new Set(["lcguns.com", "www.lcguns.com"]);
+/** Apex only — `www` is 301/308 redirected in middleware to avoid duplicate indexing. */
+const INDEXABLE_HOSTS = new Set(["lcguns.com"]);
 
 export function isCanonicalSiteHost(host: string | null | undefined): boolean {
   if (!host) return false;
