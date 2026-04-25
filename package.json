@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "indexnow": "tsx scripts/ping-indexnow.ts"
+    "indexnow": "tsx scripts/ping-indexnow.ts",
+    "seo:smoke": "tsx scripts/seo-smoke-test.ts"
   },
   "dependencies": {
     "@next/third-parties": "^16.2.4",

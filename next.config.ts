@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { CSP_REPORT_ONLY } from "./lib/csp-report-only";
 
 const nextConfig: NextConfig = {
   async headers() {
@@ -13,6 +14,10 @@ const nextConfig: NextConfig = {
           {
             key: "X-DNS-Prefetch-Control",
             value: "on",
+          },
+          {
+            key: "Content-Security-Policy-Report-Only",
+            value: CSP_REPORT_ONLY,
           },
         ],
       },

@@ -33,9 +33,13 @@ This plan applies to the **production** site at **`https://lcguns.com`** (hostna
 
 ## Medium (within ~1 month)
 
+**Done in repo (deploy to pick up CSP header):**
+
+- **#4 — CSP (report-only):** `next.config.ts` sends **`Content-Security-Policy-Report-Only`** from `lib/csp-report-only.ts` (permissive: GA/GTM, Vercel scripts, HubSpot, YouTube, Eventbrite, fonts, frames). Does **not** block assets; watch browser console / add a **`report-uri` / Reporting-API** endpoint later, then tighten directives.
+
 | # | Action | Rationale | Effort |
 |---|--------|-----------|--------|
-| 4 | Add **Content-Security-Policy** in **report-only** mode first, then tighten (account for HubSpot, YouTube, GA, Vercel Analytics). | Reduces XSS blast radius; complements HSTS. | **L** |
+| ~~4~~ | ~~CSP report-only~~ | *Implemented — refine after deploy.* | **L** |
 | 5 | Run **PageSpeed Insights** (mobile + desktop) on **`https://lcguns.com/`**, **`https://lcguns.com/the-range`**, and one **`https://lcguns.com/blog/...`** URL; fix largest **LCP** and **INP** regressions. | Field CWV affects ranking and UX; hero + third parties are common bottlenecks. | **M** |
 | 6 | **Schema QA:** Google Rich Results Test on homepage, one location page, one article after changes. | Catches JSON-LD syntax or policy issues before rollout. | **S** |
 | 7 | **Content:** Refresh top 3 commercial pages (memberships, training, transfers) with clear **last updated** date where facts change (pricing, laws). | E-E-A-T and freshness for YMYL-adjacent topics. | **M** |
@@ -44,10 +48,14 @@ This plan applies to the **production** site at **`https://lcguns.com`** (hostna
 
 ## Low (backlog)
 
+**Done in repo:**
+
+- **#9 — Smoke test:** Run **`npm run seo:smoke`** (or `SITE=https://lcguns.com npm run seo:smoke`) to verify robots, sitemap **200**, homepage **`nosniff`** + **`Link` canonical**, and **www → apex** redirect. Wire this into Vercel/GitHub **CI** when you want it on every deploy.
+
 | # | Action | Rationale | Effort |
 |---|--------|-----------|--------|
 | 8 | Optional **`humans.txt`** if you want a human-readable credits/contact file (404 today — harmless). | Minor brand signal only. | **S** |
-| 9 | Add automated **SEO smoke test** (sitemap 200, robots, canonical host) to CI when `scripts/` exist. | Prevents regressions on deploy. | **M** |
+| ~~9~~ | ~~SEO smoke test~~ | *Script added — optional CI hook.* | **S** |
 | 10 | When `scripts/google_report.py` is available, generate **PDF audit** for stakeholders. | Skill-recommended deliverable. | **S** (once scripted) |
 
 ---
